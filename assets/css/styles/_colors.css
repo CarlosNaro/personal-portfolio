@@ -1,0 +1,69 @@
+:root {
+    --ns-backgroundContent: 30, 32, 35;
+
+    /*formatos RGB*/
+    --ns-primary: 25, 91, 255;
+    --ns-warn: 255, 186, 0;
+    --ns-danger: 255, 71, 87;
+    --ns-success: 70, 201, 58;
+    --ns-dark: 30, 30, 30;
+    --ns-light: 244, 247, 248;
+    --ns-color: 17, 18, 20;
+
+    /*social colors*/
+    --ns-facebook: 59, 89, 153;
+    --ns-twitter: 29, 161, 242;
+    --ns-youtube: 255, 0, 0;
+    --ns-pinterest: 189, 8, 28;
+    --ns-linkedin: 0, 119, 181;
+    --ns-snapchat: 255, 252, 0;
+    --ns-whatsapp: 37, 211, 102;
+    --ns-tumblr: 54, 70, 93;
+    --ns-reddit: 255, 69, 0;
+    --ns-spotify: 30, 215, 96;
+    --ns-amazon: 255, 153, 0;
+    --ns-medium: 2, 184, 117;
+    --ns-vimeo: 26, 183, 234;
+    --ns-skype: 0, 175, 240;
+    --ns-dribbble: 234, 76, 137;
+    --ns-slack: 74, 21, 75;
+    --ns-yahoo: 67, 2, 151;
+    --ns-twitch: 100, 65, 164;
+    --ns-discord: 114, 137, 218;
+    --ns-telegram: 0, 136, 204;
+    --ns-google-plus: 219, 68, 55;
+    --ns-messenger: 0, 132, 255;
+
+    /*theme*/
+    --ns-background: 255, 255, 255; /*blanco */
+    --ns-text: 44, 62, 80; /* gris oscuro */
+    --ns-gray-1: 249, 252, 253; /* gris claro */
+    --ns-gray-2: 244, 247, 248;
+    --ns-gray-3: 240, 243, 244;
+    --ns-gray-4: 230, 233, 234;
+
+    /*[class*="--primary"] {*/
+    /*    --ns-color: var(--ns-primary)*/
+    /*}*/
+
+    /*[class*="--default"] {*/
+    /*    --ns-color: var(--ns-primary)*/
+    /*}*/
+
+    /*[class*="--danger"] {*/
+    /*    --ns-color: var(--ns-danger)*/
+    /*}*/
+
+    /*[class*="--success"] {*/
+    /*    --ns-color: var(--ns-success)*/
+    /*}*/
+
+    /*[class*="--dark"] {*/
+    /*    --ns-color: var(--ns-dark)*/
+    /*}*/
+
+    /*[class*="--warn"] {*/
+    /*    --ns-color: var(--ns-warn)*/
+    /*}*/
+
+}
