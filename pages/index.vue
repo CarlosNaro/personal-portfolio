@@ -7,7 +7,7 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
 </script>
 
 <template>
-  <div :class="{ dark: isDarkMode }" class="flex flex-col h-screen">
+  <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
     <header_ />
     <main class="content flex-1">
       <home />
