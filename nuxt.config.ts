@@ -11,12 +11,17 @@ export default defineNuxtConfig({
       'tailwindcss/nesting': {},
       tailwindcss: {},
       autoprefixer: {},
-      base: '/personal-portfolio/',
     },
   },
   alias: {
     '@assets': fileURLToPath(new URL('./assets', import.meta.url)),
     '@components': fileURLToPath(new URL('./components', import.meta.url)),
     '@pages': fileURLToPath(new URL('./pages', import.meta.url)),
+  },
+  router: {
+    base: '/personal-portfolio/',
+  },
+  generate: {
+    dir: 'dist',
   },
 });
