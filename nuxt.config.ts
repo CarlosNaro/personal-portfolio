@@ -19,10 +19,4 @@ export default defineNuxtConfig({
     '@components': fileURLToPath(new URL('./components', import.meta.url)),
     '@pages': fileURLToPath(new URL('./pages', import.meta.url)),
   },
-  // router: {
-  //   base: '/personal-portfolio/',
-  // },
-  // generate: {
-  //   dir: 'dist',
-  // },
 });
