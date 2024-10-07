@@ -38,7 +38,7 @@ const active = ref();
       <div
         v-if="!isDarkMode"
         class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer text-indigo-500"
-        @click="isDarkMode = true"
+        @click="() => (isDarkMode = true)"
       >
         <button
           type="button"
