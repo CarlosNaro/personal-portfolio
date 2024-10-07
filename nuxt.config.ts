@@ -12,7 +12,6 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
-    // base: '/personal-portfolio/',
   },
   alias: {
     '@assets': fileURLToPath(new URL('./assets', import.meta.url)),

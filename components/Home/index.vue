@@ -35,16 +35,4 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
     box-shadow: 0 10px 20px -10px rgba(var(--ns-warn), 1) !important;
   }
 }
-
-.noSelect {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-}
-
-.description {
-  /*padding: 1rem;*/
-  /* font-size: 2rem;*/
-}
 </style>

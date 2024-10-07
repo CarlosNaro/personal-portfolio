@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
+
 import globalStore from '@components/global.store';
 
 const isDarkMode = computed({
@@ -33,7 +34,7 @@ const active = ref();
         <span class="ns-button__content">Default</span>
       </button>
     </div>
-    <div class="theme-toggle-container">
+    <div class="theme-toggle-container noSelect">
       <div
         v-if="!isDarkMode"
         class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer text-indigo-500"
@@ -43,7 +44,8 @@ const active = ref();
           type="button"
           class="inline-flex items-center rounded-full bg-white p-1 text-sm font-semibold text-indigo-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         >
-          <Icon icon="solar:moon-fog-linear" height="25" :ssr="true" />
+          <!--          <Icon icon="solar:moon-fog-linear" height="25" :ssr="true" />-->
+          <Icon icon="solar:moon-fog-linear" height="25" />
         </button>
         <span class="text-sm">Dark</span>
       </div>
