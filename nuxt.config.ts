@@ -11,6 +11,7 @@ export default defineNuxtConfig({
       'tailwindcss/nesting': {},
       tailwindcss: {},
       autoprefixer: {},
+      base: '/personal-portfolio/',
     },
   },
   alias: {
