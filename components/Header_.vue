@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-
 import globalStore from '@components/global.store';
 
 const isDarkMode = computed({
@@ -50,7 +49,7 @@ const active = ref();
           class="inline-flex items-center rounded-full bg-white p-1 text-sm font-semibold text-indigo-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         >
           <!--          <Icon icon="solar:moon-fog-linear" height="25" :ssr="true" />-->
-          <!--          <Icon icon="solar:moon-fog-linear" height="25" />-->
+          <Icon icon="solar:moon-fog-linear" height="25" />
         </button>
         <span class="text-sm">Dark</span>
       </div>
@@ -63,7 +62,7 @@ const active = ref();
           type="button"
           class="inline-flex items-center rounded-full p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50/25"
         >
-          <!--          <Icon icon="solar:sun-fog-broken" height="25" :ssr="true" />-->
+          <Icon icon="solar:sun-fog-broken" height="25" :ssr="true" />
         </button>
         <span class="text-sm">Light</span>
       </div>

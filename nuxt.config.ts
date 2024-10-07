@@ -21,4 +21,7 @@ export default defineNuxtConfig({
   router: {
     base: '/personal-portfolio/',
   },
+  generate: {
+    dir: 'dist',
+  },
 });
