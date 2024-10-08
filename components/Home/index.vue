@@ -19,7 +19,7 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
       <img
         :class="isDarkMode ? 'bg-Content' : 'bg-light'"
         class="card rounded-b-full w-40 md:w-52"
-        :src="profilePng"
+        src="@/assets/img/profile.png"
         alt="profilePng"
       />
     </div>

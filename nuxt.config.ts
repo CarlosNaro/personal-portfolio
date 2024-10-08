@@ -19,9 +19,6 @@ export default defineNuxtConfig({
     '@pages': fileURLToPath(new URL('./pages', import.meta.url)),
   },
   router: {
-    base: '/personal-portfolio/',
-  },
-  generate: {
-    dir: 'dist',
+    baseURL: '/personal-portfolio/',
   },
 });

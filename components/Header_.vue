@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
 import globalStore from '@components/global.store';
+
+const active = ref();
 
 const isDarkMode = computed({
   get: () => globalStore.getIsDarkMode(),
   set: (value: boolean) => globalStore.setIsDarkMode(value),
 });
 
-const active = ref();
+function activeDark() {
+  isDarkMode.value = true;
+  console.log('isDarkMode', isDarkMode.value);
+}
 </script>
 
 <template>
@@ -20,7 +24,11 @@ const active = ref();
         type="button"
         :class="[active === 0 ? 'button-default active' : 'button-default']"
         class="button-default"
-        @click="active = 0"
+        @click="
+          () => {
+            active = 0;
+          }
+        "
       >
         <span class="ns-button__content">Active</span>
       </button>
@@ -28,7 +36,7 @@ const active = ref();
         type="button"
         :class="active === 1 ? 'button-default active' : 'button-default'"
         class="button-default"
-        @click="active = 1"
+        @click="() => (active = 1)"
       >
         <span class="ns-button__content">Default</span>
       </button>
@@ -37,19 +45,13 @@ const active = ref();
       <div
         v-if="!isDarkMode"
         class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer text-indigo-500"
-        @click="
-          () => {
-            isDarkMode = true;
-            console.log('isDarkMode', isDarkMode);
-          }
-        "
+        @click="activeDark"
       >
         <button
           type="button"
           class="inline-flex items-center rounded-full bg-white p-1 text-sm font-semibold text-indigo-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         >
-          <!--          <Icon icon="solar:moon-fog-linear" height="25" :ssr="true" />-->
-          <Icon icon="solar:moon-fog-linear" height="25" />
+          <!--          iconos-->
         </button>
         <span class="text-sm">Dark</span>
       </div>
@@ -62,7 +64,7 @@ const active = ref();
           type="button"
           class="inline-flex items-center rounded-full p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50/25"
         >
-          <Icon icon="solar:sun-fog-broken" height="25" :ssr="true" />
+          <!--          iconos-->
         </button>
         <span class="text-sm">Light</span>
       </div>
