@@ -5,7 +5,7 @@ import vuejsLogo from '../assets/svg/vuejs.svg';
 import TypeScript from '../assets/svg/TypeScript.svg';
 import JavaScript from '../assets/svg/javascript.svg';
 import html from '../assets/svg/html.svg';
-import CSS from '../assets/svg/CSS.svg';
+import CSS from '../assets/svg/css.svg';
 import tailwind from '../assets/svg/Tailwind.svg';
 import github from '../assets/svg/github.svg';
 import git from '../assets/svg/git.svg';
