@@ -91,7 +91,7 @@ const arraySkills = [
         v-for="(skill, index) in arraySkills"
         :key="index"
       >
-        <img :src="vuejsLogo" class="w-24 h-24" alt="" />
+        <img :src="skill.icon" class="w-24 h-24" alt="" />
         <span class="-mt-2 font-bold">{{ skill.name }}</span>
       </div>
     </div>
