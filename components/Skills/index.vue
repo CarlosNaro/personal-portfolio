@@ -11,7 +11,9 @@ import github from '@/assets/svg/github.svg';
 import git from '@/assets/svg/git.svg';
 import django from '@/assets/svg/Django.svg';
 import python from '@/assets/svg/python.svg';
-
+import firebase from '@/assets/svg/firebase.svg';
+import supabase from '@/assets/svg/supabase.svg';
+import postgresql from '@/assets/svg/postgresql.svg';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 
@@ -19,53 +21,56 @@ const arrySkills = [
     {
         name: 'Vue.js',
         icon: vuejsLogo,
-        description: 'Vue.js is a progressive JavaScript framework for building user interfaces. It is designed to be incrementally adoptable, and can easily scale between a library and a full-featured framework.'
     },
     {
         name: 'TypeScript',
         icon: TypeScript,
-        description: 'TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. It is designed to be a superset of JavaScript, and can be used to create large-scale applications.'
     },
     {
         name: 'JavaScript',
         icon: JavaScript,
-        description: 'JavaScript is a high-level, interpreted programming language. It is designed to be easy to read and write, and can be used to create a wide variety of applications.'
     },
     {
         name: 'HTML',
         icon: html,
-        description: 'HTML is a markup language used to create web pages. It is the standard markup language for creating web pages and web applications.'
     },
     {
         name: 'CSS',
         icon: CSS,
-        description: 'CSS is a style sheet language used to describe the presentation of a document written in HTML or XML. It is the standard markup language for creating web pages and web applications.'
     },
     {
         name: 'Tailwind CSS',
         icon: Tailwind,
-        description: 'Tailwind CSS is a utility-first CSS framework. It is designed to be easy to use, and can be used to create a wide variety of applications.',
     },
     {
         name: 'Python',
         icon: python,
-        description: 'Python is a high-level, interpreted programming language. It is designed to be easy to read and write, and can be used to create a wide variety of applications.'
     },
     {
         name: 'Django',
         icon: django,
-        description: 'Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It is designed to be easy to use, and can be used to create a wide variety of applications.'
     },
     {
         name: 'Git',
         icon: git,
-        description: 'Git is a version control system. It is designed to be easy to use, and can be used to create a wide variety of applications.'
     },
     {
         name: 'GitHub',
         icon: github,
-        description: 'GitHub is a web-based hosting service for version control using Git. It is designed to be easy to use, and can be used to create a wide variety of applications.'
     },
+    {
+        name: 'Firebase',
+        icon: firebase,
+    },
+    {
+        name: 'Supabase',
+        icon: supabase,
+    },
+    {
+        name: 'PostgreSQL',
+        icon: postgresql,
+    },
+
 ]
 
 </script>
