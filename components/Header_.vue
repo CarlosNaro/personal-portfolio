@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import globalStore from '@components/global.store';
-import dark from '../assets/svg/sol.svg';
-// import sol from '@/assets/svg/sol.svg';
+import dark from '../assets/img/nublada.gif';
+import sol from '../assets/svg/sol.svg';
 
 const active = ref();
 
@@ -66,7 +66,7 @@ function activeDark() {
           type="button"
           class="inline-flex items-center rounded-full p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50/25"
         >
-          <img src="@/assets/svg/sol.svg" alt="" class="rounded-md w-6 text-white animate-pulse" />
+          <img :src="sol" alt="" class="rounded-md w-6 text-white animate-pulse" />
         </button>
         <span class="text-sm">Light</span>
       </div>
