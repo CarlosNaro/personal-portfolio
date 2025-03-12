@@ -9,10 +9,12 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
 <template>
   <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
     <header_ />
-    <main class="content flex-1">
+    <main :class="isDarkMode ? 'classDark' : ''" class="content flex-1">
       <home />
+      <about />
+      <skills />
     </main>
-    <footer_ />
+    <footer_ class="select-none" />
   </div>
 </template>
 
