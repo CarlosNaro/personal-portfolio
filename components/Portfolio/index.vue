@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CollaborationProject from '@components/Portfolio/components/CollaborationProject.vue';
+</script>
 
 <template>
   <layout-base>
@@ -11,6 +13,7 @@
         impulsado mi crecimiento profesional.</span
       >
     </div>
+    <collaboration-project />
   </layout-base>
 </template>
 
