@@ -9,7 +9,7 @@ import CSS from '../assets/svg/css.svg';
 import tailwind from '../assets/svg/Tailwind.svg';
 import github from '../assets/svg/github.svg';
 import git from '../assets/svg/git.svg';
-import django from '../assets/svg/Django.svg';
+import django from '../assets/svg/django.svg';
 import python from '../assets/svg/python.svg';
 import firebase from '../assets/svg/firebase.svg';
 import supabase from '../assets/svg/supabase.svg';
