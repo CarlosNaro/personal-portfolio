@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import globalStore from '@components/global.store';
-//#
-import vuejsLogo from '../assets/svg/vuejs.svg';
-import TypeScript from '../assets/svg/TypeScript.svg';
-import JavaScript from '../assets/svg/javascript.svg';
-import html from '../assets/svg/html.svg';
-import CSS from '../assets/svg/CSS.svg';
-import Tailwind from '../assets/svg/Tailwind.svg';
-import github from '../assets/svg/github.svg';
-import git from '../assets/svg/git.svg';
-import django from '../assets/svg/Django.svg';
-import python from '../assets/svg/python.svg';
-import firebase from '../assets/svg/firebase.svg';
-import supabase from '../assets/svg/supabase.svg';
-import postgresql from '../assets/svg/postgresql.svg';
-import ionic from '../assets/svg/ionic.svg';
+//imagen___
+import vuejsLogo from '@/public/svg/vuejs.svg';
+import TypeScript from '@/public/svg/TypeScript.svg';
+import JavaScript from '@/public/svg/javascript.svg';
+import html from '@/public/svg/html.svg';
+import CSS from '@/public/svg/CSS.svg';
+import Tailwind from '@/public/svg/Tailwind.svg';
+import github from '@/public/svg/github.svg';
+import git from '@/public/svg/git.svg';
+import django from '@/public/svg/Django.svg';
+import python from '@/public/svg/python.svg';
+import firebase from '@/public/svg/firebase.svg';
+import supabase from '@/public/svg/supabase.svg';
+import postgresql from '@/public/svg/postgresql.svg';
+import ionic from '@/public/svg/ionic.svg';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 
