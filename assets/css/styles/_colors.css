@@ -42,28 +42,4 @@
     --ns-gray-3: 240, 243, 244;
     --ns-gray-4: 230, 233, 234;
 
-    /*[class*="--primary"] {*/
-    /*    --ns-color: var(--ns-primary)*/
-    /*}*/
-
-    /*[class*="--default"] {*/
-    /*    --ns-color: var(--ns-primary)*/
-    /*}*/
-
-    /*[class*="--danger"] {*/
-    /*    --ns-color: var(--ns-danger)*/
-    /*}*/
-
-    /*[class*="--success"] {*/
-    /*    --ns-color: var(--ns-success)*/
-    /*}*/
-
-    /*[class*="--dark"] {*/
-    /*    --ns-color: var(--ns-dark)*/
-    /*}*/
-
-    /*[class*="--warn"] {*/
-    /*    --ns-color: var(--ns-warn)*/
-    /*}*/
-
 }

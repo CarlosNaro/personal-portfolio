@@ -13,6 +13,7 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
       <home />
       <about />
       <skills />
+      <portfolio />
     </main>
     <footer_ class="select-none" />
   </div>

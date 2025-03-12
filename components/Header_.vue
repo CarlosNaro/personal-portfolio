@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import globalStore from '@components/global.store';
+import dark from '@/assets/img/nublada.gif';
+import sol from 'assets/svg/sol.svg';
 
 const active = ref();
 
@@ -41,17 +43,17 @@ function activeDark() {
         <span class="ns-button__content">Default</span>
       </button>
     </div>
-    <div class="theme-toggle-container noSelect">
+    <div class="theme-toggle-container select-none">
       <div
         v-if="!isDarkMode"
-        class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer text-indigo-500"
+        class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer"
         @click="activeDark"
       >
         <button
           type="button"
-          class="inline-flex items-center rounded-full bg-white p-1 text-sm font-semibold text-indigo-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          class="inline-flex items-center rounded-full bg-white p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         >
-          <!--          iconos-->
+          <img :src="dark" alt="" class="rounded-md w-6" />
         </button>
         <span class="text-sm">Dark</span>
       </div>
@@ -64,7 +66,7 @@ function activeDark() {
           type="button"
           class="inline-flex items-center rounded-full p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50/25"
         >
-          <!--          iconos-->
+          <img :src="sol" alt="" class="rounded-md w-6 text-white animate-pulse" />
         </button>
         <span class="text-sm">Light</span>
       </div>
