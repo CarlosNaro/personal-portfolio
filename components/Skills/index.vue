@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import globalStore from '@components/global.store';
-//imagen___
+//#
 import vuejsLogo from '../assets/svg/vuejs.svg';
 import TypeScript from '../assets/svg/TypeScript.svg';
 import JavaScript from '../assets/svg/javascript.svg';
