@@ -21,60 +21,60 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
 const arraySkills = [
   {
     name: 'Vue.js',
-    icon: vuejsLogo,
+    icon: '@/assets/svg/ionic.svg',
   },
-  {
-    name: 'Ionic',
-    icon: ionic,
-  },
-  {
-    name: 'TypeScript',
-    icon: TypeScript,
-  },
-  {
-    name: 'JavaScript',
-    icon: JavaScript,
-  },
-  {
-    name: 'HTML',
-    icon: html,
-  },
-  {
-    name: 'CSS',
-    icon: CSS,
-  },
-  {
-    name: 'Tailwind CSS',
-    icon: Tailwind,
-  },
-  {
-    name: 'Python',
-    icon: python,
-  },
-  {
-    name: 'Django',
-    icon: django,
-  },
-  {
-    name: 'Git',
-    icon: git,
-  },
-  {
-    name: 'GitHub',
-    icon: github,
-  },
-  {
-    name: 'Firebase',
-    icon: firebase,
-  },
-  {
-    name: 'Supabase',
-    icon: supabase,
-  },
-  {
-    name: 'PostgreSQL',
-    icon: postgresql,
-  },
+  // {
+  //   name: 'Ionic',
+  //   icon: ionic,
+  // },
+  // {
+  //   name: 'TypeScript',
+  //   icon: TypeScript,
+  // },
+  // {
+  //   name: 'JavaScript',
+  //   icon: JavaScript,
+  // },
+  // {
+  //   name: 'HTML',
+  //   icon: html,
+  // },
+  // {
+  //   name: 'CSS',
+  //   icon: CSS,
+  // },
+  // {
+  //   name: 'Tailwind CSS',
+  //   icon: Tailwind,
+  // },
+  // {
+  //   name: 'Python',
+  //   icon: python,
+  // },
+  // {
+  //   name: 'Django',
+  //   icon: django,
+  // },
+  // {
+  //   name: 'Git',
+  //   icon: git,
+  // },
+  // {
+  //   name: 'GitHub',
+  //   icon: github,
+  // },
+  // {
+  //   name: 'Firebase',
+  //   icon: firebase,
+  // },
+  // {
+  //   name: 'Supabase',
+  //   icon: supabase,
+  // },
+  // {
+  //   name: 'PostgreSQL',
+  //   icon: postgresql,
+  // },
 ];
 </script>
 
@@ -91,7 +91,7 @@ const arraySkills = [
         v-for="(skill, index) in arraySkills"
         :key="index"
       >
-        <img :src="skill.icon" class="w-24 h-24" alt="" />
+        <img src="@/assets/svg/ionic.svg" class="w-24 h-24" alt="" />
         <span class="-mt-2 font-bold">{{ skill.name }}</span>
       </div>
     </div>
