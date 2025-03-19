@@ -9,7 +9,7 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
 <template>
   <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
     <header_ />
-    <main :class="isDarkMode ? 'classDark' : ''" class="content flex-1">
+    <main :class="isDarkMode ? 'classDark' : ' bg-gradient '" class="content flex-1">
       <home />
       <about />
       <skills />
@@ -19,4 +19,8 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.bg-gradient {
+  background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
+}
+</style>
