@@ -49,6 +49,35 @@
     }
 }
 
+.button-light-icon {
+    color: rgb(var(--ns-whatsapp));
+    border: 1px solid rgb(var(--ns-light));
+    margin: 5px;
+    border-radius: 50%;
+    transition: all 0.25s ease; /*ease-in-out*/
+    position: relative;
+    user-select: none;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Ajustar el ancho */
+    height: 40px; /* Ajustar la altura */
+    outline: none;
+    box-sizing: border-box;
+
+    &:active {
+        animation: ripple-animation 0.3s ease-out;
+        background: rgb(var(--ns-light));
+    }
+
+    &:hover {
+        box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
+        transform: translate(0, -3px);
+    }
+}
+
 /*active*/
 .active {
     box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);

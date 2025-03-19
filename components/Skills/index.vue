@@ -15,6 +15,8 @@ import firebase from '../assets/svg/firebase.svg';
 import supabase from '../assets/svg/supabase.svg';
 import postgresql from '../assets/svg/postgresql.svg';
 import ionic from '../assets/svg/ionic.svg';
+import LayoutBase from '@components/global components/layoutBase.vue';
+import ComponentTitle from '@components/global components/ComponentTitle.vue';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 
@@ -80,10 +82,7 @@ const arraySkills = [
 
 <template>
   <LayoutBase class="select-none">
-    <div class="relative flex items-center justify-center mt-2">
-      <div class="absolute rounded-full border-8 border-l-lime-300 border-r-lime-300 w-14 h-14 opacity-75"></div>
-      <h1 class="z-30 uppercase text-2xl font-extrabold underline text-center">habilidades</h1>
-    </div>
+    <component-title title="Habilidades" />
     <div class="flex flex-wrap gap-5 mt-6 items-center justify-center">
       <div
         :class="isDarkMode ? 'bg-Content' : 'bg-light'"
