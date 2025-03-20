@@ -50,8 +50,8 @@
 }
 
 .button-light-icon {
+    background: rgb(var(--ns-light));
     color: rgb(var(--ns-whatsapp));
-    border: 1px solid rgb(var(--ns-light));
     margin: 5px;
     border-radius: 50%;
     transition: all 0.25s ease; /*ease-in-out*/
@@ -69,7 +69,6 @@
 
     &:active {
         animation: ripple-animation 0.3s ease-out;
-        background: rgb(var(--ns-light));
     }
 
     &:hover {
