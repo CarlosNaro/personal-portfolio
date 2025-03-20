@@ -11,28 +11,32 @@ const images = [
     alt: 'foto',
     descripcion: 'Descripción de la imagen 1',
   },
-  {
-    id: 2,
-    src: foto,
-    alt: 'foto',
-    descripcion: 'Descripción de la imagen 2',
-  },
-  {
-    id: 3,
-    src: logo_sici,
-    alt: 'foto',
-    descripcion: 'Descripción de la imagen 3',
-  },
+  // {
+  //   id: 2,
+  //   src: foto,
+  //   alt: 'foto',
+  //   descripcion: 'Descripción de la imagen 2',
+  // },
+  // {
+  //   id: 3,
+  //   src: logo_sici,
+  //   alt: 'foto',
+  //   descripcion: 'Descripción de la imagen 3',
+  // },
 ];
 </script>
 
 <template>
   <div>
     <h1 class="uppercase font-bold">proyecto en colaboración</h1>
-    <div class="slider relative flex items-center justify-center gap-4">
-      <div v-for="(item, index) in images" class="flex justify-center space-x-12 w-full">
-        <div>
-          <p>{{ item.descripcion }}</p>
+    <div class="slider relative flex items-center justify-center bg-red-500">
+      <div v-for="(item, index) in images" class="flex items-center space-x-12 w-full">
+        <div class="w-1/3">
+          <p class="text-2xl font-bold">Sistema para el control de orden (restaurant)</p>
+          <p>
+            Perfect for long-distance runners, the Pegasus combines durability and lightness with an ergonomic design
+            that enhances performance with every stride.
+          </p>
         </div>
 
         <div class="relative flex items-center justify-center">
@@ -42,18 +46,20 @@ const images = [
           ></div>
 
           <div class="relative">
-            <img :src="item.src" :alt="item.alt" class="rounded-md w-72" />
+            <img :src="item.src" :alt="item.alt" class="rounded-md w-52 lg:w-64" />
           </div>
         </div>
       </div>
 
-      <!--      Botones de navegación-->
-      <div class="absolute rounded-md left-0 bottom-0">
+      <!--      <div class="absolute rounded-md left-0 bottom-0">-->
+      <!--        <button type="button" class="button-light-icon">-->
+      <!--          <span class="absolute left-1 -top-3.5 font-light" style="font-size: 2.5rem">&lt;</span>-->
+      <!--        </button>-->
+      <!--      </div>-->
+      <div class="absolute rounded-md bottom-0 bg-yellow-500 flex">
         <button type="button" class="button-light-icon">
           <span class="absolute left-1 -top-3.5 font-light" style="font-size: 2.5rem">&lt;</span>
         </button>
-      </div>
-      <div class="absolute rounded-md right-0 bottom-0">
         <button type="button" class="button-light-icon">
           <span class="absolute right-1 -top-3.5 font-light" style="font-size: 2.5rem">&gt;</span>
         </button>
