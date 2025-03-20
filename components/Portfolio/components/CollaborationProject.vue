@@ -6,16 +6,21 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
 import eye from '@/assets/svg/eye-solid.svg';
+import closeIcon from '@/assets/svg/close-solid.svg';
 
 import logo_sici from '@/assets/img/logo_sici.PNG';
 import globalStore from '@components/global.store';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 const activeIndex = ref(0);
+const isTextVisible = ref(false); // Controla la visibilidad del texto en móvil
+const isMobile = ref(false);
 
-const onSlideChange = (swiper) => {
-  activeIndex.value = swiper.realIndex;
-};
+const isMounted = ref(false);
+
+const navigationEnabled = computed(() => {
+  return !(isMobile.value && isTextVisible.value);
+});
 
 const images = [
   {
@@ -40,12 +45,32 @@ const images = [
     description: 'Descripción de la imagen 3',
   },
 ];
+
+const onSlideChange = (swiper: any) => {
+  activeIndex.value = swiper.realIndex;
+};
+
+const toggleTextVisibility = () => {
+  isTextVisible.value = !isTextVisible.value;
+};
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768;
+};
+
+onMounted(() => {
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+  isMounted.value = true;
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkMobile);
+});
 </script>
 
 <template>
   <div class="text-center">
     <h1 class="uppercase text-left font-bold text-xl mb-6">Proyecto en colaboración</h1>
-
     <swiper
       :effect="'coverflow'"
       :grabCursor="true"
@@ -59,17 +84,32 @@ const images = [
         modifier: 2.5,
         slideShadows: false,
       }"
-      :navigation="true"
+      :navigation="navigationEnabled"
       :modules="[EffectCoverflow, Navigation]"
       class="swiper-container"
       @slideChange="onSlideChange"
     >
       <swiper-slide v-for="(item, index) in images" :key="item.id" class="swiper-slide">
-        <div class="relative flex flex-col lg:flex-row items-center justify-center space-x-6">
+        <div v-if="isMounted" class="relative select-none flex items-center gap-3 lg:gap-0 2xl:gap-3 justify-center">
           <!-- Texto a la izquierda -->
-          <div :class="{ 'animate-fade-in': activeIndex === index }" class="lg:w-1/3 text-left">
-            <p class="text-2xl font-bold gradient-text">{{ item.title }}</p>
-            <p>{{ item.description }}</p>
+          <div
+            v-if="(isMobile ? isTextVisible : true) && activeIndex === index"
+            :class="{ 'overlay-text': isMobile }"
+            class="w-2/4 text-left"
+          >
+            <div :class="[isMobile ? 'text-container' : '']">
+              <!--  button close-->
+              <div v-if="isMobile" class="absolute z-20 -top-7 right-0 rounded-full">
+                <button class="button-light-icon" @click="toggleTextVisibility">
+                  <img :src="closeIcon" alt="Ver" class="w-6 h-6" />
+                </button>
+              </div>
+
+              <div :class="{ 'animate-fade-in  ': activeIndex === index }">
+                <p class="text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
           </div>
 
           <!-- Contenedor de la imagen con gradiente -->
@@ -88,10 +128,11 @@ const images = [
               :src="item.src"
               :alt="item.alt"
               :class="{ 'animate-fade-in-img': activeIndex === index }"
-              class="relative rounded-md w-52 lg:w-64 z-20 select-none"
+              class="relative rounded-md w-52 lg:w-56 2xl:w-64 z-20 select-none"
             />
-            <div class="absolute z-20 top-0 right-0 rounded-full">
-              <button class="button-light-icon">
+            <!--  button view-->
+            <div v-if="isMobile" class="absolute z-20 top-0 right-0 rounded-full">
+              <button class="button-light-icon" @click="toggleTextVisibility">
                 <img :src="eye" alt="Ver" class="w-6 h-6" />
               </button>
             </div>
@@ -165,5 +206,30 @@ const images = [
 
 .animate-fade-in-img {
   animation: fadeIn-Img 0.8s ease-in-out;
+}
+
+/*overlay-text*/
+.overlay-text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(173, 216, 230, 0.8);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+.text-container {
+  background: white;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+  padding: 0.5rem;
 }
 </style>
