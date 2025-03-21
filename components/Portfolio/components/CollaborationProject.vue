@@ -10,6 +10,8 @@ import closeIcon from '@/assets/svg/close-solid.svg';
 
 import logo_sici from '@/assets/img/logo_sici.PNG';
 import globalStore from '@components/global.store';
+import CarouselSlider from '@components/global components/CarouselSlider.vue';
+import CarouselItem_project from '@components/global components/CarouselItem_project.vue';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 const activeIndex = ref(0);
@@ -46,8 +48,8 @@ const images = [
   },
 ];
 
-const onSlideChange = (swiper: any) => {
-  activeIndex.value = swiper.realIndex;
+const onSlideChange = (swiper: number) => {
+  activeIndex.value = swiper;
 };
 
 const toggleTextVisibility = () => {
@@ -69,78 +71,86 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="text-center">
-    <h1 class="uppercase text-left font-bold text-xl mb-6">Proyecto en colaboración</h1>
-    <swiper
-      :effect="'coverflow'"
-      :grabCursor="true"
-      :centeredSlides="true"
-      :slidesPerView="'auto'"
-      :loop="true"
-      :coverflowEffect="{
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2.5,
-        slideShadows: false,
-      }"
-      :navigation="navigationEnabled"
-      :modules="[EffectCoverflow, Navigation]"
-      class="swiper-container"
-      @slideChange="onSlideChange"
-    >
-      <swiper-slide v-for="(item, index) in images" :key="item.id" class="swiper-slide">
-        <div v-if="isMounted" class="relative select-none flex items-center gap-3 lg:gap-0 2xl:gap-3 justify-center">
-          <!-- Texto a la izquierda -->
-          <div
-            v-if="(isMobile ? isTextVisible : true) && activeIndex === index"
-            :class="{ 'overlay-text': isMobile }"
-            class="w-2/4 text-left"
-          >
-            <div :class="[isMobile ? 'text-container' : '']">
-              <!--  button close-->
-              <div v-if="isMobile" class="absolute z-20 -top-7 right-0 rounded-full">
-                <button class="button-light-icon" @click="toggleTextVisibility">
-                  <img :src="closeIcon" alt="Ver" class="w-6 h-6" />
-                </button>
-              </div>
-
-              <div :class="{ 'animate-fade-in  ': activeIndex === index }">
-                <p class="text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
-                <p>{{ item.description }}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contenedor de la imagen con gradiente -->
-          <div class="relative flex items-center justify-center">
-            <!-- Gradiente detrás de la imagen -->
-            <div
-              :class="[
-                isDarkMode ? 'gradient-bg-dark' : 'gradient-bg-light',
-                activeIndex === index ? 'opacity-90' : 'opacity-0',
-              ]"
-              class="absolute w-80 h-80 rounded-full blur-3xl opacity-90 -z-10"
-            ></div>
-
-            <!-- Imagen sobre el gradiente -->
-            <img
-              :src="item.src"
-              :alt="item.alt"
-              :class="{ 'animate-fade-in-img': activeIndex === index }"
-              class="relative rounded-md w-52 lg:w-56 2xl:w-64 z-20 select-none"
-            />
-            <!--  button view-->
-            <div v-if="isMobile" class="absolute z-20 top-0 right-0 rounded-full">
-              <button class="button-light-icon" @click="toggleTextVisibility">
-                <img :src="eye" alt="Ver" class="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
+  <div>
+    <h1 class="uppercase text-left font-bold text-xl my-2">Proyecto en colaboración</h1>
+    <carousel-slider @slide-change="(e) => onSlideChange(e)">
+      <swiper-slide v-for="(item, index) in images" :key="index">
+        <carousel-item_project :item="item" :active="activeIndex === index" />
       </swiper-slide>
-    </swiper>
+    </carousel-slider>
   </div>
+  <!--  <div class="text-center">-->
+  <!--    <h1 class="uppercase text-left font-bold text-xl mb-6">Proyecto en colaboración</h1>-->
+  <!--    <swiper-->
+  <!--      :effect="'coverflow'"-->
+  <!--      :grabCursor="true"-->
+  <!--      :centeredSlides="true"-->
+  <!--      :slidesPerView="'auto'"-->
+  <!--      :loop="true"-->
+  <!--      :coverflowEffect="{-->
+  <!--        rotate: 0,-->
+  <!--        stretch: 0,-->
+  <!--        depth: 100,-->
+  <!--        modifier: 2.5,-->
+  <!--        slideShadows: false,-->
+  <!--      }"-->
+  <!--      :navigation="navigationEnabled"-->
+  <!--      :modules="[EffectCoverflow, Navigation]"-->
+  <!--      class="swiper-container"-->
+  <!--      @slideChange="onSlideChange"-->
+  <!--    >-->
+  <!--      <swiper-slide v-for="(item, index) in images" :key="item.id" class="swiper-slide">-->
+  <!--        <div v-if="isMounted" class="relative select-none flex items-center gap-3 lg:gap-0 2xl:gap-3 justify-center">-->
+  <!--          &lt;!&ndash; Texto a la izquierda &ndash;&gt;-->
+  <!--          <div-->
+  <!--            v-if="(isMobile ? isTextVisible : true) && activeIndex === index"-->
+  <!--            :class="{ 'overlay-text': isMobile }"-->
+  <!--            class="w-2/4 text-left"-->
+  <!--          >-->
+  <!--            <div :class="[isMobile ? 'text-container' : '']">-->
+  <!--              &lt;!&ndash;  button close&ndash;&gt;-->
+  <!--              <div v-if="isMobile" class="absolute z-20 -top-7 right-0 rounded-full">-->
+  <!--                <button class="button-light-icon" @click="toggleTextVisibility">-->
+  <!--                  <img :src="closeIcon" alt="Ver" class="w-6 h-6" />-->
+  <!--                </button>-->
+  <!--              </div>-->
+
+  <!--              <div :class="{ 'animate-fade-in  ': activeIndex === index }">-->
+  <!--                <p class="text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>-->
+  <!--                <p>{{ item.description }}</p>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--          &lt;!&ndash; Contenedor de la imagen con gradiente &ndash;&gt;-->
+  <!--          <div class="relative flex items-center justify-center">-->
+  <!--            &lt;!&ndash; Gradiente detrás de la imagen &ndash;&gt;-->
+  <!--            <div-->
+  <!--              :class="[-->
+  <!--                isDarkMode ? 'gradient-bg-dark' : 'gradient-bg-light',-->
+  <!--                activeIndex === index ? 'opacity-90' : 'opacity-0',-->
+  <!--              ]"-->
+  <!--              class="absolute w-80 h-80 rounded-full blur-3xl opacity-90 -z-10"-->
+  <!--            ></div>-->
+
+  <!--            &lt;!&ndash; Imagen sobre el gradiente &ndash;&gt;-->
+  <!--            <img-->
+  <!--              :src="item.src"-->
+  <!--              :alt="item.alt"-->
+  <!--              :class="{ 'animate-fade-in-img': activeIndex === index }"-->
+  <!--              class="relative rounded-md w-52 lg:w-56 2xl:w-64 z-20 select-none"-->
+  <!--            />-->
+  <!--            &lt;!&ndash;  button view&ndash;&gt;-->
+  <!--            <div v-if="isMobile" class="absolute z-20 top-0 right-0 rounded-full">-->
+  <!--              <button class="button-light-icon" @click="toggleTextVisibility">-->
+  <!--                <img :src="eye" alt="Ver" class="w-6 h-6" />-->
+  <!--              </button>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </swiper-slide>-->
+  <!--    </swiper>-->
+  <!--  </div>-->
 </template>
 
 <style scoped>
