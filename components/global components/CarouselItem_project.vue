@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/navigation';
-
 import eye from '@/assets/svg/eye-solid.svg';
 import closeIcon from '@/assets/svg/close-solid.svg';
 
@@ -17,7 +11,7 @@ defineProps<{
     title: string;
     description: string;
   };
-  active: false;
+  active?: boolean;
 }>();
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
@@ -31,7 +25,6 @@ const isMounted = ref(false);
 const toggleTextVisibility = () => {
   globalStore.setIsTextVisible(!isTextVisible.value);
 };
-
 const checkMobile = () => {
   isMobile.value = window.innerWidth <= 768;
 };
@@ -96,23 +89,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/* Swiper container */
-.swiper-container {
-  width: 100%;
-  /*padding: 50px 0;*/
-}
-
-/* Swiper slide */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition:
-    transform 0.5s,
-    opacity 0.5s;
-}
-
-/* Gradientes */
 .gradient-bg-light {
   background: radial-gradient(circle, rgba(30, 30, 30, 0.6), rgba(0, 0, 50, 0.5), rgba(50, 0, 80, 0.4));
   /* background: radial-gradient(circle, rgba(44, 43, 43, 0.6), rgba(181, 181, 205, 0.5), rgba(150, 150, 255, 0.4));*/
@@ -128,7 +104,6 @@ onBeforeUnmount(() => {
   -webkit-text-fill-color: transparent;
 }
 
-/* animate text  */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -144,7 +119,6 @@ onBeforeUnmount(() => {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* animate img  */
 @keyframes fadeIn-Img {
   from {
     opacity: 0;
@@ -160,7 +134,6 @@ onBeforeUnmount(() => {
   animation: fadeIn-Img 0.8s ease-in-out;
 }
 
-/*overlay-text*/
 .overlay-text {
   position: fixed;
   top: 0;
