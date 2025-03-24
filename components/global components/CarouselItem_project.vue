@@ -10,6 +10,7 @@ defineProps<{
     alt: string;
     title: string;
     description: string;
+    technologies?: string[];
   };
   active?: boolean;
 }>();
@@ -48,7 +49,7 @@ onBeforeUnmount(() => {
       :class="{ 'overlay-text': isMobile }"
       class="w-2/4 text-left"
     >
-      <div :class="[isMobile ? 'text-container' : '']">
+      <div :class="[isMobile ? 'text-container' : '', isDarkMode ? 'bg-Content' : 'bg-white']">
         <!--  button close-->
         <div v-if="isMobile" class="absolute z-20 -top-7 right-0 rounded-full">
           <button class="button-light-icon" @click="toggleTextVisibility">
@@ -56,9 +57,23 @@ onBeforeUnmount(() => {
           </button>
         </div>
 
-        <div :class="{ 'animate-fade-in  ': active }">
+        <div :class="{ 'animate-fade-in ': active }">
           <p class="text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
           <p>{{ item.description }}</p>
+
+          <div v-if="item.technologies" class="flex gap-2">
+            <p class="font-bold">Tecnologías:</p>
+            <ul class="flex flex-wrap">
+              <li
+                v-for="(tech, index) in item.technologies"
+                :key="index"
+                :class="isDarkMode ? 'bg-Content shadow shadow-amber-50' : 'bg-[#f0f0f0]'"
+                class="text-sm font-semibold custom-li-style"
+              >
+                {{ tech }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -89,6 +104,13 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.custom-li-style {
+  /*background-color: #f0f0f0;*/ /* Fondo gris claro */
+  padding: 5px 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  margin: 5px; /* Espaciado externo */
+}
+
 .gradient-bg-light {
   background: radial-gradient(circle, rgba(30, 30, 30, 0.6), rgba(0, 0, 50, 0.5), rgba(50, 0, 80, 0.4));
   /* background: radial-gradient(circle, rgba(44, 43, 43, 0.6), rgba(181, 181, 205, 0.5), rgba(150, 150, 255, 0.4));*/
@@ -146,14 +168,13 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  z-index: 50;
+  padding: 2rem 0 0 0;
+  z-index: 30;
+  overflow: auto;
 }
 
 .text-container {
-  background: white;
   border-radius: 8px;
-  text-align: center;
   position: relative;
   padding: 0.5rem;
 }

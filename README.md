@@ -84,4 +84,24 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Para ejecutar su aplicación Nuxt de modo que sea accesible desde otros #dispositivos de su red
+
+- Option 1 - Using the command line:
+
+```bash
+# Option 1 - Using the command line:
+npm run dev -- --host 0.0.0.0
+
+```
+
+- Option 2 - Using the nuxt.config.ts file:
+
+- export default defineNuxtConfig({
+- devServer: {
+- host: '0.0.0.0',
+- port: 3000 // or any other port you want to use
+- }
+- })
+
+  Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
