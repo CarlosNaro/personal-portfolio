@@ -15,6 +15,7 @@ import firebase from '../assets/svg/firebase.svg';
 import supabase from '../assets/svg/supabase.svg';
 import postgresql from '../assets/svg/postgresql.svg';
 import ionic from '../assets/svg/ionic.svg';
+import elementPlus from '@/assets/svg/element-plus-logo.svg';
 import LayoutBase from '@components/global components/layoutBase.vue';
 import ComponentTitle from '@components/global components/ComponentTitle.vue';
 
@@ -24,6 +25,10 @@ const arraySkills = [
   {
     name: 'Vue.js',
     icon: vuejsLogo,
+  },
+  {
+    name: 'Element-plus',
+    icon: elementPlus,
   },
   {
     name: 'Ionic',

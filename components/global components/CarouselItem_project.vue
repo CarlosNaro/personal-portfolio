@@ -49,17 +49,19 @@ onBeforeUnmount(() => {
       :class="{ 'overlay-text': isMobile }"
       class="w-2/4 text-left"
     >
-      <div :class="[isMobile ? 'text-container' : '', isDarkMode ? 'bg-Content' : 'bg-white']">
-        <!--  button close-->
-        <div v-if="isMobile" class="absolute z-20 -top-7 right-0 rounded-full">
-          <button class="button-light-icon" @click="toggleTextVisibility">
-            <img :src="closeIcon" alt="Ver" class="w-6 h-6" />
-          </button>
-        </div>
-
+      <div :class="[isMobile ? 'text-container ' : 'max-h-[430px] overflow-auto scrollbarClass ']">
         <div :class="{ 'animate-fade-in ': active }">
-          <p class="text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
-          <p>{{ item.description }}</p>
+          <div class="flex">
+            <p class="flex-1 text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
+            <!--  button close-->
+            <div v-if="isMobile" class="right-0 rounded-full">
+              <button class="button-light-icon absolute -top-2 -right-2" @click="toggleTextVisibility">
+                <img :src="closeIcon" alt="Ver" class="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+
+          <p class="p-description">{{ item.description }}</p>
 
           <div v-if="item.technologies" class="flex gap-2">
             <p class="font-bold">Tecnologías:</p>
@@ -168,14 +170,21 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0 0 0;
+  padding: 0.2rem;
   z-index: 30;
-  overflow: auto;
 }
 
 .text-container {
+  background: white;
   border-radius: 8px;
   position: relative;
   padding: 0.5rem;
+  overflow: auto;
+  height: max-content;
+  max-height: 430px; /* Ajusta este valor según tus necesidades */
+
+  .p-description {
+    color: black; /* Negro por defecto */
+  }
 }
 </style>

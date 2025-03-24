@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { SwiperSlide } from 'swiper/vue';
 import logoSici from '@/assets/img/logo_sici.png';
+import laPositiva from '@/assets/img/la-positiva.png';
+import restaurant from '@/assets/img/restaurant.png';
+import sici_2 from '@/assets/img/sici_2.png';
+import bipbip from 'assets/img/bipbip_app.jpeg';
+import landingPage from 'assets/img/landing_page.png';
+
 import CarouselSlider from '@components/global components/CarouselSlider.vue';
 import CarouselItem_project from '@components/global components/CarouselItem_project.vue';
 
@@ -15,7 +21,7 @@ const navigationEnabled = computed(() => {
 const images = [
   {
     id: 1,
-    src: logoSici,
+    src: restaurant,
     alt: 'Imagen 1',
     title: 'Sistema para el control de orden (restaurant)',
     description:
@@ -24,21 +30,40 @@ const images = [
   },
   {
     id: 2,
-    src: logoSici,
+    src: sici_2,
     alt: 'Imagen 2',
-    title: 'Sistema de Control de Asistencia',
+    title: 'Sistema de Control de Asistencia - app móvil',
     description:
       'Permite llevar un control preciso de entradas, salidas y horarios, facilitando la supervisión y generación de reportes en tiempo real. Incluye funciones como autenticación por credenciales, notificaciones automáticas, entre otros.',
     technologies: ['Ionic framework', 'capacitorjs', 'Vue.js 3', 'TypeScript', 'Tailwind CSS', 'Supabase'],
   },
   {
     id: 3,
-    src: logoSici,
+    src: bipbip,
     alt: 'Imagen 3',
     title: 'Sistema de Transporte ( BipBip – Perú )',
     description:
       'Permite el monitoreo en tiempo real de vehículos, planificación de rutas eficientes, control de horarios y gestión de conductores. Además, incluye funciones como seguimiento GPS, notificaciones de llegada, entre otros. Su implementación mejora la eficiencia operativa, reduce costos logísticos y garantiza un servicio más seguro y organizado.',
     technologies: ['Ionic framework', 'capacitorjs', 'Vue.js 3', 'TypeScript', 'Tailwind CSS', 'Firebase'],
+  },
+  //Landing Page del Sistema de Transporte
+  {
+    id: 4,
+    src: landingPage,
+    alt: 'Imagen 4',
+    title: 'Landing Page del Sistema de Transporte - BipBip',
+    description:
+      'Página web que presenta los servicios y ventajas del sistema de transporte, permitiendo a los usuarios conocer más sobre la empresa y solicitar información adicional. Incluye secciones como contacto, formulario de Pre inscripción, entre otros.',
+    technologies: ['Nuxt 3', 'TypeScript', 'Tailwind CSS'],
+  },
+  {
+    id: 5,
+    src: laPositiva,
+    alt: 'Imagen 5',
+    title: 'Sistema de Reserva - Web',
+    description:
+      'Plataforma web que permite la gestión y reserva de auditorios en las agencias de la empresa "La Positiva Seguro". Facilita a los usuarios la programación de eventos, evita conflictos de horarios y optimiza el uso de los espacios disponibles.',
+    technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Python', 'Django', 'DjangoRestFramework'],
   },
 ];
 
@@ -64,7 +89,7 @@ onBeforeUnmount(() => {
   <div>
     <h1 class="uppercase text-left font-bold md:text-xl my-2"># Proyecto en colaboración</h1>
     <carousel-slider :is-navigation-enabled="navigationEnabled" @slide-change="(e) => onSlideChange(e)">
-      <swiper-slide v-for="(item, index) in images" :key="index">
+      <swiper-slide v-for="(item, index) in images" :key="index" class="m-auto">
         <carousel-item_project :item="item" :active="activeIndex === index" />
       </swiper-slide>
     </carousel-slider>
