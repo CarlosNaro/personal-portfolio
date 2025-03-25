@@ -102,6 +102,7 @@
 
 /*modificar el diseño del scrol*/
 .scrollbarClass::-webkit-scrollbar {
+    display: none;
     width: 3px; /* Ancho del scrollbar */
 }
 

@@ -6,6 +6,7 @@ import restaurant from '@/assets/img/restaurant.png';
 import sici_2 from '@/assets/img/sici_2.png';
 import bipbip from 'assets/img/bipbip_app.jpeg';
 import landingPage from 'assets/img/landing_page.png';
+import adminBipBip from 'assets/img/admin_bipbip.png';
 
 import CarouselSlider from '@components/global components/CarouselSlider.vue';
 import CarouselItem_project from '@components/global components/CarouselItem_project.vue';
@@ -64,6 +65,15 @@ const images = [
     description:
       'Plataforma web que permite la gestión y reserva de auditorios en las agencias de la empresa "La Positiva Seguro". Facilita a los usuarios la programación de eventos, evita conflictos de horarios y optimiza el uso de los espacios disponibles.',
     technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Python', 'Django', 'DjangoRestFramework'],
+  },
+  {
+    id: 6,
+    src: adminBipBip,
+    alt: 'Imagen 6',
+    title: 'Sistema de Administrador - BipBip',
+    description:
+      'Panel de administración que permite gestionar y monitorear la flota de vehículos, conductores y rutas. Incluye funciones como seguimiento en tiempo real, generación de reportes, notificaciones automáticas, entre otros.',
+    technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Firebase'],
   },
 ];
 
