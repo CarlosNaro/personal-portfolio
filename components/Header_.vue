@@ -54,7 +54,9 @@ onUnmounted(() => {
     :class="isDarkMode ? 'bg-Content' : 'bg-light'"
     class="content flex items-center py-3 justify-between top-0 z-50"
   >
-    <!--    <div>logo</div>-->
+    <div v-if="!isMobile" class="absolute">
+      <img src="@/assets/svg/logoN@r.svg" alt="n@r" class="h-[60px]" />
+    </div>
     <div class="flex-1 theme-toggle-container select-none">
       <div class="flex items-center justify-end space-x-4 relative">
         <div
