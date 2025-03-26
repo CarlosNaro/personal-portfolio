@@ -1,6 +1,6 @@
 
 .content {
-    @apply px-4 lg:px-24 xl:px-32 2xl:px-64;;
+    @apply px-4 lg:px-24 xl:px-32 2xl:px-64;
 }
 
 .classDark {
@@ -118,4 +118,20 @@
 .scrollbarClass::-webkit-scrollbar-track {
     background: #f1f1f1; /* Color del track */
     border-radius: 10px; /* Bordes redondeados del track */
+}
+
+/* animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
 }

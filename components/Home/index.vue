@@ -16,7 +16,7 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
       </p>
       <button class="button-default"><span class="ns-button__content">Download CV</span></button>
     </div>
-    <div class="flex justify-center items-center rounded-b-full">
+    <div class="flex justify-center items-center rounded-b-full fade-out-top">
       <img
         :class="isDarkMode ? 'bg-Content' : 'bg-light'"
         class="card rounded-b-full w-40 md:w-52"
@@ -35,5 +35,10 @@ const isDarkMode = computed(() => globalStore.getIsDarkMode());
   &:hover {
     box-shadow: 0 10px 20px -10px rgba(var(--ns-warn), 1) !important;
   }
+}
+
+.fade-out-top {
+  mask-image: linear-gradient(to top, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
 }
 </style>

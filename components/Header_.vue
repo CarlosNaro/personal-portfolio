@@ -12,6 +12,9 @@ const isDarkMode = computed({
 
 // const activeSection = inject('activeSection', ref('home'));
 const activeSection = inject<Ref<string>>('activeSection', ref('home'));
+const isMobile = computed(() => globalStore.getIsMobile());
+const isActivatedMenu = ref(false);
+const isMounted = ref(false);
 
 function scrollToSection(sectionId: string) {
   activeSection.value = sectionId;
@@ -19,54 +22,93 @@ function scrollToSection(sectionId: string) {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
   }
+  if (isMobile.value) toggleMenu();
 }
 
 function activeDark() {
   isDarkMode.value = true;
 }
+
+function toggleMenu() {
+  isActivatedMenu.value = !isActivatedMenu.value;
+}
+
+const closeMenu = (event: any) => {
+  if (!event.target.closest('#menu-container')) {
+    if (isActivatedMenu.value) isActivatedMenu.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', closeMenu);
+  isMounted.value = true;
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeMenu);
+});
 </script>
 
 <template>
   <div
     :class="isDarkMode ? 'bg-Content' : 'bg-light'"
-    class="relative header-navigation content flex items-center py-3 justify-between sticky top-0 z-50"
+    class="content flex items-center py-3 justify-between top-0 z-50"
   >
-    <div>logo</div>
+    <!--    <div>logo</div>-->
     <div class="flex-1 theme-toggle-container select-none">
-      <div class="flex items-center justify-end space-x-4">
-        <div class="nav flex gap-3 font-bold">
-          <a
-            @click="scrollToSection('home')"
-            :class="{
-              'text-blue-500 underline': activeSection === 'home',
-              'hover:text-blue-500': activeSection !== 'home',
-            }"
-            >Inicio</a
-          >
-          <a
-            @click="scrollToSection('about')"
-            :class="{
-              'text-blue-500 underline ': activeSection === 'about',
-              'hover:text-blue-500': activeSection !== 'about',
-            }"
-            >Sobre mi</a
-          >
-          <a
-            @click="scrollToSection('skills')"
-            :class="{
-              'text-blue-500 underline ': activeSection === 'skills',
-              'hover:text-blue-500': activeSection !== 'skills',
-            }"
-            >Habilidades</a
-          >
-          <a
-            @click="scrollToSection('portfolio')"
-            :class="{
-              'text-blue-500 underline': activeSection === 'portfolio',
-              'hover:text-blue-500': activeSection !== 'portfolio',
-            }"
-            >Portafolio</a
-          >
+      <div class="flex items-center justify-end space-x-4 relative">
+        <div
+          id="menu-container"
+          v-if="isMounted"
+          class="nav flex gap-3 font-bold"
+          :class="[
+            isDarkMode ? 'bg-Content' : 'bg-light',
+            isMobile ? 'flex-col absolute p-3 left-0 top-0 rounded-lg' : '',
+          ]"
+        >
+          <div v-if="isMobile" class="w-6 hover-effect" @click="toggleMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                fill="currentColor"
+                d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+              />
+            </svg>
+          </div>
+
+          <div v-if="isMobile ? isActivatedMenu : true" class="flex flex-col md:flex-row gap-3 ml-8 animate-fade-in">
+            <a
+              @click="scrollToSection('home')"
+              :class="{
+                'text-blue-500 underline': activeSection === 'home',
+                'hover:text-blue-500 hover-effect': activeSection !== 'home',
+              }"
+              >Inicio</a
+            >
+            <a
+              @click="scrollToSection('about')"
+              :class="{
+                'text-blue-500 underline ': activeSection === 'about',
+                'hover:text-blue-500 hover-effect': activeSection !== 'about',
+              }"
+              >Sobre mi</a
+            >
+            <a
+              @click="scrollToSection('skills')"
+              :class="{
+                'text-blue-500 underline ': activeSection === 'skills',
+                'hover:text-blue-500 hover-effect': activeSection !== 'skills',
+              }"
+              >Habilidades</a
+            >
+            <a
+              @click="scrollToSection('portfolio')"
+              :class="{
+                'text-blue-500 underline': activeSection === 'portfolio',
+                'hover:text-blue-500 hover-effect': activeSection !== 'portfolio',
+              }"
+              >Portafolio</a
+            >
+          </div>
         </div>
 
         <!-- Resto de tu código del toggle dark/light -->

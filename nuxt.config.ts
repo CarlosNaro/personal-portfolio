@@ -21,8 +21,8 @@ export default defineNuxtConfig({
   router: {
     baseURL: '/personal-portfolio/',
   },
-  // devServer: {
-  //   host: '192.168.209.241',
-  //   port: 3000, // or any other port you want to use
-  // },
+  devServer: {
+    host: ' 192.168.35.241',
+    port: 3000, // or any other port you want to use
+  },
 });

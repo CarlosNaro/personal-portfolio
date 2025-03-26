@@ -22,6 +22,7 @@ const isTextVisible = computed(() => globalStore.getIsTextVisible());
 const isMobile = ref(false);
 
 const isMounted = ref(false);
+const isHidden = ref(false);
 
 const toggleTextVisibility = () => {
   globalStore.setIsTextVisible(!isTextVisible.value);
@@ -49,7 +50,10 @@ onBeforeUnmount(() => {
       :class="{ 'overlay-text': isMobile }"
       class="w-2/4 text-left"
     >
-      <div :class="[isMobile ? 'text-container ' : 'max-h-[430px] overflow-auto scrollbarClass ']">
+      <div
+        :style="{ display: isHidden ? 'none' : 'block' }"
+        :class="[isMobile ? 'text-container ' : 'max-h-[430px] overflow-auto scrollbarClass  ']"
+      >
         <div :class="{ 'animate-fade-in ': active }">
           <div class="flex">
             <p class="flex-1 text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
@@ -126,21 +130,6 @@ onBeforeUnmount(() => {
   background: linear-gradient(45deg, #ff6b6b, #f06595, #cc5de8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn-Img {

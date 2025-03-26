@@ -18,8 +18,11 @@ const components = {
   portfolio: Portfolio,
 } as any;
 
-// Para compartir el estado activo con el header
-provide('activeSection', activeComponent);
+provide('activeSection', activeComponent); // Para compartir el estado activo con el header
+
+const checkMobile = () => {
+  globalStore.setIsMobile(window.innerWidth < 768);
+};
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -42,13 +45,21 @@ onMounted(() => {
       observer.observe(element);
     }
   });
+
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkMobile);
 });
 </script>
 
 <template>
   <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
+    <!--    <div>hola</div>-->
     <Header_ />
-    <main :class="isDarkMode ? 'classDark' : 'bg-gradient'" class="content flex-1 overflow-y-auto">
+    <main :class="isDarkMode ? 'classDark' : 'bg-gradient'" class="content flex-1 overflow-y-auto scrollbarClass">
       <div v-for="(component, key) in components" :key="key" :id="key">
         <component :is="component" />
       </div>
