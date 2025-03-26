@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SwiperSlide } from 'swiper/vue';
-
+//imagen___
 import laPositiva from '../../../assets/img/la-positiva.png';
 import restaurant from '../../../assets/img/restaurant.png';
 import sici_2 from '../../../assets/img/sici_2.png';
@@ -8,8 +8,8 @@ import bipbip from '../../../assets/img/bipbip_app.jpeg';
 import landingPage from '../../../assets/img/landing_page.png';
 import adminBipBip from '../../../assets/img/admin_bipbip.png';
 
-import CarouselSlider from '@components/global components/CarouselSlider.vue';
-import CarouselItem_project from '@components/global components/CarouselItem_project.vue';
+import CarouselSlider from '@components/globalComponents/CarouselSlider.vue';
+import CarouselItem_project from '@components/globalComponents/CarouselItem_project.vue';
 
 const activeIndex = ref(0);
 const isMobile = ref(false);
@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
+  <div v-if="images.length">
     <h1 class="uppercase text-left font-bold md:text-xl my-2"># Proyecto en colaboración</h1>
     <carousel-slider :is-navigation-enabled="navigationEnabled" @slide-change="(e) => onSlideChange(e)">
       <swiper-slide v-for="(item, index) in images" :key="index" class="m-auto">

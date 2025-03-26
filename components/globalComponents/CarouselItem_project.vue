@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import eye from '@/assets/svg/eye-solid.svg';
-import closeIcon from '@/assets/svg/close-solid.svg';
+import eye from '../../assets/svg/eye-solid.svg';
+import closeIcon from '../../assets/svg/close-solid.svg';
 
 import globalStore from '@components/global.store';
 

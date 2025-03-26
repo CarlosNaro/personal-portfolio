@@ -16,8 +16,8 @@ import supabase from '../assets/svg/supabase.svg';
 import postgresql from '../assets/svg/postgresql.svg';
 import ionic from '../assets/svg/ionic.svg';
 import elementPlus from '@/assets/svg/element-plus-logo.svg';
-import LayoutBase from '@components/global components/layoutBase.vue';
-import ComponentTitle from '@components/global components/ComponentTitle.vue';
+import LayoutBase from '@components/globalComponents/layoutBase.vue';
+import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 

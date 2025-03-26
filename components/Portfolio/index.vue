@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CollaborationProject from '@components/Portfolio/components/CollaborationProject.vue';
-import LayoutBase from '@components/global components/layoutBase.vue';
-import ComponentTitle from '@components/global components/ComponentTitle.vue';
+import LayoutBase from '@components/globalComponents/layoutBase.vue';
+import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 </script>
 
 <template>

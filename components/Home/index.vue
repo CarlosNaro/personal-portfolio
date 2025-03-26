@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import profilePng from '@/assets/img/profile.png';
+// import profilePng from '@/assets/img/profile.png';
 import globalStore from '@/components/global.store';
-import LayoutBase from '@components/global components/layoutBase.vue';
+import LayoutBase from '@components/globalComponents/layoutBase.vue';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 </script>
