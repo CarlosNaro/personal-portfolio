@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
+import { Navigation, Pagination, EffectFade } from 'swiper/modules';
+
 //imagen___
 import laPositiva from '../../../assets/img/la-positiva.png';
 import restaurant from '../../../assets/img/restaurant.png';

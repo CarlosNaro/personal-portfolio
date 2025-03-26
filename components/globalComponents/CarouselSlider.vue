@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { Swiper } from 'swiper/vue';
 import { EffectCoverflow, Navigation, Scrollbar } from 'swiper/modules';
-// import 'swiper/css';
-// import 'swiper/css/effect-coverflow';
-// import 'swiper/css/navigation';
-// import 'swiper/css/scrollbar';
 
 defineProps<{
   isNavigationEnabled: boolean;
