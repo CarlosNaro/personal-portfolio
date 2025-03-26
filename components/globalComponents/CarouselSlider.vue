@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Swiper } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
+
+// import 'swiper/css';
+// import 'swiper/css/effect-coverflow';
+// import 'swiper/css/navigation';
+// import 'swiper/css/scrollbar';
 
 import { EffectCoverflow, Navigation, Scrollbar } from 'swiper/modules';
 
