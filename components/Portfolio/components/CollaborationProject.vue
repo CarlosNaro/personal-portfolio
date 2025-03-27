@@ -5,7 +5,7 @@ import laPositiva from '../../../assets/img/la-positiva.png';
 import restaurant from '../../../assets/img/restaurant.png';
 import sici_2 from '../../../assets/img/sici_2.png';
 import bipbip from '../../../assets/img/bipbip_app.jpeg';
-import landingPage from '../../../assets/img/landing_Page.png';
+import landingPage from '../../../assets/img/Landing_Page.png';
 import adminBipBip from '../../../assets/img/admin_bipbip.png';
 
 import CarouselSlider from '@components/globalComponents/CarouselSlider.vue';
