@@ -3,7 +3,15 @@ import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['./assets/css/main.css'],
+  css: [
+    // Estilos de Swiper (primero)
+    'swiper/css',
+    'swiper/css/navigation',
+    'swiper/css/pagination', // Opcional, si usas paginación
+    'swiper/css/effect-fade', // Opcional, si usas efectos
+    //:::
+    './assets/css/main.css',
+  ],
   postcss: {
     plugins: {
       'postcss-import': {},

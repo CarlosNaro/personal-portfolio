@@ -15,7 +15,7 @@ const components = {
   home: Home,
   about: About,
   skills: Skills,
-  // portfolio: Portfolio,
+  portfolio: Portfolio,
 } as any;
 
 provide('activeSection', activeComponent); // Para compartir el estado activo con el header
