@@ -1,18 +1,11 @@
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
-
-import { Navigation, Pagination, EffectFade } from 'swiper/modules';
-
-//imagen___
+import { SwiperSlide } from 'swiper/vue';
+//#imagen
 import laPositiva from '../../../assets/img/la-positiva.png';
 import restaurant from '../../../assets/img/restaurant.png';
 import sici_2 from '../../../assets/img/sici_2.png';
 import bipbip from '../../../assets/img/bipbip_app.jpeg';
-import landingPage from '../../../assets/img/landing_page.png';
+import landingPage from '../../../assets/img/landing_Page.png';
 import adminBipBip from '../../../assets/img/admin_bipbip.png';
 
 import CarouselSlider from '@components/globalComponents/CarouselSlider.vue';
@@ -21,10 +14,7 @@ import CarouselItem_project from '@components/globalComponents/CarouselItem_proj
 const activeIndex = ref(0);
 const isMobile = ref(false);
 
-const navigationEnabled = computed(() => {
-  // return !(isMobile.value && isTextVisible.value);
-  return !isMobile.value;
-});
+const navigationEnabled = computed(() => !isMobile.value);
 
 const images = [
   {
