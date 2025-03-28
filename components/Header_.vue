@@ -2,19 +2,24 @@
 import globalStore from '@components/global.store';
 import dark from '../assets/img/nublada.gif';
 import sol from '../assets/svg/sol.svg';
-import { inject } from 'vue';
-import type { Ref } from 'vue';
 
 const isDarkMode = computed({
   get: () => globalStore.getIsDarkMode(),
   set: (value: boolean) => globalStore.setIsDarkMode(value),
 });
 
-// const activeSection = inject('activeSection', ref('home'));
-const activeSection = inject<Ref<string>>('activeSection', ref('home'));
+const activeSection = ref('home');
+// const activeSection = inject<Ref<string>>('activeSection', ref('home'));
 const isMobile = computed(() => globalStore.getIsMobile());
 const isActivatedMenu = ref(false);
 const isMounted = ref(false);
+
+const menuItems = [
+  { id: 'home', name: 'Inicio' },
+  { id: 'about', name: 'Sobre mi' },
+  { id: 'skills', name: 'Habilidades' },
+  { id: 'portfolio', name: 'Portafolio' },
+];
 
 function scrollToSection(sectionId: string) {
   activeSection.value = sectionId;
@@ -79,42 +84,17 @@ onUnmounted(() => {
 
           <div v-if="isMobile ? isActivatedMenu : true" class="flex flex-col md:flex-row gap-3 ml-8 animate-fade-in">
             <a
-              @click="scrollToSection('home')"
+              v-for="item in menuItems"
+              :key="item.id"
+              @click="scrollToSection(item.id)"
               :class="{
-                'text-blue-500 underline': activeSection === 'home',
-                'hover:text-blue-500 hover-effect': activeSection !== 'home',
+                'hover:text-blue-500 hover-effect': activeSection !== item.id,
               }"
-              >Inicio</a
-            >
-            <a
-              @click="scrollToSection('about')"
-              :class="{
-                'text-blue-500 underline ': activeSection === 'about',
-                'hover:text-blue-500 hover-effect': activeSection !== 'about',
-              }"
-              >Sobre mi</a
-            >
-            <a
-              @click="scrollToSection('skills')"
-              :class="{
-                'text-blue-500 underline ': activeSection === 'skills',
-                'hover:text-blue-500 hover-effect': activeSection !== 'skills',
-              }"
-              >Habilidades</a
-            >
-            <a
-              @click="scrollToSection('portfolio')"
-              :class="{
-                'text-blue-500 underline': activeSection === 'portfolio',
-                'hover:text-blue-500 hover-effect': activeSection !== 'portfolio',
-              }"
-              >Portafolio</a
+              >{{ item.name }}</a
             >
           </div>
         </div>
-
-        <!-- Resto de tu código del toggle dark/light -->
-
+        
         <div
           v-if="!isDarkMode"
           class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer"

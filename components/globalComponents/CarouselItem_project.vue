@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
     >
       <div
         :style="{ display: isHidden ? 'none' : 'block' }"
-        :class="[isMobile ? 'text-container ' : 'max-h-[430px] overflow-auto scrollbarClass  ']"
+        :class="[isMobile ? 'text-container md:mx-20' : 'max-h-[430px] overflow-auto scrollbarClass  ']"
       >
         <div :class="{ 'animate-fade-in ': active }">
           <div class="flex">
@@ -132,28 +132,13 @@ onBeforeUnmount(() => {
   -webkit-text-fill-color: transparent;
 }
 
-@keyframes fadeIn-Img {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in-img {
-  animation: fadeIn-Img 0.8s ease-in-out;
-}
-
 .overlay-text {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(173, 216, 230, 0.8);
+  background: rgba(61, 62, 62, 0.8);
   backdrop-filter: blur(5px);
   border-radius: 10px;
   display: flex;
