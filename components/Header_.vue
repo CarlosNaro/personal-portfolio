@@ -60,7 +60,7 @@ onUnmounted(() => {
     class="content flex items-center py-3 justify-between top-0 z-50"
   >
     <div v-if="!isMobile" class="absolute">
-      <img src="@/assets/svg/logoN@r.svg" alt="n@r" class="h-[60px]" />
+      <img src="@/assets/svg/logoN@r.svg" alt="n@r" class="h-[60px] animate-logoPersonal" />
     </div>
     <div class="flex-1 theme-toggle-container select-none">
       <div class="flex items-center justify-end space-x-4 relative">
@@ -94,7 +94,7 @@ onUnmounted(() => {
             >
           </div>
         </div>
-        
+
         <div
           v-if="!isDarkMode"
           class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer"
