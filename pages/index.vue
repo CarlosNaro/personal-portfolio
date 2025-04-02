@@ -6,6 +6,8 @@ import Home from '@components/Home/index.vue';
 import About from '@components/About/index.vue';
 import Skills from '@components/Skills/index.vue';
 import Portfolio from '@components/Portfolio/index.vue';
+import Contact from '@components/Contact/index.vue';
+
 import { onMounted, ref } from 'vue';
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
@@ -16,6 +18,7 @@ const components = {
   about: About,
   skills: Skills,
   portfolio: Portfolio,
+  contact: Contact,
 } as any;
 
 provide('activeSection', activeComponent); // Para compartir el estado activo con el header

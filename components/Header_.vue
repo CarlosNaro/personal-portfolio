@@ -19,6 +19,7 @@ const menuItems = [
   { id: 'about', name: 'Sobre mi' },
   { id: 'skills', name: 'Habilidades' },
   { id: 'portfolio', name: 'Portafolio' },
+  { id: 'contact', name: 'Contacto' },
 ];
 
 function scrollToSection(sectionId: string) {
