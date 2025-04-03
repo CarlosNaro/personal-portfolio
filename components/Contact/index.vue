@@ -2,23 +2,39 @@
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 import emailSvg from '@assets/svg/email.svg';
+import type { IEmailContent } from '@components/Contact/Interface/IEmailContent';
 import brevoSendEmail from '../../plugins/brevoSendEmail';
+import { useUtils } from '~/utils/useUtils';
 
-const isEmailForm = ref(false);
-const isWhatsappForm = ref(false);
+const { isValidEmail } = useUtils();
+const formData = ref<IEmailContent>({
+  name: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: '',
+});
 
-const openEmailForm = (val: number) => {
-  // 0 = email, 1 = whatsapp
-  if (val === 0) {
-    isEmailForm.value = !isEmailForm.value;
-    isWhatsappForm.value = false;
-    return;
+async function sendEmail() {
+  const { name, email, phone, subject, message } = formData.value;
+
+  if (!name || !email || !subject || !message) return;
+
+  if (!isValidEmail(email)) return;
+  const status = await brevoSendEmail(formData.value);
+
+  if (status) {
+    formData.value = {
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: '',
+    };
   }
-  isWhatsappForm.value = !isWhatsappForm.value;
-  isEmailForm.value = false;
-};
+}
 
-brevoSendEmail();
+onMounted(() => {});
 </script>
 
 <template>
@@ -41,29 +57,25 @@ brevoSendEmail();
         </div>
       </div>
       <div class="flex-1">
-        <button type="submit" class="button-default-border ns-button__content" @click="openEmailForm(0)">
-          <img class="mr-4 w-5" :src="emailSvg" alt="email" />
-          Puedes contactarme por correo electrónico
-        </button>
-        <form v-if="isEmailForm" :class="isEmailForm ? 'block' : 'hidden'" class="space-y-4 mt-4">
-          <div class="flex gap-8">
-            <input type="text" required placeholder="Nombre" class="input-form" />
-            <input type="email" required placeholder="Email" class="input-form" />
+        <form class="space-y-4 mt-4" action="#">
+          <div class="flex w-full gap-8 relative">
+            <input type="text" required placeholder="Nombre" v-model="formData.name" class="input-form" />
+            <input type="email" required placeholder="Email" v-model="formData.email" class="input-form" />
+            <span class="absolute text-xs text-red-500 right-48 -top-5">
+              {{ formData.email && !isValidEmail(formData.email) ? 'Email inválido' : '' }}
+            </span>
           </div>
           <div class="flex gap-8">
-            <input type="number" placeholder="N° celular" class="input-form" />
-            <input type="text" required placeholder="Asunto" class="input-form" />
+            <input type="number" placeholder="N° celular" v-model="formData.phone" class="input-form" />
+            <input type="text" required placeholder="Asunto" v-model="formData.subject" class="input-form" />
           </div>
-          <textarea required placeholder="Mensaje" class="input-form min-h-36" />
-          <button type="submit" class="button-default ns-button__content">Enviar</button>
+          <textarea required placeholder="Mensaje" v-model="formData.message" class="input-form min-h-36" />
+          <button type="button" class="button-default-border ns-button__content" @click="sendEmail">
+            <img class="mr-4 w-5" :src="emailSvg" alt="email" />
+            Enviar
+          </button>
         </form>
-
         <hr class="custom-divider" />
-
-        <button type="submit" class="button-default-border ns-button__content">
-          <img class="mr-4 w-5" :src="emailSvg" alt="email" />
-          Puedes contactarme a través de WhatsApp.
-        </button>
       </div>
     </div>
   </layout-base>

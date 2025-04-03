@@ -1,20 +1,15 @@
-interface ISendEmail {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import type { IEmailContent } from '@components/Contact/Interface/IEmailContent';
 
-const brevoSendEmail = async (payload: ISendEmail) => {
+const brevoSendEmail = async (payload: IEmailContent) => {
+  if (!payload.email) return;
+
   const apiKeyBrevo = import.meta.env.VITE_BREVO_API_KEY;
   const urlBrevo = import.meta.env.VITE_BREVO_URL;
 
-  console.log('apiKeyBrevo', apiKeyBrevo);
-
   const sendSmtpEmail = {
     sender: {
-      name: payload.name,
-      email: payload.email,
+      name: 'Iquitos Technology',
+      email: 'alonsonaro75@gmail.com',
     },
     to: [
       {
@@ -23,12 +18,36 @@ const brevoSendEmail = async (payload: ISendEmail) => {
       },
     ],
     subject: payload.subject,
-    textContent: payload.message,
+    htmlContent: `<html><head></head><body>
+  <p>Esta persona está interesada en conocerte </p>
+  <hr />
+  <span><b>Datos del contacto:</b></span>
+  <hr />
+  <span><b>Nombre:</b> ${payload.name}</span>
+  <hr />
+  <span><b>Telefono:</b> ${payload.phone}</span>
+  <hr />
+  <span><b>Email:</b> ${payload.email}</span>
+  <hr />
+  <span><b>Asunto:</b> ${payload.subject}</span>
+  <hr />
+  <span><b>Mensaje:</b> ${payload.message}</span>
+</body></html>`,
   };
 
-  // const sendEmail =
+  const sendEmail = await fetch(`${urlBrevo}/smtp/email`, {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'api-key': apiKeyBrevo,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(sendSmtpEmail),
+  });
 
-  return false;
+  console.log('sendEmail', sendEmail);
+
+  return sendEmail.ok;
 };
 
 export default brevoSendEmail;
