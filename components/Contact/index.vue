@@ -3,7 +3,7 @@ import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 import emailSvg from '@assets/svg/email.svg';
 import type { IEmailContent } from '@components/Contact/Interface/IEmailContent';
-import brevoSendEmail from '../../plugins/brevoSendEmail';
+import formspreeSendEmail from '../../plugins/FORMSPREESendEmail';
 import { useUtils } from '~/utils/useUtils';
 
 const { isValidEmail } = useUtils();
@@ -21,17 +21,17 @@ async function sendEmail() {
   if (!name || !email || !subject || !message) return;
 
   if (!isValidEmail(email)) return;
-  const status = await brevoSendEmail(formData.value);
-
-  if (status) {
-    formData.value = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    };
-  }
+  // const status = await formspreeSendEmail(formData.value);
+  //
+  // if (status) {
+  //   formData.value = {
+  //     name: '',
+  //     email: '',
+  //     phone: '',
+  //     subject: '',
+  //     message: '',
+  //   };
+  // }
 }
 
 onMounted(() => {});
@@ -70,7 +70,7 @@ onMounted(() => {});
             <input type="text" required placeholder="Asunto" v-model="formData.subject" class="input-form" />
           </div>
           <textarea required placeholder="Mensaje" v-model="formData.message" class="input-form min-h-36" />
-          <button type="button" class="button-default-border ns-button__content" @click="sendEmail">
+          <button type="submit" class="button-default-border ns-button__content" @click="sendEmail">
             <img class="mr-4 w-5" :src="emailSvg" alt="email" />
             Enviar
           </button>
