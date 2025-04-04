@@ -20,8 +20,9 @@ import foto2 from '../../assets/img/foto_2.png';
           intuitivo y funcionalidades robustas.
         </span>
       </div>
-      <div class="flex w-full items-center justify-center md:justify-end">
+      <div class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
         <div
+          id="circulo"
           class="mirror relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
         >
           <img

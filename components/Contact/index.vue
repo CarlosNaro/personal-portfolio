@@ -23,15 +23,6 @@ async function sendEmail() {
   if (!isValidEmail(email)) return;
   // const status = await formspreeSendEmail(formData.value);
   //
-  // if (status) {
-  //   formData.value = {
-  //     name: '',
-  //     email: '',
-  //     phone: '',
-  //     subject: '',
-  //     message: '',
-  //   };
-  // }
 }
 
 onMounted(() => {});
@@ -41,7 +32,7 @@ onMounted(() => {});
   <layout-base>
     <component-title title="Contacto" />
     <h2 class="text-center text-xl mt-5">¿Tienes un proyecto en mente? Hablemos 😉</h2>
-    <div class="flex items-center justify-between gap-10 mt-5">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-10 mt-5">
       <div class="flex flex-col space-y-4">
         <div class="flex items-center gap-2">
           <img :src="emailSvg" alt="email" class="w-7 mb-2" />
@@ -58,14 +49,16 @@ onMounted(() => {});
       </div>
       <div class="flex-1">
         <form class="space-y-4 mt-4" action="#">
-          <div class="flex w-full gap-8 relative">
+          <div class="inputForm relative">
             <input type="text" required placeholder="Nombre" v-model="formData.name" class="input-form" />
             <input type="email" required placeholder="Email" v-model="formData.email" class="input-form" />
-            <span class="absolute text-xs text-red-500 right-48 -top-5">
+            <span
+              class="absolute text-[10px] md:text-xs text-red-500 -bottom-3 left-2 md:left-auto md:bottom-auto md:right-48 md:-top-4"
+            >
               {{ formData.email && !isValidEmail(formData.email) ? 'Email inválido' : '' }}
             </span>
           </div>
-          <div class="flex gap-8">
+          <div class="inputForm">
             <input type="number" placeholder="N° celular" v-model="formData.phone" class="input-form" />
             <input type="text" required placeholder="Asunto" v-model="formData.subject" class="input-form" />
           </div>
@@ -82,6 +75,10 @@ onMounted(() => {});
 </template>
 
 <style scoped>
+.inputForm {
+  @apply flex flex-col md:flex-row gap-4 md:gap-8;
+}
+
 .custom-divider {
   border: none;
   border-top: 2px dotted #1a5cff;

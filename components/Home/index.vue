@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import globalStore from '@/components/global.store';
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO.pdf';
+import developerPng from '@assets/img/developer.png';
+import eyeSolidSvg from '@assets/svg/eye-solid.svg';
 
-const isDarkMode = computed(() => globalStore.getIsDarkMode());
 const showModal = ref(false);
 </script>
 
@@ -15,10 +15,16 @@ const showModal = ref(false);
         Me llamo <b>Alonso</b>, soy un desarrollador de software apasionado por crear soluciones tecnológicas eficientes
         y escalables.
       </p>
-      <button class="button-default" @click="showModal = true">
-        <span class="ns-button__content">Ver CV</span>
+      <button class="button-default md:w-2/5 lg:w-1/5" @click="showModal = true">
+        <span class="ns-button__content"
+          >Ver CV
+          <img :src="eyeSolidSvg" alt="eyeSolidSvg" class="ml-2 w-5" />
+        </span>
       </button>
     </div>
+
+    <img :src="developerPng" alt="developerPng" class="w-16 md:w-auto" />
+
     <Teleport to="body">
       <div v-if="showModal" class="modal-overlay" @click.self="">
         <div class="modal-content">
@@ -38,11 +44,6 @@ const showModal = ref(false);
   &:hover {
     box-shadow: 0 10px 20px -10px rgba(var(--ns-warn), 1) !important;
   }
-}
-
-.fade-out-top {
-  mask-image: linear-gradient(to top, black 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
 }
 
 .modal-overlay {

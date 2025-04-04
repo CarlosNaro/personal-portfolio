@@ -1,5 +1,5 @@
 const state = reactive({
-  isDarkMode: false,
+  isDarkMode: true,
   isTextVisible: false,
   isMobile: false,
 });

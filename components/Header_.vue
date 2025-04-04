@@ -56,23 +56,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    :class="isDarkMode ? 'bg-Content' : 'bg-light'"
-    class="content flex items-center py-3 justify-between top-0 z-50"
-  >
-    <div v-if="!isMobile" class="absolute">
+  <div :class="isDarkMode ? 'bg-Content' : 'bg-light'" class="content flex items-center justify-between top-0 z-50">
+    <div v-if="!isMobile && isMounted" class="my-1">
       <img src="@/assets/svg/logoN@r.svg" alt="n@r" class="h-[60px] animate-logoPersonal" />
     </div>
     <div class="flex-1 theme-toggle-container select-none">
-      <div class="flex items-center justify-end space-x-4 relative">
+      <div class="flex items-center md:justify-end space-x-4 relative">
         <div
           id="menu-container"
           v-if="isMounted"
           class="nav flex gap-3 font-bold"
-          :class="[
-            isDarkMode ? 'bg-Content' : 'bg-light',
-            isMobile ? 'flex-col absolute p-3 left-0 top-0 rounded-lg' : '',
-          ]"
+          :class="[isDarkMode ? 'bg-Content' : 'bg-light', isMobile ? 'flex-col p-3 left-0 top-0 rounded-lg' : '']"
         >
           <div v-if="isMobile" class="w-6 hover-effect" @click="toggleMenu">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -83,7 +77,15 @@ onUnmounted(() => {
             </svg>
           </div>
 
-          <div v-if="isMobile ? isActivatedMenu : true" class="flex flex-col md:flex-row gap-3 ml-8 animate-fade-in">
+          <div
+            v-if="isMobile ? isActivatedMenu : true"
+            class="flex gap-3"
+            :class="
+              isMobile && isActivatedMenu
+                ? ' animateMovilMenu flex-col absolute bg-Content w-full p-4  top-12 rounded-bl-full items-end '
+                : '  flex-row  animate-fade-in'
+            "
+          >
             <a
               v-for="item in menuItems"
               :key="item.id"
@@ -94,33 +96,6 @@ onUnmounted(() => {
               >{{ item.name }}</a
             >
           </div>
-        </div>
-
-        <div
-          v-if="!isDarkMode"
-          class="dark-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer"
-          @click="activeDark"
-        >
-          <button
-            type="button"
-            class="inline-flex items-center rounded-full bg-white p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
-            <img :src="dark" alt="" class="rounded-md w-6" />
-          </button>
-          <span class="text-sm">Dark</span>
-        </div>
-        <div
-          v-else
-          class="light-mode-button hover-effect flex items-center gap-1 p-1 cursor-pointer"
-          @click="isDarkMode = false"
-        >
-          <button
-            type="button"
-            class="inline-flex items-center rounded-full p-1 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50/25"
-          >
-            <img :src="sol" alt="" class="rounded-md w-6 text-white animate-pulse" />
-          </button>
-          <span class="text-sm">Light</span>
         </div>
       </div>
     </div>
@@ -141,5 +116,20 @@ onUnmounted(() => {
   a {
     cursor: pointer;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animateMovilMenu {
+  animation: fadeIn 0.5s ease-in-out;
 }
 </style>

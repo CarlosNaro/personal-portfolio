@@ -60,7 +60,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
-    <!--    <div>hola</div>-->
     <Header_ />
     <main :class="isDarkMode ? 'classDark' : 'bg-gradient'" class="content flex-1 overflow-y-auto scrollbarClass">
       <div v-for="(component, key) in components" :key="key" :id="key">
