@@ -127,7 +127,7 @@ onMounted(() => {});
       Ocurrió un error al enviar el mensaje, por favor intenta nuevamente o contáctame por WhatsApp.
     </span>
     <p v-else>
-      Por favor verifica que los campos obligatorios: <strong>nombre, email, asunto y mensaje</strong> estén completos.
+      Por favor verifica que los campos obligatorios: <strong>nombre, email, asunto y mensaje</strong>, estén completos.
     </p>
   </alert>
 </template>
