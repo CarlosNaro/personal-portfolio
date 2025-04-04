@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
     >
       <div
         :style="{ display: isHidden ? 'none' : 'block' }"
-        :class="[isMobile ? 'text-container md:mx-20' : 'max-h-[430px] overflow-auto scrollbarClass  ']"
+        :class="[isMobile ? 'text-container bg-Content md:mx-20' : 'max-h-[430px] overflow-auto scrollbarClass  ']"
       >
         <div :class="{ 'animate-fade-in ': active }">
           <div class="flex">
@@ -149,16 +149,11 @@ onBeforeUnmount(() => {
 }
 
 .text-container {
-  background: white;
   border-radius: 8px;
   position: relative;
   padding: 0.5rem;
   overflow: auto;
   height: max-content;
   max-height: 430px; /* Ajusta este valor según tus necesidades */
-
-  .p-description {
-    color: black; /* Negro por defecto */
-  }
 }
 </style>
