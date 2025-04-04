@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
-import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO.pdf';
+import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO_2025.pdf';
 import developerPng from '@assets/img/developer.png';
 import eyeSolidSvg from '@assets/svg/eye-solid.svg';
 
