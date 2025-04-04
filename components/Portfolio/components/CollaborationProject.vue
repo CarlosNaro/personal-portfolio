@@ -44,7 +44,7 @@ const images = [
       'Permite el monitoreo en tiempo real de vehículos, planificación de rutas eficientes, control de horarios y gestión de conductores. Además, incluye funciones como seguimiento GPS, notificaciones de llegada, entre otros. Su implementación mejora la eficiencia operativa, reduce costos logísticos y garantiza un servicio más seguro y organizado.',
     technologies: ['Ionic framework', 'capacitorjs', 'Vue.js 3', 'TypeScript', 'Tailwind CSS', 'Firebase'],
   },
-  //Landing Page del Sistema de Transporte
+
   {
     id: 4,
     src: landingPage,
@@ -67,9 +67,9 @@ const images = [
     id: 6,
     src: panelBipBip,
     alt: 'Imagen 6',
-    title: 'Sistema de Administrador - BipBip',
+    title: 'Módulo Administrativo - BipBip',
     description:
-      'Panel de administración que permite gestionar y monitorear la flota de vehículos, conductores y rutas. Incluye funciones como seguimiento en tiempo real, generación de reportes, notificaciones automáticas, entre otros.',
+      'Panel de administración que permite gestionar el registro de conductores, sus pagos, las validaciones de documentos y su billetera digital.',
     technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Firebase'],
   },
 ];
@@ -104,7 +104,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/* Swiper slide :::: */
 .swiper-slide {
   display: flex;
   justify-content: center;
