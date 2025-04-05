@@ -25,26 +25,31 @@ import foto2 from '../../assets/img/foto_2.png';
           id="circulo"
           class="relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
         >
-          <img
-            class="absolute -top-20 md:-top-32 right-0 md:right-1 rounded-r-[100px] rounded-br-[80px] md:rounded-br-[95px] fade-out"
-            :src="foto2"
-            alt="foto2"
-          />
+          <img class="absolute -top-20 md:-top-32 mask-gradient-both mirror" :src="foto2" alt="foto2" />
         </div>
       </div>
     </div>
   </LayoutBase>
 </template>
 
-<style scoped>
+<style scoped lang="css">
 .bgColor {
-  /*--ns-warn: 255, 186, 0;*/
-  background: linear-gradient(45deg, rgb(255, 186, 0), rgb(0, 0, 0));
-  /*background: rgb(var(--ns-warn));*/
+  background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)));
+  /*background: linear-gradient(45deg, rgb(255, 186, 0), rgb(0, 0, 0))*/
 }
 
-.fade-out {
+.mask-gradient {
+  -webkit-mask-image: -webkit-linear-gradient(to bottom right, black 50%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  -webkit-mask-image: -webkit-linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.mask-gradient-both {
+  -webkit-mask-image:
+    -webkit-linear-gradient(to right, black 50%, transparent 100%),
+    -webkit-linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-image: linear-gradient(to right, black 50%, transparent 100%),
+    linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-composite: intersect;
 }
 </style>
