@@ -75,15 +75,15 @@ onMounted(() => {});
     <div class="flex flex-col md:flex-row items-center justify-between gap-10 mt-5">
       <div class="flex flex-col space-y-4">
         <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img :src="emailSvg" alt="email" class="w-7 mb-2" />
+          <img :src="emailSvg" alt="email" class="w-5 mb-2" />
           <p>alonsonaro75@gmail.com</p>
         </div>
         <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img src="@assets/svg/location.svg" alt="location" class="w-7 mb-2" />
+          <img src="@assets/svg/location.svg" alt="location" class="w-5 mb-2" />
           <p>Iquitos-Loreto, Perú</p>
         </div>
         <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img src="@assets/svg/phone.svg" alt="phone" class="w-7 mb-2" />
+          <img src="@assets/svg/phone.svg" alt="phone" class="w-5 mb-2" />
           <p>+51 995 069 323</p>
         </div>
       </div>
