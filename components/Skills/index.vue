@@ -86,7 +86,7 @@ const arraySkills = [
 </script>
 
 <template>
-  <LayoutBase class="select-none">
+  <LayoutBase class="select-none mt-10">
     <component-title title="Habilidades" />
     <div class="flex flex-wrap gap-5 mt-6 items-center justify-center">
       <div
@@ -105,7 +105,7 @@ const arraySkills = [
 <style scoped>
 .card_img {
   transition: all 0.5s ease-in-out;
-  box-shadow: 0px 0px 10px 0px rgba(179, 178, 178, 0.75);
+  box-shadow: 0 0 10px 0 rgba(179, 178, 178, 0.75);
 }
 
 .card_img:hover {

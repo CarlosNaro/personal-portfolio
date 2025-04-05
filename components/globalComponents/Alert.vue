@@ -29,11 +29,21 @@ const name = ref(props.nameResend);
 <template>
   <div class="modal-overlay p-5">
     <div :class="bgColor" class="modal-content w-full md:max-w-md">
-      <div class="flex items-center mb-5">
+      <div class="flex items-center mb-5 border-b pb-1 border-gray-700">
         <h1 v-if="props.title" :class="props.nameResend ? 'text-center' : 'text-left'" class="flex-1 text-2xl">
           {{ props.title }}
         </h1>
-        <button v-if="!props.nameResend" class="button-light-icon absolute top-0" @click="$emit('close')">X</button>
+        <!--        <button v-if="!props.nameResend" class="button-light-icon" @click="$emit('close')">-->
+        <!--          <span class="text-black">X</span>-->
+        <!--        </button>-->
+        <button
+          v-if="!props.nameResend"
+          style="border-radius: 50%; margin: 5px; width: 40px; height: 40px"
+          class="button-default-transparent shadow shadow-gray-700"
+          @click="$emit('close')"
+        >
+          X
+        </button>
       </div>
 
       <h2 v-if="props.nameResend" class="text-center font-bold text-lg">{{ name }}</h2>

@@ -5,7 +5,7 @@ import foto2 from '../../assets/img/foto_2.png';
 </script>
 
 <template>
-  <LayoutBase>
+  <LayoutBase class="mt-10">
     <component-title title="Sobre mi" />
     <div class="grid grid-cols-1 md:grid-cols-2 content-between mt-5">
       <div class="flex m-auto flex-col">
@@ -23,7 +23,7 @@ import foto2 from '../../assets/img/foto_2.png';
       <div class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
         <div
           id="circulo"
-          class="mirror relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
+          class="relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
         >
           <img
             class="absolute -top-20 md:-top-32 right-0 md:right-1 rounded-r-[100px] rounded-br-[80px] md:rounded-br-[95px] fade-out"
@@ -45,10 +45,6 @@ import foto2 from '../../assets/img/foto_2.png';
 
 .fade-out {
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-}
-
-.mirror {
-  transform: scaleX(-1);
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, black 50%, transparent 100%);
 }
 </style>

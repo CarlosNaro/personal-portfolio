@@ -69,25 +69,25 @@ onMounted(() => {});
 </script>
 
 <template>
-  <layout-base>
+  <layout-base class="my-10">
     <component-title title="Contacto" />
     <h2 class="text-center text-xl mt-5">¿Tienes un proyecto en mente? Hablemos 😉</h2>
     <div class="flex flex-col md:flex-row items-center justify-between gap-10 mt-5">
       <div class="flex flex-col space-y-4">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center flex-col md:flex-row md:gap-2">
           <img :src="emailSvg" alt="email" class="w-7 mb-2" />
           <p>alonsonaro75@gmail.com</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center flex-col md:flex-row md:gap-2">
           <img src="@assets/svg/location.svg" alt="location" class="w-7 mb-2" />
           <p>Iquitos-Loreto, Perú</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center flex-col md:flex-row md:gap-2">
           <img src="@assets/svg/phone.svg" alt="phone" class="w-7 mb-2" />
           <p>+51 995 069 323</p>
         </div>
       </div>
-      <div class="flex-1">
+      <div class="w-full md:flex-1">
         <form class="space-y-4 mt-4" action="#">
           <div class="inputForm relative">
             <input type="text" required placeholder="Nombre" v-model="formData.name" class="input-form" />
@@ -113,7 +113,6 @@ onMounted(() => {});
             <span :hidden="isLoading">Enviar</span>
           </button>
         </form>
-        <hr class="custom-divider mt-5" />
       </div>
     </div>
   </layout-base>

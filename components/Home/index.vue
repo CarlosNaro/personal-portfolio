@@ -8,22 +8,29 @@ const showModal = ref(false);
 </script>
 
 <template>
-  <LayoutBase class="select-none flex">
-    <div class="flex-1 flex-col">
-      <h1 class="text-2xl md:text-[2rem] font-semibold">¡Hola!</h1>
-      <p class="text-justify md:text-[2rem]">
-        Me llamo <b>Alonso</b>, soy un desarrollador de software apasionado por crear soluciones tecnológicas eficientes
-        y escalables.
-      </p>
-      <button class="button-default md:w-2/5 lg:w-1/5" @click="showModal = true">
-        <span class="ns-button__content"
-          >Ver CV
-          <img :src="eyeSolidSvg" alt="eyeSolidSvg" class="ml-2 w-5" />
-        </span>
-      </button>
-    </div>
+  <LayoutBase class="select-none">
+    <div class="flex flex-col md:flex-row gap-2">
+      <div class="mb-2 md:m-auto">
+        <h1 class="text-2xl md:text-[2rem] font-semibold">¡Hola!</h1>
+        <p class="text-justify mb-4 md:text-[2rem]">
+          Me llamo <b>Alonso</b>, soy un desarrollador de software apasionado por crear soluciones tecnológicas
+          eficientes y escalables.
+        </p>
+        <button class="button-default w-full md:w-3/5 lg:w-2/5" @click="showModal = true">
+          <span class="ns-button__content"
+            >Visualizar CV
+            <img :src="eyeSolidSvg" alt="eyeSolidSvg" class="ml-2 w-5" />
+          </span>
+        </button>
+      </div>
 
-    <img :src="developerPng" alt="developerPng" class="w-16 md:w-auto" />
+      <img
+        :src="developerPng"
+        alt="developerPng"
+        class="m-auto w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px]"
+        style="border-radius: 50%; background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)))"
+      />
+    </div>
 
     <Teleport to="body">
       <div v-if="showModal" class="modal-overlay" @click.self="">
@@ -39,7 +46,10 @@ const showModal = ref(false);
 <style scoped>
 .button-default {
   margin: 0 !important;
-  background: linear-gradient(45deg, rgb(var(--ns-warn)), rgb(var(--ns-primary))) !important;
+  /*background: linear-gradient(45deg, rgb(var(--ns-warn)), rgb(var(--ns-primary))) !important;*/
+
+  /* un gradiente usando --ns-success */
+  background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary))) !important;
 
   &:hover {
     box-shadow: 0 10px 20px -10px rgba(var(--ns-warn), 1) !important;

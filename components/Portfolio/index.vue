@@ -5,7 +5,7 @@ import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 </script>
 
 <template>
-  <layout-base>
+  <layout-base class="mt-10">
     <component-title title="portafolio" />
     <div class="mt-4">
       <span
