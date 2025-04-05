@@ -3,12 +3,18 @@ import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO_2025.pdf';
 import developerPng from '@assets/img/developer.png';
 import eyeSolidSvg from '@assets/svg/eye-solid.svg';
+import imageSolidSvg from '@assets/svg/image-solid.svg';
 
 const showModal = ref(false);
+const isMounted = ref(false);
+
+onMounted(() => {
+  isMounted.value = true;
+});
 </script>
 
 <template>
-  <LayoutBase class="select-none">
+  <LayoutBase class="select-none mt-4">
     <div class="flex flex-col md:flex-row gap-2">
       <div class="mb-2 md:m-auto">
         <h1 class="text-2xl md:text-[2rem] font-semibold">¡Hola!</h1>
@@ -25,11 +31,18 @@ const showModal = ref(false);
       </div>
 
       <img
+        v-if="isMounted && developerPng"
         :src="developerPng"
         alt="developerPng"
-        class="m-auto w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px]"
+        class="animate-fade-in m-auto w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px]"
         style="border-radius: 50%; background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)))"
       />
+
+      <div v-else>
+        <div class="skeleton-img">
+          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
+        </div>
+      </div>
     </div>
 
     <Teleport to="body">
@@ -46,9 +59,6 @@ const showModal = ref(false);
 <style scoped>
 .button-default {
   margin: 0 !important;
-  /*background: linear-gradient(45deg, rgb(var(--ns-warn)), rgb(var(--ns-primary))) !important;*/
-
-  /* un gradiente usando --ns-success */
   background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary))) !important;
 
   &:hover {

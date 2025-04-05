@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
-import foto2 from '../../assets/img/foto_2.png';
+import foto2 from '@assets/img/foto_2.png';
+import imageSolidSvg from '@assets/svg/image-solid.svg';
+
+const isMounted = ref(false);
+
+onMounted(() => {
+  isMounted.value = true;
+});
 </script>
 
 <template>
   <LayoutBase class="mt-10">
     <component-title title="Sobre mi" />
     <div class="grid grid-cols-1 md:grid-cols-2 content-between mt-5">
-      <div class="flex m-auto flex-col">
+      <div class="flex m-auto flex-col lg:text-lg">
         <span class="mb-2">
           Mi nombre es Alonso Naro Saldaña. Soy ingeniero de sistemas e informática, graduado de la Universidad Nacional
           de la Amazonía Peruana. Soy de nacionalidad peruana y natural de la ciudad de Iquitos, en la región de Loreto.
@@ -20,12 +27,17 @@ import foto2 from '../../assets/img/foto_2.png';
           intuitivo y funcionalidades robustas.
         </span>
       </div>
-      <div class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
+      <div v-if="isMounted && foto2" class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
         <div
           id="circulo"
-          class="relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
+          class="animate-fade-in relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
         >
           <img class="absolute -top-20 md:-top-32 mask-gradient-both mirror" :src="foto2" alt="foto2" />
+        </div>
+      </div>
+      <div v-else class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
+        <div class="skeleton-img">
+          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
         </div>
       </div>
     </div>
