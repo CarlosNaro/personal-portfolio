@@ -121,7 +121,6 @@ onMounted(() => {});
   </alert>
 
   <alert v-if="isErrorValidForm" title="Error" @close="CloseDialog">
-    <!--    mensaje de que algo esta mal en el servidor y que si el error persiste que intente otro metodo de comunicacion por whasap -->
     <span v-if="is_error_request" class="text-red-500">
       Ocurrió un error al enviar el mensaje, por favor intenta nuevamente o contáctame por WhatsApp.
     </span>

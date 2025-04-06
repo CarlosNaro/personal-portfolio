@@ -38,7 +38,7 @@ onMounted(() => {
         style="border-radius: 50%; background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)))"
       />
 
-      <div v-else>
+      <div v-else class="flex items-center justify-center">
         <div class="skeleton-img">
           <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
         </div>

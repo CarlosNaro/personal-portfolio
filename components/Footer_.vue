@@ -6,7 +6,7 @@ const isDark = computed(() => globalStore.getIsDarkMode());
 </script>
 
 <template>
-  <footer :class="isDark ? 'bg-Content' : 'bg-light'" class="footer content py-3">
+  <footer :class="isDark ? 'bg-dark' : 'bg-light'" class="footer content py-3">
     <div class="footer-content">
       <b>&copy;{{ year }}, <a href="https://github.com/CarlosNaro" target="_blank">Developer Naro</a></b>
     </div>
