@@ -103,12 +103,7 @@ onMounted(() => {});
             <input type="text" required placeholder="Asunto" v-model="formData.subject" class="input-form" />
           </div>
           <textarea required placeholder="Mensaje" v-model="formData.message" class="input-form min-h-36" />
-          <button
-            :disabled="isLoading"
-            type="button"
-            class="button-default-border ns-button__content"
-            @click="sendEmail"
-          >
+          <button :disabled="isLoading" type="button" class="button-default-transparent ns-button__content">
             <img :class="isLoading ? 'animate-bounce ' : ''" class="mr-2 w-5" :src="emailSvg" alt="email" />
             <span :hidden="isLoading">Enviar</span>
           </button>

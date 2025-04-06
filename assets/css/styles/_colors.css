@@ -1,6 +1,7 @@
 :root {
     --ns-backgroundContent: 30, 32, 35;
-
+    --vs-shadow-opacity: .3;
+    --vs-shadow-opacity-hover: .2;
     /*formatos RGB*/
     --ns-primary: 25, 91, 255;
     --ns-warn: 255, 186, 0;

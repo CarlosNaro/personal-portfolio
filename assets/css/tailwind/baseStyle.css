@@ -24,8 +24,19 @@
 }
 
 .input-form {
-    @apply w-full rounded-2xl p-4  bg-transparent text-white border border-Content focus:outline-none hover:shadow-Content hover:shadow-md focus:shadow-md focus:shadow-Content transition duration-300 ease-in-out focus:-translate-y-1 hover:-translate-y-1
+    @apply w-full rounded-2xl p-4 bg-transparent text-white focus:outline-none transition duration-300 ease-in-out -translate-y-1 focus:translate-y-0 hover:translate-y-0;
+    background: rgb(var(--ns-backgroundContent), 1);
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, var(--vs-shadow-opacity));
+
+    &:focus {
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, var(--vs-shadow-opacity-hover));
+    }
+
+    &:hover {
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, var(--vs-shadow-opacity-hover));
+    }
 }
+
 
 .button-default {
     background: rgb(var(--ns-primary));
@@ -74,13 +85,16 @@
     outline: none;
     font-size: 0.8rem;
     box-sizing: border-box;
+    box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
+
 
     &:active {
         animation: ripple-animation 0.3s ease-out;
+
     }
 
     &:hover {
-        box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
+        box-shadow: 0 10px 15px -10px rgba(var(--ns-primary), 1);
         transform: translate(0, -3px);
     }
 }
