@@ -56,7 +56,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="isDarkMode ? 'bg-Content' : 'bg-light'" class="content flex items-center justify-between top-0 z-50">
+  <div :class="isDarkMode ? 'bg-dark' : 'bg-light'" class="content flex items-center justify-between top-0 z-50">
     <div v-if="!isMobile && isMounted" class="my-1">
       <img src="@/assets/svg/logoN@r.svg" alt="n@r" class="h-[60px] animate-logoPersonal" />
     </div>
@@ -86,6 +86,12 @@ onUnmounted(() => {
                 : '  flex-row  animate-fade-in'
             "
           >
+            <img
+              v-if="isMobile"
+              src="@/assets/svg/logoN@r.svg"
+              alt="n@r"
+              class="absolute left-16 top-12 h-[80px] animate-logoPersonal"
+            />
             <a
               v-for="item in menuItems"
               :key="item.id"
