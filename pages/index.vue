@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Component } from 'vue';
 import globalStore from '@components/global.store';
 import Header_ from '@components/Header_.vue';
 import Footer_ from '@components/Footer_.vue';
@@ -7,24 +8,26 @@ import About from '@components/About/index.vue';
 import Skills from '@components/Skills/index.vue';
 import Portfolio from '@components/Portfolio/index.vue';
 import Contact from '@components/Contact/index.vue';
-import { onMounted, ref } from 'vue';
 import WhatsAppButton from '@components/globalComponents/WhatsAppButton.vue';
+
+const MOBILE_BREAKPOINT = 768;
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
 const activeComponent = ref('home');
+let sectionObserver: IntersectionObserver | undefined;
 
-const components = {
+const components: Record<string, Component> = {
   home: Home,
   about: About,
   skills: Skills,
   portfolio: Portfolio,
   contact: Contact,
-} as any;
+};
 
 provide('activeSection', activeComponent); // Para compartir el estado activo con el header
 
 const checkMobile = () => {
-  globalStore.setIsMobile(window.innerWidth < 768);
+  globalStore.setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
 };
 
 const observeSections = () => {
@@ -47,6 +50,8 @@ const observeSections = () => {
       observer.observe(element);
     }
   });
+
+  sectionObserver = observer;
 };
 
 onMounted(() => {
@@ -58,6 +63,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkMobile);
+  sectionObserver?.disconnect();
 });
 </script>
 
@@ -65,10 +71,10 @@ onBeforeUnmount(() => {
   <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
     <Header_ />
     <main :class="isDarkMode ? 'classDark' : 'bg-gradient'" class="content flex-1 overflow-y-auto scrollbarClass">
-      <div v-for="(component, key) in components" :key="key" :id="String(key)">
+      <div v-for="(component, key) in components" :key="key" :id="key">
         <component :is="component" />
       </div>
-      <whats-app-button />
+      <WhatsAppButton />
     </main>
     <Footer_ class="select-none" />
   </div>

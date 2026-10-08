@@ -8,7 +8,10 @@ const isDark = computed(() => globalStore.getIsDarkMode());
 <template>
   <footer :class="isDark ? 'bg-dark' : 'bg-light'" class="footer content py-3">
     <div class="footer-content">
-      <b>&copy;{{ year }}, <a href="https://github.com/CarlosNaro" target="_blank">Developer Naro</a></b>
+      <b
+        >&copy;{{ year }},
+        <a href="https://github.com/CarlosNaro" target="_blank" rel="noopener noreferrer">Developer Naro</a></b
+      >
     </div>
   </footer>
 </template>
@@ -18,7 +21,8 @@ const isDark = computed(() => globalStore.getIsDarkMode());
   @apply text-center text-xs md:text-base md:text-left;
 }
 
-a:hover {
+a:hover,
+a:focus-visible {
   background: linear-gradient(90deg, #ff00cc, rgb(var(--ns-primary)));
   background-clip: text;
   color: transparent;
