@@ -5,7 +5,7 @@ import developerPng from '@assets/img/developer.png';
 import eyeSolidSvg from '@assets/svg/eye-solid.svg';
 import imageSolidSvg from '@assets/svg/image-solid.svg';
 
-const showModal = ref(false);
+const isModalVisible = ref(false);
 const isMounted = ref(false);
 
 onMounted(() => {
@@ -17,39 +17,40 @@ onMounted(() => {
   <LayoutBase class="select-none mt-4">
     <div class="flex flex-col md:flex-row gap-2">
       <div class="mb-2 md:m-auto">
-        <h1 class="text-2xl md:text-[2rem] font-semibold">¡Hola!</h1>
-        <p class="text-justify mb-4 md:text-[2rem]">
+        <h1 class="text-xl md:text-2xl font-medium">¡Hola!</h1>
+        <p class="mb-4 text-2xl md:text-3xl font-semibold leading-snug">
           Me llamo <b>Alonso</b>, soy un desarrollador de software apasionado por crear soluciones tecnológicas
           eficientes y escalables.
         </p>
-        <button class="button-default w-full md:w-3/5 lg:w-2/5" @click="showModal = true">
+        <button type="button" class="button-default w-full md:w-3/5 lg:w-2/5" @click="isModalVisible = true">
           <span class="ns-button__content"
             >Visualizar CV
-            <img :src="eyeSolidSvg" alt="eyeSolidSvg" class="ml-2 w-5" />
+            <img :src="eyeSolidSvg" alt="" class="ml-2 w-5" />
           </span>
         </button>
       </div>
 
       <img
-        v-if="isMounted && developerPng"
+        v-if="isMounted"
         :src="developerPng"
-        alt="developerPng"
-        class="animate-fade-in m-auto w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px]"
-        style="border-radius: 50%; background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)))"
+        alt="Ilustración de Alonso, desarrollador de software"
+        width="300"
+        height="300"
+        class="avatar-hero animate-fade-in m-auto rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px]"
       />
 
       <div v-else class="flex items-center justify-center">
         <div class="skeleton-img">
-          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
+          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="" />
         </div>
       </div>
     </div>
 
     <Teleport to="body">
-      <div v-if="showModal" class="modal-overlay" @click.self="">
+      <div v-if="isModalVisible" class="modal-overlay" @click.self="isModalVisible = false">
         <div class="modal-content">
-          <button class="close-btn" @click="showModal = false">X</button>
-          <iframe :src="cvPdfUrl" class="pdf-viewer"></iframe>
+          <button type="button" aria-label="Cerrar" class="close-btn" @click="isModalVisible = false">X</button>
+          <iframe :src="cvPdfUrl" title="Curriculum Vitae de Alonso Naro" class="pdf-viewer"></iframe>
         </div>
       </div>
     </Teleport>
@@ -66,13 +67,17 @@ onMounted(() => {
   }
 }
 
+.avatar-hero {
+  background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)));
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(var(--ns-dark), 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +85,7 @@ onMounted(() => {
 }
 
 .modal-content {
-  background: white;
+  background: rgb(var(--ns-light));
   padding: 20px;
   border-radius: 10px;
   max-width: 90%;
@@ -94,8 +99,8 @@ onMounted(() => {
   position: absolute;
   top: 20px;
   right: 25px;
-  background: red;
-  color: white;
+  background: rgb(var(--ns-danger));
+  color: rgb(var(--ns-light));
   border: none;
   padding: 5px 10px;
   cursor: pointer;
