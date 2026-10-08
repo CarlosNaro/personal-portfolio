@@ -1,44 +1,32 @@
 <script setup lang="ts">
-import eye from '../../assets/svg/eye-solid.svg';
-import closeIcon from '../../assets/svg/close-solid.svg';
+import eye from '@assets/svg/eye-solid.svg';
+import closeIcon from '@assets/svg/close-solid.svg';
 
 import globalStore from '@components/global.store';
 
-defineProps<{
+interface Props {
   item: {
     src: string;
-    alt: string;
     title: string;
     description: string;
     technologies?: string[];
   };
   active?: boolean;
-}>();
+}
+
+defineProps<Props>();
 
 const isDarkMode = computed(() => globalStore.getIsDarkMode());
-
 const isTextVisible = computed(() => globalStore.getIsTextVisible());
-
-const isMobile = ref(false);
-
+const isMobile = computed(() => globalStore.getIsMobile());
 const isMounted = ref(false);
-const isHidden = ref(false);
 
 const toggleTextVisibility = () => {
   globalStore.setIsTextVisible(!isTextVisible.value);
 };
-const checkMobile = () => {
-  isMobile.value = window.innerWidth <= 768;
-};
 
 onMounted(() => {
-  checkMobile();
-  window.addEventListener('resize', checkMobile);
   isMounted.value = true;
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkMobile);
 });
 </script>
 
@@ -50,17 +38,19 @@ onBeforeUnmount(() => {
       :class="{ 'overlay-text': isMobile }"
       class="w-2/4 text-left"
     >
-      <div
-        :style="{ display: isHidden ? 'none' : 'block' }"
-        :class="[isMobile ? 'text-container bg-Content md:mx-20' : 'max-h-[430px] overflow-auto scrollbarClass  ']"
-      >
+      <div :class="[isMobile ? 'text-container bg-Content md:mx-20' : 'max-h-[430px] overflow-auto scrollbarClass  ']">
         <div :class="{ 'animate-fade-in ': active }">
           <div class="flex">
             <p class="flex-1 text-lg xl:text-2xl font-bold gradient-text">{{ item.title }}</p>
             <!--  button close-->
             <div v-if="isMobile" class="right-0 rounded-full">
-              <button class="button-light-icon absolute -top-2 -right-2" @click="toggleTextVisibility">
-                <img :src="closeIcon" alt="Ver" class="w-6 h-6" />
+              <button
+                type="button"
+                aria-label="Ocultar descripción"
+                class="button-light-icon absolute -top-2 -right-2"
+                @click="toggleTextVisibility"
+              >
+                <img :src="closeIcon" alt="" class="w-6 h-6" />
               </button>
             </div>
           </div>
@@ -71,9 +61,9 @@ onBeforeUnmount(() => {
             <p class="font-bold">Tecnologías:</p>
             <ul class="flex flex-wrap">
               <li
-                v-for="(tech, index) in item.technologies"
-                :key="index"
-                :class="isDarkMode ? 'bg-Content shadow shadow-amber-50' : 'bg-[#f0f0f0]'"
+                v-for="tech in item.technologies"
+                :key="tech"
+                :class="isDarkMode ? 'bg-Content shadow shadow-amber-50' : 'bg-light'"
                 class="text-sm font-semibold custom-li-style"
               >
                 {{ tech }}
@@ -95,14 +85,14 @@ onBeforeUnmount(() => {
       <!-- Imagen sobre el gradiente -->
       <img
         :src="item.src"
-        :alt="item.alt"
+        :alt="item.title"
         :class="{ 'animate-fade-in-img': active }"
         class="relative rounded-md w-52 lg:w-56 2xl:w-64 z-20 select-none"
       />
       <!--  button view-->
       <div v-if="isMobile" class="absolute z-20 top-0 right-0 rounded-full">
-        <button class="button-light-icon" @click="toggleTextVisibility">
-          <img :src="eye" alt="Ver" class="w-6 h-6" />
+        <button type="button" aria-label="Ver descripción" class="button-light-icon" @click="toggleTextVisibility">
+          <img :src="eye" alt="" class="w-6 h-6" />
         </button>
       </div>
     </div>
@@ -111,7 +101,6 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .custom-li-style {
-  /*background-color: #f0f0f0;*/ /* Fondo gris claro */
   padding: 5px 10px; /* Espaciado interno */
   border-radius: 5px; /* Bordes redondeados */
   margin: 5px; /* Espaciado externo */
@@ -119,7 +108,6 @@ onBeforeUnmount(() => {
 
 .gradient-bg-light {
   background: radial-gradient(circle, rgba(30, 30, 30, 0.6), rgba(0, 0, 50, 0.5), rgba(50, 0, 80, 0.4));
-  /* background: radial-gradient(circle, rgba(44, 43, 43, 0.6), rgba(181, 181, 205, 0.5), rgba(150, 150, 255, 0.4));*/
 }
 
 .gradient-bg-dark {

@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { Swiper } from 'swiper/vue';
 import { EffectCoverflow, Navigation, Scrollbar } from 'swiper/modules';
+import type { Swiper as SwiperClass } from 'swiper/types';
 
-defineProps<{
+interface Props {
   isNavigationEnabled: boolean;
-}>();
+}
 
-const emit = defineEmits(['slideChange']);
+defineProps<Props>();
+const emit = defineEmits<{ slideChange: [index: number] }>();
 
-const onSlideChange = (swiper: any) => {
+const onSlideChange = (swiper: SwiperClass) => {
   emit('slideChange', swiper.realIndex);
 };
 </script>
 
 <template>
   <div>
-    <swiper
+    <Swiper
       :effect="'coverflow'"
       :grabCursor="true"
       :centeredSlides="true"
@@ -35,14 +37,13 @@ const onSlideChange = (swiper: any) => {
       @slideChange="onSlideChange"
     >
       <slot></slot>
-    </swiper>
+    </Swiper>
   </div>
 </template>
 
 <style scoped>
 .swiper-container {
   width: 100%;
-  /*padding: 50px 0;*/
   border-radius: 10px;
 }
 </style>
