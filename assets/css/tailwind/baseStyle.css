@@ -9,7 +9,7 @@
 
 .card {
     box-sizing: border-box;
-    transition: all 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out; /* antes: all */
     box-shadow: 0 20px 35px -10px rgba(var(--ns-primary), 0.5);
     transform: translate(0, -3px);
 
@@ -44,7 +44,7 @@
     border: 0; /*px*/
     margin: 5px;
     border-radius: 12px;
-    transition: all 0.25s ease; /*ease-in-out*/
+    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
     position: relative;
     user-select: none;
     z-index: 1;
@@ -73,7 +73,7 @@
     border: 0; /*px*/
     margin: 5px;
     border-radius: 12px;
-    transition: all 0.25s ease; /*ease-in-out*/
+    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
     position: relative;
     user-select: none;
     z-index: 1;
@@ -102,7 +102,7 @@
     border: 1px solid rgb(var(--ns-primary));
     margin: 5px;
     border-radius: 12px;
-    transition: all 0.25s ease; /*ease-in-out*/
+    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
     position: relative;
     user-select: none;
     z-index: 1;
@@ -130,7 +130,7 @@
     color: rgb(var(--ns-whatsapp));
     margin: 5px;
     border-radius: 50%;
-    transition: all 0.25s ease; /*ease-in-out*/
+    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
     position: relative;
     user-select: none;
     z-index: 1;
@@ -249,4 +249,29 @@
 
 .animate-logoPersonal {
     animation: logoPersonal 0.8s ease-in-out;
+}
+
+/* Foco visible para teclado.
+   Los botones usan outline:none (oculta el foco al hacer click con el mouse);
+   acá lo restauramos solo para navegación por teclado con :focus-visible. */
+.button-default:focus-visible,
+.button-default-transparent:focus-visible,
+.button-default-border:focus-visible,
+.button-light-icon:focus-visible,
+.input-form:focus-visible {
+    outline: 2px solid rgb(var(--ns-primary));
+    outline-offset: 2px;
+}
+
+/* Respeta a quien pide menos movimiento (accesibilidad + performance).
+   !important justificado: debe anular cualquier animación/transición declarada. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
