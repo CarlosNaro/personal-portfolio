@@ -1,52 +1,38 @@
 <script setup lang="ts">
-const props = defineProps({
-  showModal: {
-    type: Boolean,
-    default: false,
-  },
+interface Props {
+  title?: string;
+  nameResend?: string;
+  bgColor?: string;
+}
 
-  title: {
-    type: String,
-    required: false,
-    default: '',
-  },
-
-  nameResend: {
-    type: String,
-    required: false,
-    default: '',
-  },
-  bgColor: {
-    type: String,
-    required: false,
-    default: 'bg-Content',
-  },
+withDefaults(defineProps<Props>(), {
+  title: '',
+  nameResend: '',
+  bgColor: 'bg-Content',
 });
 
-const name = ref(props.nameResend);
+const emit = defineEmits<{ close: [] }>();
 </script>
 
 <template>
   <div class="modal-overlay p-5">
-    <div :class="bgColor" class="modal-content w-full md:max-w-md">
+    <div :class="bgColor" class="modal-content w-full md:max-w-md" role="alert">
       <div class="flex items-center mb-5 border-b pb-1 border-gray-700">
-        <h1 v-if="props.title" :class="props.nameResend ? 'text-center' : 'text-left'" class="flex-1 text-2xl">
-          {{ props.title }}
-        </h1>
-        <!--        <button v-if="!props.nameResend" class="button-light-icon" @click="$emit('close')">-->
-        <!--          <span class="text-black">X</span>-->
-        <!--        </button>-->
+        <h3 v-if="title" :class="nameResend ? 'text-center' : 'text-left'" class="flex-1 text-2xl">
+          {{ title }}
+        </h3>
         <button
-          v-if="!props.nameResend"
-          style="border-radius: 50%; margin: 5px; width: 40px; height: 40px"
-          class="button-default-transparent shadow shadow-gray-700"
-          @click="$emit('close')"
+          v-if="!nameResend"
+          type="button"
+          aria-label="Cerrar"
+          class="button-default-transparent close-button shadow shadow-gray-700"
+          @click="emit('close')"
         >
           X
         </button>
       </div>
 
-      <h2 v-if="props.nameResend" class="text-center font-bold text-lg">{{ name }}</h2>
+      <p v-if="nameResend" class="text-center font-bold text-lg">{{ nameResend }}</p>
       <div class="text-center">
         <slot></slot>
       </div>
@@ -76,5 +62,11 @@ const name = ref(props.nameResend);
   display: flex;
   position: relative;
   flex-direction: column;
+}
+
+.close-button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
 </style>
