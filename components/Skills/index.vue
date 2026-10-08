@@ -2,10 +2,10 @@
 import globalStore from '@components/global.store';
 //imagen___
 import vuejsLogo from '../assets/svg/vuejs.svg';
-import TypeScript from '../assets/svg/TypeScript.svg';
-import JavaScript from '../assets/svg/javascript.svg';
+import typeScript from '../assets/svg/TypeScript.svg';
+import javaScript from '../assets/svg/javascript.svg';
 import html from '../assets/svg/html.svg';
-import CSS from '../assets/svg/css.svg';
+import css from '../assets/svg/css.svg';
 import tailwind from '../assets/svg/Tailwind.svg';
 import github from '../assets/svg/github.svg';
 import git from '../assets/svg/git.svg';
@@ -36,11 +36,11 @@ const arraySkills = [
   },
   {
     name: 'TypeScript',
-    icon: TypeScript,
+    icon: typeScript,
   },
   {
     name: 'JavaScript',
-    icon: JavaScript,
+    icon: javaScript,
   },
   {
     name: 'HTML',
@@ -48,7 +48,7 @@ const arraySkills = [
   },
   {
     name: 'CSS',
-    icon: CSS,
+    icon: css,
   },
   {
     name: 'Tailwind CSS',
@@ -92,8 +92,8 @@ const arraySkills = [
       <div
         :class="isDarkMode ? 'bg-Content' : 'bg-light'"
         class="card_img flex flex-col items-center rounded-md w-28 h-28"
-        v-for="(skill, index) in arraySkills"
-        :key="index"
+        v-for="skill in arraySkills"
+        :key="skill.name"
       >
         <img :src="skill.icon" class="w-24 h-24" alt="" />
         <span class="-mt-2 font-bold">{{ skill.name }}</span>
@@ -104,7 +104,7 @@ const arraySkills = [
 
 <style scoped>
 .card_img {
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   box-shadow: 0 0 10px 0 rgba(179, 178, 178, 0.75);
 }
 
