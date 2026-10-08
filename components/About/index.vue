@@ -27,17 +27,17 @@ onMounted(() => {
           intuitivo y funcionalidades robustas.
         </span>
       </div>
-      <div v-if="isMounted && foto2" class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
+      <div v-if="isMounted" class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
         <div
           id="circulo"
           class="animate-fade-in relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
         >
-          <img class="absolute -top-20 md:-top-32 mask-gradient-both mirror" :src="foto2" alt="foto2" />
+          <img class="absolute -top-20 md:-top-32 mask-gradient-both mirror" :src="foto2" alt="Foto de Alonso Naro" />
         </div>
       </div>
       <div v-else class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
         <div class="skeleton-img">
-          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
+          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="" />
         </div>
       </div>
     </div>
@@ -47,12 +47,6 @@ onMounted(() => {
 <style scoped lang="css">
 .bgColor {
   background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)));
-  /*background: linear-gradient(45deg, rgb(255, 186, 0), rgb(0, 0, 0))*/
-}
-
-.mask-gradient {
-  -webkit-mask-image: -webkit-linear-gradient(to bottom right, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 .mask-gradient-both {
