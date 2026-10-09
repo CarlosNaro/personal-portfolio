@@ -17,18 +17,18 @@ const emit = defineEmits<{ close: [] }>();
 <template>
   <div class="modal-overlay p-5">
     <div :class="bgColor" class="modal-content w-full md:max-w-md" role="alert">
-      <div class="flex items-center mb-5 border-b pb-1 border-gray-700">
-        <h3 v-if="title" :class="nameResend ? 'text-center' : 'text-left'" class="flex-1 text-2xl">
+      <div class="mb-5 flex items-center border-b border-line pb-1">
+        <h3 v-if="title" :class="nameResend ? 'text-center' : 'text-left'" class="flex-1 font-mono text-xl font-bold">
           {{ title }}
         </h3>
         <button
           v-if="!nameResend"
           type="button"
           aria-label="Cerrar"
-          class="button-default-transparent close-button shadow shadow-gray-700"
+          class="button-default-border"
           @click="emit('close')"
         >
-          X
+          Cerrar
         </button>
       </div>
 
@@ -47,26 +47,19 @@ const emit = defineEmits<{ close: [] }>();
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(var(--ns-dark), 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 50;
-  backdrop-filter: blur(5px);
 }
 
 .modal-content {
   padding: 20px;
-  border-radius: 10px;
+  border: 1px solid rgb(var(--ns-line));
   max-height: 90%;
   display: flex;
   position: relative;
   flex-direction: column;
-}
-
-.close-button {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
 }
 </style>

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
-import emailSvg from '@assets/svg/email.svg';
+import ContactInfo from '@components/Contact/components/ContactInfo.vue';
+import ContactField from '@components/Contact/components/ContactField.vue';
+import Alert from '@components/globalComponents/Alert.vue';
 import type { IEmailContent } from '@components/Contact/Interface/IEmailContent';
 import { useUtils } from '~/utils/useUtils';
-import Alert from '@components/globalComponents/Alert.vue';
 import { sendContactEmail } from '~/utils/sendContactEmail';
 
 const SUCCESS_ALERT_DURATION_MS = 5000;
@@ -23,6 +24,10 @@ const formData = ref<IEmailContent>({
   message: '',
 });
 let successAlertTimer: ReturnType<typeof setTimeout> | undefined;
+
+const emailError = computed(() =>
+  formData.value.email && !isValidEmail(formData.value.email) ? 'Email inválido' : '',
+);
 
 async function sendEmail() {
   closeDialog();
@@ -83,98 +88,59 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <LayoutBase class="my-10">
-    <ComponentTitle title="Contacto" />
-    <p class="text-center text-xl mt-5">¿Tienes un proyecto en mente? Hablemos 😉</p>
-    <div class="flex flex-col md:flex-row items-center justify-between gap-10 mt-5">
-      <div class="flex flex-col space-y-4">
-        <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img :src="emailSvg" alt="Correo electrónico" class="w-5 mb-2" />
-          <p>alonsonaro75@gmail.com</p>
-        </div>
-        <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img src="@assets/svg/location.svg" alt="Ubicación" class="w-5 mb-2" />
-          <p>Iquitos-Loreto, Perú</p>
-        </div>
-        <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img src="@assets/svg/phone.svg" alt="Teléfono" class="w-5 mb-2" />
-          <p>+51 995 069 323</p>
-        </div>
+  <LayoutBase>
+    <ComponentTitle index="04" title="Contacto" />
+    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="md:col-span-4">
+        <p class="text-lg text-muted">¿Tienes un proyecto en mente? Hablemos.</p>
+        <ContactInfo />
       </div>
-      <div class="w-full md:flex-1">
-        <form class="space-y-4 mt-4">
-          <div class="inputForm relative">
-            <label for="contact-name" class="sr-only">Nombre</label>
-            <input
-              id="contact-name"
-              type="text"
-              required
-              placeholder="Nombre"
-              v-model="formData.name"
-              class="input-form"
-            />
-            <label for="contact-email" class="sr-only">Email</label>
-            <input
-              id="contact-email"
-              type="email"
-              required
-              placeholder="Email"
-              v-model="formData.email"
-              class="input-form"
-            />
-            <span
-              class="absolute text-[10px] md:text-xs text-red-500 -bottom-3 left-2 md:left-auto md:bottom-auto md:right-48 md:-top-4"
-            >
-              {{ formData.email && !isValidEmail(formData.email) ? 'Email inválido' : '' }}
-            </span>
-          </div>
-          <div class="inputForm">
-            <label for="contact-phone" class="sr-only">Número de celular</label>
-            <input
-              id="contact-phone"
-              type="number"
-              placeholder="N° celular"
-              v-model="formData.phone"
-              class="input-form"
-            />
-            <label for="contact-subject" class="sr-only">Asunto</label>
-            <input
-              id="contact-subject"
-              type="text"
-              required
-              placeholder="Asunto"
-              v-model="formData.subject"
-              class="input-form"
-            />
-          </div>
-          <label for="contact-message" class="sr-only">Mensaje</label>
-          <textarea
+      <div class="md:col-span-8">
+        <form class="grid grid-cols-1 gap-6 sm:grid-cols-2" novalidate @submit.prevent="sendEmail">
+          <ContactField id="contact-name" v-model="formData.name" label="Nombre" type="text" :is-required="true" />
+          <ContactField
+            id="contact-email"
+            v-model="formData.email"
+            label="Email"
+            type="email"
+            :is-required="true"
+            :error="emailError"
+          />
+          <ContactField id="contact-phone" v-model="formData.phone" label="Número de celular" type="tel" />
+          <ContactField
+            id="contact-subject"
+            v-model="formData.subject"
+            label="Asunto"
+            type="text"
+            :is-required="true"
+          />
+          <ContactField
             id="contact-message"
-            required
-            placeholder="Mensaje"
             v-model="formData.message"
-            class="input-form min-h-36"
+            label="Mensaje"
+            :is-required="true"
+            :is-multiline="true"
+            class="sm:col-span-2"
           />
           <button
+            type="submit"
+            class="button-default sm:col-span-2 sm:justify-self-start"
             :disabled="isLoading"
-            type="button"
-            class="button-default-transparent ns-button__content shadow shadow-gray-700"
-            @click="sendEmail"
+            :aria-busy="isLoading"
           >
-            <img :class="isLoading ? 'animate-bounce ' : ''" class="mr-2 w-5" :src="emailSvg" alt="" />
-            <span :hidden="isLoading">Enviar</span>
-            <span v-if="isLoading" class="sr-only">Enviando mensaje</span>
+            {{ isLoading ? 'Enviando…' : 'Enviar mensaje' }}
           </button>
         </form>
       </div>
     </div>
   </LayoutBase>
+
   <Alert v-if="isMessageSent" title="Mensaje enviado correctamente" :name-resend="formData.name">
     Gracias por tu mensaje, me pondré en contacto contigo lo más pronto posible.
   </Alert>
 
   <Alert v-if="isErrorValidForm" title="Error" @close="closeDialog">
-    <span v-if="isErrorRequest" class="text-red-500">
+    <span v-if="isErrorRequest" class="text-danger">
       Ocurrió un error al enviar el mensaje, por favor intenta nuevamente o contáctame por WhatsApp.
     </span>
     <p v-else-if="isErrorEmailFormat">
@@ -185,9 +151,3 @@ onBeforeUnmount(() => {
     </p>
   </Alert>
 </template>
-
-<style scoped>
-.inputForm {
-  @apply flex flex-col md:flex-row gap-4 md:gap-8;
-}
-</style>
