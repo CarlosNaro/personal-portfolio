@@ -7,8 +7,6 @@ export default defineNuxtConfig({
     // Estilos de Swiper (primero)
     'swiper/css',
     'swiper/css/navigation',
-    'swiper/css/pagination', // Opcional, si usas paginación
-    'swiper/css/effect-fade', // Opcional, si usas efectos
     //:::
     './assets/css/main.css',
   ],
@@ -30,7 +28,6 @@ export default defineNuxtConfig({
     baseURL: '/personal-portfolio/',
   },
   devServer: {
-    host: ' 192.168.35.241',
     port: 3000, // or any other port you want to use
   },
 });
