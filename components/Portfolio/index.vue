@@ -5,9 +5,9 @@ import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 </script>
 
 <template>
-  <LayoutBase class="mt-10">
-    <ComponentTitle title="portafolio" />
-    <p class="mt-4 lg:text-lg">
+  <LayoutBase>
+    <ComponentTitle index="01" title="Portafolio" />
+    <p class="mt-10 max-w-3xl text-base leading-relaxed text-muted">
       A lo largo de mi formación como desarrollador, he trabajado en diversos proyectos que me han permitido fortalecer
       mis habilidades y explorar nuevas tecnologías. He desarrollado aplicaciones full stack en proyectos académicos y
       colaborado en entornos reales como parte de un equipo de desarrollo, enfrentando desafíos que han impulsado mi
