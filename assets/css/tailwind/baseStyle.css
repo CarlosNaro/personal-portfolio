@@ -1,10 +1,51 @@
+@layer base {
+    body {
+        @apply bg-dark font-sans text-base text-light antialiased;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+        outline: 2px solid rgb(var(--ns-primary));
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    .eyebrow {
+        @apply font-mono text-xs font-medium uppercase tracking-widest;
+    }
+
+    .button-default,
+    .button-default-border {
+        @apply inline-flex min-h-11 items-center justify-center px-6 py-3 font-mono text-sm font-medium transition-colors duration-200;
+    }
+
+    .button-default {
+        @apply bg-primary text-white hover:bg-light hover:text-dark;
+    }
+
+    .button-default-border {
+        @apply border border-lineStrong text-light hover:border-light;
+    }
+
+    .button-default:disabled,
+    .button-default-border:disabled {
+        @apply cursor-not-allowed opacity-50;
+    }
+
+    .input-form {
+        @apply w-full border border-lineStrong bg-Content px-4 py-3 text-base text-light transition-colors duration-200 focus:border-primary;
+    }
+}
 
 .content {
     @apply px-4 lg:px-24 xl:px-32 2xl:px-64;
 }
 
 .classDark {
-    @apply bg-Content text-white;
+    @apply bg-dark text-light;
 }
 
 .card {
@@ -23,83 +64,11 @@
     @apply flex items-center justify-center animate-pulse rounded-full w-[280px] h-[280px] bg-Content ;
 }
 
-.input-form {
-    @apply w-full rounded-2xl p-4 bg-transparent text-white focus:outline-none transition duration-300 ease-in-out -translate-y-1 focus:translate-y-0 hover:translate-y-0;
-    background: rgb(var(--ns-backgroundContent), 1);
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, var(--vs-shadow-opacity));
-
-    &:focus {
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, var(--vs-shadow-opacity-hover));
-    }
-
-    &:hover {
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, var(--vs-shadow-opacity-hover));
-    }
-}
-
-
-.button-default {
-    background: rgb(var(--ns-primary));
-    color: #fff;
-    border: 0; /*px*/
-    margin: 5px;
-    border-radius: 12px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
-    position: relative;
-    user-select: none;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0; /*px*/
-    outline: none;
-    font-size: 0.8rem;
-    box-sizing: border-box;
-
-    &:active {
-        animation: ripple-animation 0.3s ease-out;
-    }
-
-    &:hover {
-        box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
-        transform: translate(0, -3px);
-    }
-}
 
 .button-default-transparent {
     background: transparent;
     color: rgb(var(--ns-primary));
     border: 0; /*px*/
-    margin: 5px;
-    border-radius: 12px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
-    position: relative;
-    user-select: none;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0; /*px*/
-    outline: none;
-    font-size: 0.8rem;
-    box-sizing: border-box;
-
-    &:active {
-        animation: ripple-animation 0.3s ease-out;
-    }
-
-    &:hover {
-        box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
-        transform: translate(0, -3px);
-    }
-}
-
-.button-default-border {
-    background: transparent;
-    color: rgb(var(--ns-primary));
-    border: 1px solid rgb(var(--ns-primary));
     margin: 5px;
     border-radius: 12px;
     transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
@@ -251,17 +220,6 @@
     animation: logoPersonal 0.8s ease-in-out;
 }
 
-/* Foco visible para teclado.
-   Los botones usan outline:none (oculta el foco al hacer click con el mouse);
-   acá lo restauramos solo para navegación por teclado con :focus-visible. */
-.button-default:focus-visible,
-.button-default-transparent:focus-visible,
-.button-default-border:focus-visible,
-.button-light-icon:focus-visible,
-.input-form:focus-visible {
-    outline: 2px solid rgb(var(--ns-primary));
-    outline-offset: 2px;
-}
 
 /* Respeta a quien pide menos movimiento (accesibilidad + performance).
    !important justificado: debe anular cualquier animación/transición declarada. */

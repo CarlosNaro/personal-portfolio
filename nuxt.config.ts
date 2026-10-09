@@ -3,6 +3,19 @@ import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  app: {
+    head: {
+      htmlAttrs: { lang: 'es' },
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap',
+        },
+      ],
+    },
+  },
   css: [
     // Estilos de Swiper (primero)
     'swiper/css',
