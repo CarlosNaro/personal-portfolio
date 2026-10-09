@@ -1,14 +1,17 @@
 <script setup lang="ts">
 interface Props {
   title: string;
+  index?: string;
 }
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  index: '',
+});
 </script>
 
 <template>
-  <div class="relative flex items-center justify-center mt-4">
-    <div class="absolute rounded-full border-8 border-l-lime-300 border-r-lime-300 w-14 h-14 opacity-75"></div>
-    <h2 class="z-30 uppercase text-2xl md:text-3xl font-extrabold tracking-wide text-center">{{ title }}</h2>
+  <div class="flex flex-col gap-3">
+    <span v-if="index" class="eyebrow text-primarySoft">{{ index }}</span>
+    <h2 class="font-mono text-2xl font-bold tracking-tight text-light md:text-3xl">{{ title }}</h2>
   </div>
 </template>

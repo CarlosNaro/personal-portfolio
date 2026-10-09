@@ -4,23 +4,22 @@ import globalStore from '@components/global.store';
 import Header_ from '@components/Header_.vue';
 import Footer_ from '@components/Footer_.vue';
 import Home from '@components/Home/index.vue';
-import About from '@components/About/index.vue';
-import Skills from '@components/Skills/index.vue';
 import Portfolio from '@components/Portfolio/index.vue';
+import Skills from '@components/Skills/index.vue';
+import About from '@components/About/index.vue';
 import Contact from '@components/Contact/index.vue';
 import WhatsAppButton from '@components/globalComponents/WhatsAppButton.vue';
 
 const MOBILE_BREAKPOINT = 768;
 
-const isDarkMode = computed(() => globalStore.getIsDarkMode());
 const activeComponent = ref('home');
 let sectionObserver: IntersectionObserver | undefined;
 
 const components: Record<string, Component> = {
   home: Home,
-  about: About,
-  skills: Skills,
   portfolio: Portfolio,
+  skills: Skills,
+  about: About,
   contact: Contact,
 };
 
@@ -40,7 +39,8 @@ const observeSections = () => {
       });
     },
     {
-      threshold: 0.5, // Ajusta este valor según necesites
+      rootMargin: '-40% 0px -60% 0px',
+      threshold: 0,
     },
   );
 
@@ -57,7 +57,6 @@ const observeSections = () => {
 onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
-  // Observa cada sección
   observeSections();
 });
 
@@ -68,19 +67,19 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div :class="isDarkMode ? 'classDark' : ''" class="flex flex-col h-screen">
+  <div class="flex min-h-screen flex-col">
     <Header_ />
-    <main :class="isDarkMode ? 'classDark' : 'bg-gradient'" class="content flex-1 overflow-y-auto scrollbarClass">
-      <div v-for="(component, key) in components" :key="key" :id="key">
+    <main class="flex-1">
+      <section
+        v-for="(component, key) in components"
+        :key="key"
+        :id="key"
+        class="scroll-mt-16 border-t border-line first:border-t-0"
+      >
         <component :is="component" />
-      </div>
+      </section>
       <WhatsAppButton />
     </main>
-    <Footer_ class="select-none" />
+    <Footer_ />
   </div>
 </template>
-<style scoped>
-.bg-gradient {
-  background: linear-gradient(180deg, #e0f7fa 0%, #b2ebf2 100%);
-}
-</style>
