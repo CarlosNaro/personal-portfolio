@@ -16,13 +16,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: [
-    // Estilos de Swiper (primero)
-    'swiper/css',
-    'swiper/css/navigation',
-    //:::
-    './assets/css/main.css',
-  ],
+  css: ['./assets/css/main.css'],
   postcss: {
     plugins: {
       'postcss-import': {},

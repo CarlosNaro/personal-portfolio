@@ -12,6 +12,11 @@ import WhatsAppButton from '@components/globalComponents/WhatsAppButton.vue';
 
 const MOBILE_BREAKPOINT = 768;
 
+useSeoMeta({
+  title: 'Alonso Naro Saldaña — Desarrollador de software',
+  description: 'Portafolio de Alonso Naro Saldaña, desarrollador de software: proyectos, habilidades y contacto.',
+});
+
 const activeComponent = ref('home');
 let sectionObserver: IntersectionObserver | undefined;
 

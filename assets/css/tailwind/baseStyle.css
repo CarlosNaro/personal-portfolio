@@ -1,231 +1,58 @@
 @layer base {
-    body {
-        @apply bg-dark font-sans text-base text-light antialiased;
-    }
+  body {
+    @apply bg-dark font-sans text-base text-light antialiased;
+  }
 
-    a:focus-visible,
-    button:focus-visible,
-    input:focus-visible,
-    textarea:focus-visible {
-        outline: 2px solid rgb(var(--ns-primary));
-        outline-offset: 2px;
-    }
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid rgb(var(--ns-primary));
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
-    .content {
-        @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
-    }
+  .content {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
 
-    .eyebrow {
-        @apply font-mono text-xs font-medium uppercase tracking-widest;
-    }
+  .eyebrow {
+    @apply font-mono text-xs font-medium uppercase tracking-widest;
+  }
 
-    .button-default,
-    .button-default-border {
-        @apply inline-flex min-h-11 items-center justify-center px-6 py-3 font-mono text-sm font-medium transition-colors duration-200;
-    }
+  .button-default,
+  .button-default-border {
+    @apply inline-flex min-h-11 items-center justify-center px-6 py-3 font-mono text-sm font-medium transition-colors duration-200;
+  }
 
-    .button-default {
-        @apply bg-primary text-white hover:bg-light hover:text-dark;
-    }
+  .button-default {
+    @apply bg-primary text-white hover:bg-light hover:text-dark;
+  }
 
-    .button-default-border {
-        @apply border border-lineStrong text-light hover:border-light;
-    }
+  .button-default-border {
+    @apply border border-lineStrong text-light hover:border-light;
+  }
 
-    .button-default:disabled,
-    .button-default-border:disabled {
-        @apply cursor-not-allowed opacity-50;
-    }
+  .button-default:disabled,
+  .button-default-border:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
 
-    .input-form {
-        @apply w-full border border-lineStrong bg-Content px-4 py-3 text-base text-light transition-colors duration-200 focus:border-primary;
-    }
+  .input-form {
+    @apply w-full border border-lineStrong bg-Content px-4 py-3 text-base text-light transition-colors duration-200 focus:border-primary;
+  }
 }
-
-.card {
-    box-sizing: border-box;
-    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out; /* antes: all */
-    box-shadow: 0 20px 35px -10px rgba(var(--ns-primary), 0.5);
-    transform: translate(0, -3px);
-
-    &:hover {
-        box-shadow: none;
-        transform: translate(0, 0);
-    }
-}
-
-.skeleton-img {
-    @apply flex items-center justify-center animate-pulse rounded-full w-[280px] h-[280px] bg-Content ;
-}
-
-
-.button-default-transparent {
-    background: transparent;
-    color: rgb(var(--ns-primary));
-    border: 0; /*px*/
-    margin: 5px;
-    border-radius: 12px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
-    position: relative;
-    user-select: none;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0; /*px*/
-    outline: none;
-    font-size: 0.8rem;
-    box-sizing: border-box;
-
-    &:active {
-        animation: ripple-animation 0.3s ease-out;
-    }
-
-    &:hover {
-        box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
-        transform: translate(0, -3px);
-    }
-}
-
-.button-light-icon {
-    background: rgb(var(--ns-light));
-    color: rgb(var(--ns-whatsapp));
-    margin: 5px;
-    border-radius: 50%;
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* antes: all */
-    position: relative;
-    user-select: none;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px; /* Ajustar el ancho */
-    height: 40px; /* Ajustar la altura */
-    outline: none;
-    box-sizing: border-box;
-
-    &:active {
-        animation: ripple-animation 0.3s ease-out;
-    }
-
-    &:hover {
-        box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
-        transform: translate(0, -3px);
-    }
-}
-
-.custom-divider {
-    border: none;
-    border-top: 2px dotted #1a5cff;
-
-}
-
-/*active*/
-.active {
-    box-shadow: 0 10px 20px -10px rgba(var(--ns-primary), 1);
-    transform: translate(0, -3px);
-}
-
-/*ns-button__content*/
-.ns-button__content {
-    padding: 8px 12px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(1);
-        color: rgb(255, 255, 255, 0.5);
-        opacity: 85%;
-    }
-}
-
-/*modificar el diseño del scrol*/
-.scrollbarClass::-webkit-scrollbar {
-    display: none;
-    width: 3px; /* Ancho del scrollbar */
-}
-
-.scrollbarClass::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color del thumb */
-    border-radius: 10px; /* Bordes redondeados del thumb */
-}
-
-.scrollbarClass::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Color del thumb al pasar el mouse */
-}
-
-.scrollbarClass::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color del track */
-    border-radius: 10px; /* Bordes redondeados del track */
-}
-
-/* animacion text */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* animacion img */
-@keyframes fadeIn-Img {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.animate-fade-in-img {
-    animation: fadeIn-Img 0.8s ease-in-out;
-}
-
-/* animación logoPersonal */
-/* una animacion como si se mostrara de lo invisible a lo claro */
-@keyframes logoPersonal {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.animate-logoPersonal {
-    animation: logoPersonal 0.8s ease-in-out;
-}
-
 
 /* Respeta a quien pide menos movimiento (accesibilidad + performance).
    !important justificado: debe anular cualquier animación/transición declarada. */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
