@@ -49,8 +49,7 @@ onUnmounted(() => {
 
 <template>
   <header class="sticky top-0 z-40 bg-dark">
-    <div id="menu-container" class="content relative flex h-16 items-center justify-between">
-      <img src="@assets/svg/logoN@r.svg" alt="Logo de Alonso Naro" width="32" height="32" class="h-8 w-8" />
+    <div id="menu-container" class="content relative flex h-16 items-center justify-end">
       <button
         type="button"
         class="button-default-border md:hidden"
