@@ -76,7 +76,7 @@ const formatIndex = (position: number): string => String(position + 1).padStart(
 
 <template>
   <div>
-    <h3 class="eyebrow mt-10 text-muted">Proyectos en colaboración</h3>
+    <h3 class="eyebrow mt-10 text-muted" data-reveal>Proyectos en colaboración</h3>
     <div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
       <ProjectCard
         v-for="(project, index) in projects"

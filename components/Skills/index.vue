@@ -58,24 +58,23 @@ const skillGroups = [
   <LayoutBase>
     <ComponentTitle index="02" title="Habilidades" />
     <div class="mt-10">
-      <div
-        v-for="group in skillGroups"
-        :key="group.id"
-        class="grid grid-cols-1 gap-4 border-t border-line py-6 md:grid-cols-12"
-      >
-        <h3 class="eyebrow text-muted md:col-span-3">{{ group.name }}</h3>
-        <ul class="flex flex-wrap gap-3 md:col-span-9">
-          <li
-            v-for="skill in group.skills"
-            :key="skill.name"
-            class="flex items-center gap-3 border border-line bg-Content px-3 py-2"
-          >
-            <span class="flex h-7 w-7 items-center justify-center bg-light">
-              <img :src="skill.icon" alt="" width="20" height="20" class="h-5 w-5" />
-            </span>
-            <span class="text-sm text-light">{{ skill.name }}</span>
-          </li>
-        </ul>
+      <div v-for="group in skillGroups" :key="group.id">
+        <div aria-hidden="true" class="rule" data-reveal="rule"></div>
+        <div class="grid grid-cols-1 gap-4 py-6 md:grid-cols-12" data-reveal>
+          <h3 class="eyebrow text-muted md:col-span-3">{{ group.name }}</h3>
+          <ul class="flex flex-wrap gap-3 md:col-span-9">
+            <li
+              v-for="skill in group.skills"
+              :key="skill.name"
+              class="hover-rule flex items-center gap-3 border border-line bg-Content px-3 py-2 transition-colors duration-200 hover:border-lineStrong"
+            >
+              <span class="flex h-7 w-7 items-center justify-center bg-light">
+                <img :src="skill.icon" alt="" width="20" height="20" class="h-5 w-5" />
+              </span>
+              <span class="text-sm text-light">{{ skill.name }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </LayoutBase>

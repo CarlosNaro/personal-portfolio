@@ -9,6 +9,7 @@ import Skills from '@components/Skills/index.vue';
 import About from '@components/About/index.vue';
 import Contact from '@components/Contact/index.vue';
 import WhatsAppButton from '@components/globalComponents/WhatsAppButton.vue';
+import { useScrollReveal } from '~/utils/useScrollReveal';
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -29,6 +30,8 @@ const components: Record<string, Component> = {
 };
 
 provide('activeSection', activeComponent); // Para compartir el estado activo con el header
+
+useScrollReveal();
 
 const checkMobile = () => {
   globalStore.setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
@@ -75,12 +78,8 @@ onBeforeUnmount(() => {
   <div class="flex min-h-screen flex-col">
     <Header_ />
     <main class="flex-1">
-      <section
-        v-for="(component, key) in components"
-        :key="key"
-        :id="key"
-        class="scroll-mt-16 border-t border-line first:border-t-0"
-      >
+      <section v-for="(component, key, position) in components" :key="key" :id="key" class="scroll-mt-16">
+        <div v-if="position > 0" aria-hidden="true" class="rule" data-reveal="rule"></div>
         <component :is="component" />
       </section>
       <WhatsAppButton />

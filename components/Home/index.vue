@@ -7,18 +7,22 @@ const isModalVisible = ref(false);
 
 <template>
   <LayoutBase>
-    <p class="eyebrow text-primarySoft">Desarrollador de software</p>
-    <h1 class="font-mono text-4xl font-bold leading-tight tracking-tight text-light md:text-6xl xl:text-7xl mt-6">
+    <p class="eyebrow enter-rise text-primarySoft">Desarrollador de software</p>
+    <h1
+      class="enter-mask font-mono text-4xl font-bold leading-tight tracking-tight text-light md:text-6xl xl:text-7xl mt-6 [--motion-order:1]"
+    >
       Alonso Naro Saldaña
     </h1>
-    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+    <p class="enter-rise mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl [--motion-order:3]">
       Soy un desarrollador de software apasionado por crear soluciones tecnológicas eficientes y escalables.
     </p>
-    <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+    <div class="enter-rise mt-10 flex flex-col gap-4 sm:flex-row [--motion-order:4]">
       <a href="#portfolio" class="button-default">Ver proyectos</a>
       <button type="button" class="button-default-border" @click="isModalVisible = true">Visualizar CV</button>
     </div>
-    <p class="mt-12 font-mono text-sm text-muted">Vue.js · Django · TypeScript · Tailwind CSS</p>
+    <p class="enter-rise mt-12 font-mono text-sm text-muted [--motion-order:5]">
+      Vue.js · Django · TypeScript · Tailwind CSS
+    </p>
 
     <Teleport to="body">
       <div v-if="isModalVisible" class="modal-overlay" @click.self="isModalVisible = false">

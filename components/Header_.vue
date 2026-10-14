@@ -48,7 +48,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-line bg-dark">
+  <header class="sticky top-0 z-40 bg-dark">
     <div id="menu-container" class="content relative flex h-16 items-center justify-between">
       <img src="@assets/svg/logoN@r.svg" alt="Logo de Alonso Naro" width="32" height="32" class="h-8 w-8" />
       <button
@@ -79,5 +79,6 @@ onUnmounted(() => {
         </button>
       </nav>
     </div>
+    <div aria-hidden="true" class="rule enter-rule"></div>
   </header>
 </template>

@@ -29,8 +29,11 @@ function onInput(event: Event) {
 </script>
 
 <template>
-  <div>
-    <label :for="id" class="eyebrow mb-2 block text-muted">
+  <div class="group">
+    <label
+      :for="id"
+      class="eyebrow mb-2 block text-muted transition-colors duration-200 group-focus-within:text-primarySoft"
+    >
       {{ label }}<span v-if="isRequired" aria-hidden="true"> *</span>
     </label>
     <textarea

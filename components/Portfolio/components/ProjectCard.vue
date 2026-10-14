@@ -10,7 +10,10 @@ defineProps<Props>();
 </script>
 
 <template>
-  <article class="flex flex-col gap-6 border border-line bg-Content p-6 sm:flex-row">
+  <article
+    class="hover-rule flex flex-col gap-6 border border-line bg-Content p-6 transition-colors duration-200 hover:border-lineStrong sm:flex-row"
+    data-reveal
+  >
     <div class="flex shrink-0 justify-center border border-line bg-dark p-3 sm:w-40 sm:self-start">
       <img
         :src="project.src"

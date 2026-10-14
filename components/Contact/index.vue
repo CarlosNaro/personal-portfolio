@@ -91,11 +91,11 @@ onBeforeUnmount(() => {
   <LayoutBase>
     <ComponentTitle index="04" title="Contacto" />
     <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
-      <div class="md:col-span-4">
+      <div class="md:col-span-4" data-reveal>
         <p class="text-lg text-muted">¿Tienes un proyecto en mente? Hablemos.</p>
         <ContactInfo />
       </div>
-      <div class="md:col-span-8">
+      <div class="md:col-span-8" data-reveal>
         <form class="grid grid-cols-1 gap-6 sm:grid-cols-2" novalidate @submit.prevent="sendEmail">
           <ContactField id="contact-name" v-model="formData.name" label="Nombre" type="text" :is-required="true" />
           <ContactField

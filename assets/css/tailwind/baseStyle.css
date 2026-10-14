@@ -40,7 +40,92 @@
   }
 
   .input-form {
-    @apply w-full border border-lineStrong bg-Content px-4 py-3 text-base text-light transition-colors duration-200 focus:border-primary;
+    @apply w-full border border-lineStrong bg-Content px-4 py-3 text-base text-light caret-primarySoft transition duration-200 focus:border-primarySoft focus:outline-none focus:ring-1 focus:ring-primarySoft;
+  }
+
+  /* El autocompletado del navegador pinta un fondo claro propio: se cubre con el color del campo. */
+  .input-form:-webkit-autofill {
+    -webkit-text-fill-color: rgb(var(--ns-light));
+    box-shadow: inset 0 0 0 1000px rgb(var(--ns-backgroundContent));
+    filter: none;
+  }
+
+  .input-form:-webkit-autofill:focus {
+    box-shadow:
+      inset 0 0 0 1000px rgb(var(--ns-backgroundContent)),
+      0 0 0 1px rgb(var(--ns-primary-soft));
+  }
+
+  .rule {
+    @apply h-px w-full origin-left bg-line;
+  }
+
+  .hover-rule {
+    @apply relative before:absolute before:-inset-x-px before:-top-px before:h-px before:origin-left before:scale-x-0 before:bg-primarySoft before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100;
+  }
+}
+
+/* Movimiento: las líneas se trazan en el color de acento, los títulos suben a su sitio y los bloques aparecen.
+   Solo en pantalla y sin preferencia de menos movimiento: en cualquier otro caso el contenido queda a la vista. */
+:root {
+  --ns-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ns-motion-duration: 700ms;
+  --ns-motion-duration-slow: 900ms;
+  --ns-motion-stagger: 80ms;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  [data-reveal-state='pending'] {
+    opacity: 0;
+  }
+
+  .enter-rise,
+  .enter-mask,
+  .enter-rule,
+  [data-reveal-state='in'] {
+    animation: rise-in var(--ns-motion-duration) var(--ns-motion-ease) backwards;
+    animation-delay: calc(var(--ns-motion-stagger) * var(--motion-order, 0));
+  }
+
+  .enter-mask,
+  [data-reveal='mask'][data-reveal-state='in'] {
+    animation-name: mask-in;
+    animation-duration: var(--ns-motion-duration-slow);
+  }
+
+  .enter-rule,
+  [data-reveal='rule'][data-reveal-state='in'] {
+    animation-name: rule-draw;
+    animation-duration: var(--ns-motion-duration-slow);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+/* El recorte baja al mismo ritmo que sube el texto: el borde inferior queda fijo, como una máscara. */
+@keyframes mask-in {
+  from {
+    transform: translateY(calc(100% + 0.2em));
+    clip-path: inset(-0.2em -0.2em 100% -0.2em);
+  }
+  to {
+    transform: translateY(0);
+    clip-path: inset(-0.2em);
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+    background-color: rgb(var(--ns-primary-soft));
+  }
+  60% {
+    background-color: rgb(var(--ns-primary-soft));
   }
 }
 
