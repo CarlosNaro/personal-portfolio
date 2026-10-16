@@ -70,20 +70,13 @@ const projects: IProject[] = [
     height: 739,
   },
 ];
-
-const formatIndex = (position: number): string => String(position + 1).padStart(2, '0');
 </script>
 
 <template>
   <div>
     <h3 class="eyebrow mt-10 text-muted" data-reveal>Proyectos en colaboración</h3>
     <div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
-      <ProjectCard
-        v-for="(project, index) in projects"
-        :key="project.id"
-        :project="project"
-        :index="formatIndex(index)"
-      />
+      <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
     </div>
   </div>
 </template>

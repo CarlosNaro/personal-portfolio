@@ -89,7 +89,7 @@ onBeforeUnmount(() => {
 
 <template>
   <LayoutBase>
-    <ComponentTitle index="04" title="Contacto" />
+    <ComponentTitle title="Contacto" />
     <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
       <div class="md:col-span-4" data-reveal>
         <p class="text-lg text-muted">¿Tienes un proyecto en mente? Hablemos.</p>

@@ -6,7 +6,7 @@ import profilePhoto from '@assets/img/foto_2.png';
 
 <template>
   <LayoutBase>
-    <ComponentTitle index="03" title="Sobre mí" />
+    <ComponentTitle title="Sobre mí" />
     <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
       <div class="md:col-span-7">
         <p class="text-base leading-relaxed text-muted" data-reveal>

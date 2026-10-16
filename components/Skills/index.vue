@@ -56,7 +56,7 @@ const skillGroups = [
 
 <template>
   <LayoutBase>
-    <ComponentTitle index="02" title="Habilidades" />
+    <ComponentTitle title="Habilidades" />
     <div class="mt-10">
       <div v-for="group in skillGroups" :key="group.id">
         <div aria-hidden="true" class="rule" data-reveal="rule"></div>

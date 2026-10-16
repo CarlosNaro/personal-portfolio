@@ -3,7 +3,6 @@ import type { IProject } from '../Interface/IProject';
 
 interface Props {
   project: IProject;
-  index: string;
 }
 
 defineProps<Props>();
@@ -26,8 +25,7 @@ defineProps<Props>();
       />
     </div>
     <div>
-      <span class="eyebrow text-primarySoft">{{ index }}</span>
-      <h4 class="mt-2 font-mono text-lg font-bold text-light">{{ project.title }}</h4>
+      <h4 class="font-mono text-lg font-bold text-light">{{ project.title }}</h4>
       <p class="mt-3 text-sm leading-relaxed text-muted">{{ project.description }}</p>
       <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
         <li
