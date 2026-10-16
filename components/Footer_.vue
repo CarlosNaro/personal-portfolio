@@ -1,26 +1,18 @@
 <script setup lang="ts">
-import globalStore from '@components/global.store';
-
 const year = new Date().getFullYear();
-const isDark = computed(() => globalStore.getIsDarkMode());
 </script>
 
 <template>
-  <footer :class="isDark ? 'bg-dark' : 'bg-light'" class="footer content py-3">
-    <div class="footer-content">
-      <b>&copy;{{ year }}, <a href="https://github.com/CarlosNaro" target="_blank">Developer Naro</a></b>
-    </div>
+  <footer class="border-t border-line">
+    <p class="content py-8 text-center text-sm text-muted md:text-left">
+      &copy; {{ year }},
+      <a
+        href="https://github.com/CarlosNaro"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light underline-offset-4 transition-colors duration-200 hover:text-primarySoft hover:underline"
+        >Developer Naro</a
+      >
+    </p>
   </footer>
 </template>
-
-<style lang="postcss" scoped>
-.footer-content {
-  @apply text-center text-xs md:text-base md:text-left;
-}
-
-a:hover {
-  background: linear-gradient(90deg, #ff00cc, rgb(var(--ns-primary)));
-  background-clip: text;
-  color: transparent;
-}
-</style>

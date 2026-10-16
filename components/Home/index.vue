@@ -1,55 +1,44 @@
 <script setup lang="ts">
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO_2025.pdf';
-import developerPng from '@assets/img/developer.png';
-import eyeSolidSvg from '@assets/svg/eye-solid.svg';
-import imageSolidSvg from '@assets/svg/image-solid.svg';
 
-const showModal = ref(false);
-const isMounted = ref(false);
-
-onMounted(() => {
-  isMounted.value = true;
-});
+const isModalVisible = ref(false);
 </script>
 
 <template>
-  <LayoutBase class="select-none mt-4">
-    <div class="flex flex-col md:flex-row gap-2">
-      <div class="mb-2 md:m-auto">
-        <h1 class="text-2xl md:text-[2rem] font-semibold">¡Hola!</h1>
-        <p class="text-justify mb-4 md:text-[2rem]">
-          Me llamo <b>Alonso</b>, soy un desarrollador de software apasionado por crear soluciones tecnológicas
-          eficientes y escalables.
-        </p>
-        <button class="button-default w-full md:w-3/5 lg:w-2/5" @click="showModal = true">
-          <span class="ns-button__content"
-            >Visualizar CV
-            <img :src="eyeSolidSvg" alt="eyeSolidSvg" class="ml-2 w-5" />
-          </span>
-        </button>
-      </div>
-
-      <img
-        v-if="isMounted && developerPng"
-        :src="developerPng"
-        alt="developerPng"
-        class="animate-fade-in m-auto w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px]"
-        style="border-radius: 50%; background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)))"
-      />
-
-      <div v-else class="flex items-center justify-center">
-        <div class="skeleton-img">
-          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
-        </div>
-      </div>
+  <LayoutBase>
+    <p class="eyebrow enter-rise text-primarySoft">Desarrollador de software</p>
+    <h1
+      class="enter-mask font-mono text-4xl font-bold leading-tight tracking-tight text-light md:text-6xl xl:text-7xl mt-6 [--motion-order:1]"
+    >
+      Alonso Naro Saldaña
+    </h1>
+    <p class="enter-rise mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl [--motion-order:3]">
+      Soy un desarrollador de software apasionado por crear soluciones tecnológicas eficientes y escalables.
+    </p>
+    <div class="enter-rise mt-10 flex flex-col gap-4 sm:flex-row [--motion-order:4]">
+      <a href="#portfolio" class="button-default">Ver proyectos</a>
+      <button type="button" class="button-default-border" @click="isModalVisible = true">Visualizar CV</button>
     </div>
+    <p class="enter-rise mt-12 font-mono text-sm text-muted [--motion-order:5]">
+      Vue.js · Django · TypeScript · Tailwind CSS
+    </p>
 
     <Teleport to="body">
-      <div v-if="showModal" class="modal-overlay" @click.self="">
-        <div class="modal-content">
-          <button class="close-btn" @click="showModal = false">X</button>
-          <iframe :src="cvPdfUrl" class="pdf-viewer"></iframe>
+      <div v-if="isModalVisible" class="modal-overlay" @click.self="isModalVisible = false">
+        <div class="modal-panel">
+          <div class="modal-header">
+            <a
+              :href="cvPdfUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-light underline-offset-4 transition-colors duration-200 hover:text-primarySoft hover:underline"
+            >
+              Abrir en una pestaña nueva
+            </a>
+            <button type="button" class="button-default-border" @click="isModalVisible = false">Cerrar</button>
+          </div>
+          <iframe :src="cvPdfUrl" title="Curriculum Vitae de Alonso Naro" class="pdf-viewer"></iframe>
         </div>
       </div>
     </Teleport>
@@ -57,48 +46,35 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.button-default {
-  margin: 0 !important;
-  background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary))) !important;
-
-  &:hover {
-    box-shadow: 0 10px 20px -10px rgba(var(--ns-warn), 1) !important;
-  }
-}
-
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(var(--ns-dark), 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 40;
+  z-index: 50;
 }
 
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+.modal-panel {
+  background: rgb(var(--ns-backgroundContent));
+  border: 1px solid rgb(var(--ns-line));
   max-width: 90%;
   max-height: 90%;
-  position: relative;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
 }
 
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  background: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .pdf-viewer {

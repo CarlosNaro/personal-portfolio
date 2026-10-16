@@ -3,15 +3,20 @@ import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: [
-    // Estilos de Swiper (primero)
-    'swiper/css',
-    'swiper/css/navigation',
-    'swiper/css/pagination', // Opcional, si usas paginación
-    'swiper/css/effect-fade', // Opcional, si usas efectos
-    //:::
-    './assets/css/main.css',
-  ],
+  app: {
+    head: {
+      htmlAttrs: { lang: 'es' },
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap',
+        },
+      ],
+    },
+  },
+  css: ['./assets/css/main.css'],
   postcss: {
     plugins: {
       'postcss-import': {},
@@ -30,7 +35,6 @@ export default defineNuxtConfig({
     baseURL: '/personal-portfolio/',
   },
   devServer: {
-    host: ' 192.168.35.241',
     port: 3000, // or any other port you want to use
   },
 });

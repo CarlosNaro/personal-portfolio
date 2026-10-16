@@ -1,67 +1,52 @@
 <script setup lang="ts">
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
-import foto2 from '@assets/img/foto_2.png';
-import imageSolidSvg from '@assets/svg/image-solid.svg';
-
-const isMounted = ref(false);
-
-onMounted(() => {
-  isMounted.value = true;
-});
+import profilePhoto from '@assets/img/foto_2.png';
 </script>
 
 <template>
-  <LayoutBase class="mt-10">
-    <component-title title="Sobre mi" />
-    <div class="grid grid-cols-1 md:grid-cols-2 content-between mt-5">
-      <div class="flex m-auto flex-col lg:text-lg">
-        <span class="mb-2">
+  <LayoutBase>
+    <ComponentTitle title="Sobre mí" />
+    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <p class="text-base leading-relaxed text-muted" data-reveal>
           Mi nombre es Alonso Naro Saldaña. Soy ingeniero de sistemas e informática, graduado de la Universidad Nacional
           de la Amazonía Peruana. Soy de nacionalidad peruana y natural de la ciudad de Iquitos, en la región de Loreto.
-        </span>
-
-        <span>
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-muted" data-reveal>
           Soy un desarrollador de software apasionado por crear soluciones innovadoras y eficientes. Con experiencia en
           tecnologías de Vue.js, Django, TypeScript y Tailwind CSS, he trabajado en proyectos que combinan diseño
           intuitivo y funcionalidades robustas.
-        </span>
+        </p>
+        <div aria-hidden="true" class="rule mt-8" data-reveal="rule"></div>
+        <dl class="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-3" data-reveal>
+          <div>
+            <dt class="eyebrow text-muted">Título</dt>
+            <dd class="mt-2 text-sm text-light">Ingeniero de sistemas e informática</dd>
+          </div>
+          <div>
+            <dt class="eyebrow text-muted">Universidad</dt>
+            <dd class="mt-2 text-sm text-light">Universidad Nacional de la Amazonía Peruana</dd>
+          </div>
+          <div>
+            <dt class="eyebrow text-muted">Ciudad</dt>
+            <dd class="mt-2 text-sm text-light">Iquitos, Loreto, Perú</dd>
+          </div>
+        </dl>
       </div>
-      <div v-if="isMounted && foto2" class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
-        <div
-          id="circulo"
-          class="animate-fade-in relative mt-5 flex items-center justify-center bgColor rounded-full w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[270px] lg:h-[270px] xl:w-[300px] xl:h-[300px] shadow-xl"
-        >
-          <img class="absolute -top-20 md:-top-32 mask-gradient-both mirror" :src="foto2" alt="foto2" />
-        </div>
-      </div>
-      <div v-else class="flex w-full mt-2 md:m-auto items-center justify-center md:justify-end">
-        <div class="skeleton-img">
-          <img class="w-24 opacity-50" :src="imageSolidSvg" alt="imageSolidSvg" />
+      <div class="md:col-span-5">
+        <div class="flex items-end justify-center border border-line bg-Content" data-reveal>
+          <img
+            :src="profilePhoto"
+            alt="Foto de Alonso Naro"
+            width="430"
+            height="580"
+            loading="lazy"
+            decoding="async"
+            class="h-auto w-full max-w-xs grayscale"
+          />
         </div>
       </div>
     </div>
   </LayoutBase>
 </template>
-
-<style scoped lang="css">
-.bgColor {
-  background: linear-gradient(45deg, rgb(var(--ns-success)), rgb(var(--ns-primary)));
-  /*background: linear-gradient(45deg, rgb(255, 186, 0), rgb(0, 0, 0))*/
-}
-
-.mask-gradient {
-  -webkit-mask-image: -webkit-linear-gradient(to bottom right, black 50%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-}
-
-.mask-gradient-both {
-  -webkit-mask-image:
-    -webkit-linear-gradient(to right, black 50%, transparent 100%),
-    -webkit-linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-composite: destination-in;
-  mask-image: linear-gradient(to right, black 50%, transparent 100%),
-    linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-composite: intersect;
-}
-</style>

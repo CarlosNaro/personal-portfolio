@@ -3,7 +3,5 @@ import LayoutBase from '@components/globalComponents/layoutBase.vue';
 </script>
 
 <template>
-  <layout-base> welcome to my personal project</layout-base>
+  <LayoutBase> welcome to my personal project</LayoutBase>
 </template>
-
-<style scoped></style>

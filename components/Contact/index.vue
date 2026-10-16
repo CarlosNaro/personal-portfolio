@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
-import emailSvg from '@assets/svg/email.svg';
+import ContactInfo from '@components/Contact/components/ContactInfo.vue';
+import ContactField from '@components/Contact/components/ContactField.vue';
+import Alert from '@components/globalComponents/Alert.vue';
 import type { IEmailContent } from '@components/Contact/Interface/IEmailContent';
 import { useUtils } from '~/utils/useUtils';
-import Alert from '@components/globalComponents/Alert.vue';
-import formspreeSendEmail from '~/plugins/FORMSPREESendEmail';
+import { sendContactEmail } from '~/utils/sendContactEmail';
+
+const SUCCESS_ALERT_DURATION_MS = 5000;
 
 const { isValidEmail } = useUtils();
 const isMessageSent = ref(false);
 const isErrorValidForm = ref(false);
-const is_error_request = ref(false);
+const isErrorRequest = ref(false);
+const isErrorEmailFormat = ref(false);
 const isLoading = ref(false);
 const formData = ref<IEmailContent>({
   name: '',
@@ -19,23 +23,36 @@ const formData = ref<IEmailContent>({
   subject: '',
   message: '',
 });
+let successAlertTimer: ReturnType<typeof setTimeout> | undefined;
+
+const emailError = computed(() =>
+  formData.value.email && !isValidEmail(formData.value.email) ? 'Email inválido' : '',
+);
 
 async function sendEmail() {
+  closeDialog();
+  const { name, email, subject, message } = formData.value;
+
+  if (!name || !email || !subject || !message) {
+    isErrorValidForm.value = true;
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    isErrorValidForm.value = true;
+    isErrorEmailFormat.value = true;
+    return;
+  }
+
+  isLoading.value = true;
   try {
-    isLoading.value = true;
-    const { name, email, subject, message } = formData.value;
+    const isSent = await sendContactEmail(formData.value);
 
-    if (!name || !email || !subject || !message) return (isErrorValidForm.value = true);
-
-    if (!isValidEmail(email)) return;
-
-    const status = await formspreeSendEmail(formData.value);
-
-    if (status) {
+    if (isSent) {
       showMessage();
     } else {
       isErrorValidForm.value = true;
-      is_error_request.value = true;
+      isErrorRequest.value = true;
     }
   } finally {
     isLoading.value = false;
@@ -55,83 +72,82 @@ function closeAlert() {
 
 function showMessage() {
   isMessageSent.value = true;
-  setTimeout(() => {
-    closeAlert();
-  }, 5000);
+  clearTimeout(successAlertTimer);
+  successAlertTimer = setTimeout(closeAlert, SUCCESS_ALERT_DURATION_MS);
 }
 
-function CloseDialog() {
+function closeDialog() {
   isErrorValidForm.value = false;
-  is_error_request.value = false;
+  isErrorRequest.value = false;
+  isErrorEmailFormat.value = false;
 }
 
-onMounted(() => {});
+onBeforeUnmount(() => {
+  clearTimeout(successAlertTimer);
+});
 </script>
 
 <template>
-  <layout-base class="my-10">
-    <component-title title="Contacto" />
-    <h2 class="text-center text-xl mt-5">¿Tienes un proyecto en mente? Hablemos 😉</h2>
-    <div class="flex flex-col md:flex-row items-center justify-between gap-10 mt-5">
-      <div class="flex flex-col space-y-4">
-        <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img :src="emailSvg" alt="email" class="w-5 mb-2" />
-          <p>alonsonaro75@gmail.com</p>
-        </div>
-        <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img src="@assets/svg/location.svg" alt="location" class="w-5 mb-2" />
-          <p>Iquitos-Loreto, Perú</p>
-        </div>
-        <div class="flex items-center flex-col md:flex-row md:gap-2">
-          <img src="@assets/svg/phone.svg" alt="phone" class="w-5 mb-2" />
-          <p>+51 995 069 323</p>
-        </div>
+  <LayoutBase>
+    <ComponentTitle title="Contacto" />
+    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
+      <div class="md:col-span-4" data-reveal>
+        <p class="text-lg text-muted">¿Tienes un proyecto en mente? Hablemos.</p>
+        <ContactInfo />
       </div>
-      <div class="w-full md:flex-1">
-        <form class="space-y-4 mt-4" action="#">
-          <div class="inputForm relative">
-            <input type="text" required placeholder="Nombre" v-model="formData.name" class="input-form" />
-            <input type="email" required placeholder="Email" v-model="formData.email" class="input-form" />
-            <span
-              class="absolute text-[10px] md:text-xs text-red-500 -bottom-3 left-2 md:left-auto md:bottom-auto md:right-48 md:-top-4"
-            >
-              {{ formData.email && !isValidEmail(formData.email) ? 'Email inválido' : '' }}
-            </span>
-          </div>
-          <div class="inputForm">
-            <input type="number" placeholder="N° celular" v-model="formData.phone" class="input-form" />
-            <input type="text" required placeholder="Asunto" v-model="formData.subject" class="input-form" />
-          </div>
-          <textarea required placeholder="Mensaje" v-model="formData.message" class="input-form min-h-36" />
+      <div class="md:col-span-8" data-reveal>
+        <form class="grid grid-cols-1 gap-6 sm:grid-cols-2" novalidate @submit.prevent="sendEmail">
+          <ContactField id="contact-name" v-model="formData.name" label="Nombre" type="text" :is-required="true" />
+          <ContactField
+            id="contact-email"
+            v-model="formData.email"
+            label="Email"
+            type="email"
+            :is-required="true"
+            :error="emailError"
+          />
+          <ContactField id="contact-phone" v-model="formData.phone" label="Número de celular" type="tel" />
+          <ContactField
+            id="contact-subject"
+            v-model="formData.subject"
+            label="Asunto"
+            type="text"
+            :is-required="true"
+          />
+          <ContactField
+            id="contact-message"
+            v-model="formData.message"
+            label="Mensaje"
+            :is-required="true"
+            :is-multiline="true"
+            class="sm:col-span-2"
+          />
           <button
+            type="submit"
+            class="button-default sm:col-span-2 sm:justify-self-start"
             :disabled="isLoading"
-            type="button"
-            class="button-default-transparent ns-button__content shadow shadow-gray-700"
-            @click="sendEmail"
+            :aria-busy="isLoading"
           >
-            <img :class="isLoading ? 'animate-bounce ' : ''" class="mr-2 w-5" :src="emailSvg" alt="email" />
-            <span :hidden="isLoading">Enviar</span>
+            {{ isLoading ? 'Enviando…' : 'Enviar mensaje' }}
           </button>
         </form>
       </div>
     </div>
-  </layout-base>
-  <alert v-if="isMessageSent" title="Mensaje enviado correctamente" :name-resend="formData.name">
-    Gracias por tu mensaje, me pondré en contacto contigo lo más pronto posible.
-  </alert>
+  </LayoutBase>
 
-  <alert v-if="isErrorValidForm" title="Error" @close="CloseDialog">
-    <span v-if="is_error_request" class="text-red-500">
+  <Alert v-if="isMessageSent" title="Mensaje enviado correctamente" :name-resend="formData.name">
+    Gracias por tu mensaje, me pondré en contacto contigo lo más pronto posible.
+  </Alert>
+
+  <Alert v-if="isErrorValidForm" title="Error" @close="closeDialog">
+    <span v-if="isErrorRequest" class="text-danger">
       Ocurrió un error al enviar el mensaje, por favor intenta nuevamente o contáctame por WhatsApp.
     </span>
+    <p v-else-if="isErrorEmailFormat">
+      Por favor verifica que el <strong>email</strong> tenga un formato válido, por ejemplo: nombre@dominio.com.
+    </p>
     <p v-else>
       Por favor verifica que los campos obligatorios: <strong>nombre, email, asunto y mensaje</strong>, estén completos.
     </p>
-  </alert>
+  </Alert>
 </template>
-
-<style scoped>
-.inputForm {
-  @apply flex flex-col md:flex-row gap-4 md:gap-8;
-}
-</style>
