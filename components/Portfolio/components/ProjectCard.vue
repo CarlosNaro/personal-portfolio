@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IProject } from '../Interface/IProject';
+import type { IProject } from '@components/Portfolio/Interface/IProject';
 
 interface Props {
   project: IProject;
@@ -9,33 +9,36 @@ defineProps<Props>();
 </script>
 
 <template>
-  <article
-    class="hover-rule flex flex-col gap-6 border border-line bg-Content p-6 transition-colors duration-200 hover:border-lineStrong sm:flex-row"
-    data-reveal
-  >
-    <div class="flex shrink-0 justify-center border border-line bg-dark p-3 sm:w-40 sm:self-start">
+  <article :class="`tone-${project.tone}`" class="flex flex-col gap-5 rounded-[40px] p-6 text-dark md:p-8" data-reveal>
+    <div class="flex h-72 items-center justify-center rounded-[28px] bg-dark">
       <img
-        :src="project.src"
-        :alt="project.title"
-        :width="project.width"
-        :height="project.height"
+        v-for="image in project.images"
+        :key="image.src"
+        :src="image.src"
+        :alt="image.alt"
+        :width="image.width"
+        :height="image.height"
         loading="lazy"
         decoding="async"
-        class="h-56 w-auto sm:h-auto sm:w-full"
+        class="h-60 w-auto -rotate-2"
       />
     </div>
-    <div>
-      <h4 class="font-mono text-lg font-bold text-light">{{ project.title }}</h4>
-      <p class="mt-3 text-sm leading-relaxed text-muted">{{ project.description }}</p>
-      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
-        <li
-          v-for="tech in project.technologies"
-          :key="tech"
-          class="border border-line px-2 py-1 font-mono text-xs text-muted"
-        >
-          {{ tech }}
-        </li>
-      </ul>
-    </div>
+    <h3 class="font-display text-3xl font-extrabold leading-tight tracking-tight">{{ project.title }}</h3>
+    <p class="text-lg leading-relaxed">{{ project.description }}</p>
+    <p class="mt-auto font-semibold">{{ project.technologies.join(', ') }}</p>
   </article>
 </template>
+
+<style scoped>
+.tone-aguaje {
+  background: rgb(var(--ns-primary-soft));
+}
+
+.tone-leaf {
+  background: rgb(var(--ns-leaf));
+}
+
+.tone-cream {
+  background: rgb(var(--ns-light));
+}
+</style>

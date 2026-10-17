@@ -1,23 +1,24 @@
 :root {
-    /* Superficies */
-    --ns-dark: 11, 12, 14;
-    --ns-backgroundContent: 19, 21, 24;
-    --ns-line: 42, 45, 51;
-    --ns-line-strong: 104, 111, 124;
+  /* Superficies: verde selva */
+  --ns-dark: 18, 55, 42;
+  --ns-backgroundContent: 28, 74, 57;
+  --ns-line: 64, 112, 92;
+  --ns-line-strong: 238, 243, 232;
 
-    /* Texto */
-    --ns-light: 237, 238, 240;
-    --ns-muted: 154, 160, 170;
+  /* Texto */
+  --ns-light: 238, 243, 232;
+  --ns-muted: 201, 220, 207;
 
-    /* Acento: el azul del logo */
-    --ns-primary: 25, 91, 255;
-    --ns-primary-soft: 91, 140, 255;
+  /* Acentos: camu camu y aguaje */
+  --ns-primary: 240, 82, 127;
+  --ns-primary-soft: 242, 165, 65;
+  --ns-leaf: 207, 232, 184;
 
-    /* Estado */
-    --ns-success: 70, 201, 58;
-    --ns-danger: 255, 71, 87;
-    --ns-warn: 255, 186, 0;
+  /* Estado */
+  --ns-success: 70, 201, 58;
+  --ns-danger: 255, 71, 87;
+  --ns-warn: 255, 186, 0;
 
-    /* Marca externa */
-    --ns-whatsapp: 37, 211, 102;
+  /* Marca externa */
+  --ns-whatsapp: 37, 211, 102;
 }

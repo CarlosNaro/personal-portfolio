@@ -24,8 +24,8 @@ let sectionObserver: IntersectionObserver | undefined;
 const components: Record<string, Component> = {
   home: Home,
   portfolio: Portfolio,
-  skills: Skills,
   about: About,
+  skills: Skills,
   contact: Contact,
 };
 
@@ -78,8 +78,7 @@ onBeforeUnmount(() => {
   <div class="flex min-h-screen flex-col">
     <Header_ />
     <main class="flex-1">
-      <section v-for="(component, key, position) in components" :key="key" :id="key" class="scroll-mt-16">
-        <div v-if="position > 0" aria-hidden="true" class="rule" data-reveal="rule"></div>
+      <section v-for="(component, key) in components" :key="key" :id="key" class="scroll-mt-20">
         <component :is="component" />
       </section>
       <WhatsAppButton />

@@ -3,15 +3,15 @@ const year = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="border-t border-line">
-    <p class="content py-8 text-center text-sm text-muted md:text-left">
-      &copy; {{ year }},
+  <footer class="bg-Content">
+    <p class="content flex flex-col gap-2 py-8 text-muted sm:flex-row sm:justify-between">
+      <span>&copy; {{ year }} Alonso Naro Saldaña</span>
       <a
         href="https://github.com/CarlosNaro"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-light underline-offset-4 transition-colors duration-200 hover:text-primarySoft hover:underline"
-        >Developer Naro</a
+        class="font-semibold text-light underline-offset-4 hover:text-primarySoft hover:underline"
+        >GitHub</a
       >
     </p>
   </footer>

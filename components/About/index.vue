@@ -1,52 +1,17 @@
-<script setup lang="ts">
-import LayoutBase from '@components/globalComponents/layoutBase.vue';
-import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
-import profilePhoto from '@assets/img/foto_2.png';
-</script>
-
 <template>
-  <LayoutBase>
-    <ComponentTitle title="Sobre mí" />
-    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
-      <div class="md:col-span-7">
-        <p class="text-base leading-relaxed text-muted" data-reveal>
-          Mi nombre es Alonso Naro Saldaña. Soy ingeniero de sistemas e informática, graduado de la Universidad Nacional
-          de la Amazonía Peruana. Soy de nacionalidad peruana y natural de la ciudad de Iquitos, en la región de Loreto.
-        </p>
-        <p class="mt-4 text-base leading-relaxed text-muted" data-reveal>
-          Soy un desarrollador de software apasionado por crear soluciones innovadoras y eficientes. Con experiencia en
-          tecnologías de Vue.js, Django, TypeScript y Tailwind CSS, he trabajado en proyectos que combinan diseño
-          intuitivo y funcionalidades robustas.
-        </p>
-        <div aria-hidden="true" class="rule mt-8" data-reveal="rule"></div>
-        <dl class="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-3" data-reveal>
-          <div>
-            <dt class="eyebrow text-muted">Título</dt>
-            <dd class="mt-2 text-sm text-light">Ingeniero de sistemas e informática</dd>
-          </div>
-          <div>
-            <dt class="eyebrow text-muted">Universidad</dt>
-            <dd class="mt-2 text-sm text-light">Universidad Nacional de la Amazonía Peruana</dd>
-          </div>
-          <div>
-            <dt class="eyebrow text-muted">Ciudad</dt>
-            <dd class="mt-2 text-sm text-light">Iquitos, Loreto, Perú</dd>
-          </div>
-        </dl>
-      </div>
-      <div class="md:col-span-5">
-        <div class="flex items-end justify-center border border-line bg-Content" data-reveal>
-          <img
-            :src="profilePhoto"
-            alt="Foto de Alonso Naro"
-            width="430"
-            height="580"
-            loading="lazy"
-            decoding="async"
-            class="h-auto w-full max-w-xs grayscale"
-          />
-        </div>
-      </div>
+  <div class="content flex flex-col gap-10 py-24 md:flex-row md:gap-16 md:py-28">
+    <h2 class="section-title md:w-80 md:shrink-0" data-reveal>Hoy trabajo en</h2>
+    <div class="min-w-0 flex-1" data-reveal>
+      <p class="font-display text-3xl font-medium leading-tight md:text-4xl">
+        Caja Maynas, donde desarrollo la integración de facturación electrónica con SUNAT.
+      </p>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+        Una API en .NET 10 con arquitectura limpia: el dominio no sabe qué proveedor OSE usamos, así que cambiarlo es
+        tocar un solo archivo. Antes de esto, apps en Vue, Ionic y Django.
+      </p>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
+        Soy ingeniero de sistemas e informática por la Universidad Nacional de la Amazonía Peruana.
+      </p>
     </div>
-  </LayoutBase>
+  </div>
 </template>

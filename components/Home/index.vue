@@ -1,28 +1,55 @@
 <script setup lang="ts">
-import LayoutBase from '@components/globalComponents/layoutBase.vue';
 import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO_2025.pdf';
+import profilePhoto from '@assets/img/foto_2.png';
 
 const isModalVisible = ref(false);
 </script>
 
 <template>
-  <LayoutBase>
-    <p class="eyebrow enter-rise text-primarySoft">Desarrollador de software</p>
-    <h1
-      class="enter-mask font-mono text-4xl font-bold leading-tight tracking-tight text-light md:text-6xl xl:text-7xl mt-6 [--motion-order:1]"
-    >
-      Alonso Naro Saldaña
-    </h1>
-    <p class="enter-rise mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl [--motion-order:3]">
-      Soy un desarrollador de software apasionado por crear soluciones tecnológicas eficientes y escalables.
-    </p>
-    <div class="enter-rise mt-10 flex flex-col gap-4 sm:flex-row [--motion-order:4]">
-      <a href="#portfolio" class="button-default">Ver proyectos</a>
-      <button type="button" class="button-default-border" @click="isModalVisible = true">Visualizar CV</button>
+  <div>
+    <div class="content flex flex-col gap-10 pt-8 md:flex-row md:items-end md:gap-12 md:pt-16">
+      <div class="min-w-0 flex-1">
+        <h1
+          class="enter-rise font-display text-6xl font-extrabold leading-[0.9] tracking-tighter text-light md:text-8xl lg:text-[7rem]"
+        >
+          Alonso<br />Naro Saldaña
+        </h1>
+        <p class="enter-rise mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl [--motion-order:1]">
+          Desarrollador de software en Iquitos. Conecto sistemas con SUNAT en .NET y construyo apps en Vue que la gente
+          usa todos los días.
+        </p>
+        <div class="enter-rise mt-9 flex flex-col gap-3 sm:flex-row [--motion-order:2]">
+          <a href="#portfolio" class="button-default">Ver proyectos</a>
+          <button type="button" class="button-default-border" @click="isModalVisible = true">Ver CV</button>
+        </div>
+      </div>
+      <div class="enter-rise order-first w-52 shrink-0 md:order-last md:w-80 [--motion-order:3]">
+        <div
+          class="flex aspect-[4/5] items-end justify-center overflow-hidden rounded-[180px_180px_32px_180px] bg-primarySoft"
+        >
+          <img
+            :src="profilePhoto"
+            alt="Foto de Alonso Naro"
+            width="430"
+            height="580"
+            class="block h-auto w-[88%] contrast-110 grayscale"
+          />
+        </div>
+      </div>
     </div>
-    <p class="enter-rise mt-12 font-mono text-sm text-muted [--motion-order:5]">
-      Vue.js · Django · TypeScript · Tailwind CSS
-    </p>
+
+    <svg aria-hidden="true" viewBox="0 0 1440 160" preserveAspectRatio="none" class="mt-16 block h-24 w-full md:h-40">
+      <path
+        d="M0 90 C 180 20, 360 150, 560 90 S 940 20, 1120 80 S 1360 140, 1440 70 L1440 160 L0 160 Z"
+        class="fill-Content"
+      />
+      <path
+        d="M0 96 C 180 26, 360 156, 560 96 S 940 26, 1120 86 S 1360 146, 1440 76"
+        fill="none"
+        stroke-width="3"
+        class="stroke-primarySoft"
+      />
+    </svg>
 
     <Teleport to="body">
       <div v-if="isModalVisible" class="modal-overlay" @click.self="isModalVisible = false">
@@ -32,7 +59,7 @@ const isModalVisible = ref(false);
               :href="cvPdfUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-sm text-light underline-offset-4 transition-colors duration-200 hover:text-primarySoft hover:underline"
+              class="font-medium text-light underline-offset-4 hover:text-primarySoft hover:underline"
             >
               Abrir en una pestaña nueva
             </a>
@@ -42,16 +69,13 @@ const isModalVisible = ref(false);
         </div>
       </div>
     </Teleport>
-  </LayoutBase>
+  </div>
 </template>
 
 <style scoped>
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(var(--ns-dark), 0.85);
   display: flex;
   justify-content: center;
@@ -61,7 +85,7 @@ const isModalVisible = ref(false);
 
 .modal-panel {
   background: rgb(var(--ns-backgroundContent));
-  border: 1px solid rgb(var(--ns-line));
+  border-radius: 24px;
   max-width: 90%;
   max-height: 90%;
   display: flex;
@@ -81,5 +105,6 @@ const isModalVisible = ref(false);
   width: 80vw;
   height: 80vh;
   border: none;
+  border-radius: 12px;
 }
 </style>

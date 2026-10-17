@@ -29,11 +29,8 @@ function onInput(event: Event) {
 </script>
 
 <template>
-  <div class="group">
-    <label
-      :for="id"
-      class="eyebrow mb-2 block text-muted transition-colors duration-200 group-focus-within:text-primarySoft"
-    >
+  <div>
+    <label :for="id" class="mb-2 block text-sm font-semibold text-dark">
       {{ label }}<span v-if="isRequired" aria-hidden="true"> *</span>
     </label>
     <textarea
@@ -43,7 +40,7 @@ function onInput(event: Event) {
       :required="isRequired"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="error ? id + '-error' : undefined"
-      class="input-form min-h-36"
+      class="input-form min-h-36 aria-[invalid=true]:border-primary"
       @input="onInput"
     ></textarea>
     <input
@@ -54,9 +51,9 @@ function onInput(event: Event) {
       :required="isRequired"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="error ? id + '-error' : undefined"
-      class="input-form"
+      class="input-form aria-[invalid=true]:border-primary"
       @input="onInput"
     />
-    <p v-if="error" :id="id + '-error'" class="mt-2 text-sm text-danger">{{ error }}</p>
+    <p v-if="error" :id="id + '-error'" class="mt-2 text-sm font-semibold text-dark">{{ error }}</p>
   </div>
 </template>
