@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { IProject } from '../Interface/IProject';
-import ProjectCard from './ProjectCard.vue';
+import type { IProject } from '@components/Portfolio/Interface/IProject';
+import FeaturedProject from '@components/Portfolio/components/FeaturedProject.vue';
+import ProjectCard from '@components/Portfolio/components/ProjectCard.vue';
 import laPositiva from '@assets/img/la-positiva.png';
 import restaurant from '@assets/img/restaurant.png';
 import siciApp from '@assets/img/sici_2.png';
@@ -8,74 +9,52 @@ import bipbip from '@assets/img/bipbip_app.jpeg';
 import landingPage from '@assets/img/Landing_Page.png';
 import panelBipBip from '@assets/img/panel_bip.png';
 
+const featuredProject: IProject = {
+  id: 1,
+  title: 'BipBip',
+  description:
+    'Transporte en Perú, en tres partes: la app para viajar y seguir el vehículo en el mapa, el panel para gestionar conductores y pagos, y la web para preinscribirse.',
+  technologies: ['Ionic', 'Vue 3', 'Nuxt 3', 'Firebase'],
+  tone: 'cream',
+  images: [
+    { src: bipbip, alt: 'App de BipBip con el mapa de un viaje', width: 702, height: 1600 },
+    { src: panelBipBip, alt: 'Panel de BipBip para registrar conductores', width: 337, height: 739 },
+    { src: landingPage, alt: 'Web de BipBip con código QR de descarga', width: 341, height: 732 },
+  ],
+};
+
 const projects: IProject[] = [
   {
-    id: 1,
-    src: restaurant,
-    title: 'Sistema para el control de orden (restaurant)',
-    description:
-      'Permite a los meseros registrar y enviar órdenes en tiempo real a la cocina, agilizando el servicio y reduciendo errores. Incluye funcionalidades como gestión de mesas, seguimiento de estados de pedidos, garantizando una experiencia fluida para el personal.',
-    technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Python', 'Django', 'DjangoRestFramework'],
-    width: 341,
-    height: 732,
-  },
-  {
     id: 2,
-    src: siciApp,
-    title: 'Sistema de Control de Asistencia - app móvil',
-    description:
-      'Permite llevar un control preciso de entradas, salidas y horarios, facilitando la supervisión y generación de reportes en tiempo real. Incluye funciones como autenticación por credenciales, notificaciones automáticas, entre otros.',
-    technologies: ['Ionic framework', 'capacitorjs', 'Vue.js 3', 'TypeScript', 'Tailwind CSS', 'Supabase'],
-    width: 262,
-    height: 565,
+    title: 'Órdenes para restaurante',
+    description: 'Los meseros mandan el pedido a cocina desde la mesa y ven cuándo está listo.',
+    technologies: ['Vue 3', 'Django REST'],
+    tone: 'aguaje',
+    images: [{ src: restaurant, alt: 'Órdenes por mesa en el sistema de restaurante', width: 341, height: 732 }],
   },
   {
     id: 3,
-    src: bipbip,
-    title: 'Sistema de Transporte (BipBip – Perú)',
-    description:
-      'Permite el monitoreo en tiempo real de vehículos, planificación de rutas eficientes, control de horarios y gestión de conductores. Además, incluye funciones como seguimiento GPS, notificaciones de llegada, entre otros. Su implementación mejora la eficiencia operativa, reduce costos logísticos y garantiza un servicio más seguro y organizado.',
-    technologies: ['Ionic framework', 'capacitorjs', 'Vue.js 3', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-    width: 702,
-    height: 1600,
+    title: 'Control de asistencia',
+    description: 'Entradas, salidas y horarios desde el celular, con reportes al momento.',
+    technologies: ['Ionic', 'Supabase'],
+    tone: 'leaf',
+    images: [{ src: siciApp, alt: 'Inicio de la app de control de asistencia', width: 262, height: 565 }],
   },
   {
     id: 4,
-    src: landingPage,
-    title: 'Landing Page del Sistema de Transporte - BipBip',
-    description:
-      'Página web que presenta los servicios y ventajas del sistema de transporte, permitiendo a los usuarios conocer más sobre la empresa y solicitar información adicional. Incluye secciones como contacto, formulario de preinscripción, entre otros.',
-    technologies: ['Nuxt 3', 'TypeScript', 'Tailwind CSS'],
-    width: 341,
-    height: 732,
-  },
-  {
-    id: 5,
-    src: laPositiva,
-    title: 'Sistema de Reserva - Web',
-    description:
-      'Plataforma web que permite la gestión y reserva de auditorios en las agencias de la empresa "La Positiva Seguro". Facilita a los usuarios la programación de eventos, evita conflictos de horarios y optimiza el uso de los espacios disponibles.',
-    technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Python', 'Django', 'DjangoRestFramework'],
-    width: 340,
-    height: 733,
-  },
-  {
-    id: 6,
-    src: panelBipBip,
-    title: 'Módulo Administrativo - BipBip',
-    description:
-      'Panel de administración que permite gestionar el registro de conductores, sus pagos, las validaciones de documentos y su billetera digital.',
-    technologies: ['Vue.js 3', 'Element-plus', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-    width: 337,
-    height: 739,
+    title: 'Reserva de auditorios',
+    description: 'Las agencias de La Positiva Seguros reservan espacios sin choques de horario.',
+    technologies: ['Vue 3', 'Django'],
+    tone: 'cream',
+    images: [{ src: laPositiva, alt: 'Bienvenida del sistema de reservas de auditorios', width: 340, height: 733 }],
   },
 ];
 </script>
 
 <template>
-  <div>
-    <h3 class="eyebrow mt-10 text-muted" data-reveal>Proyectos en colaboración</h3>
-    <div class="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
+  <div class="mt-14 flex flex-col gap-8">
+    <FeaturedProject :project="featuredProject" />
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
     </div>
   </div>

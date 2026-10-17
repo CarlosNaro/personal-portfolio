@@ -1,14 +1,20 @@
 @layer base {
   body {
-    @apply bg-dark font-sans text-base text-light antialiased;
+    @apply bg-dark text-base text-light antialiased;
+    font-family:
+      'Figtree',
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      sans-serif;
   }
 
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid rgb(var(--ns-primary));
-    outline-offset: 2px;
+    outline: 2px solid rgb(var(--ns-primary-soft));
+    outline-offset: 3px;
   }
 }
 
@@ -17,21 +23,25 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
-  .eyebrow {
-    @apply font-mono text-xs font-medium uppercase tracking-widest;
+  .font-display {
+    font-family: 'Bricolage Grotesque', 'Figtree', system-ui, sans-serif;
+  }
+
+  .section-title {
+    @apply font-display text-4xl font-extrabold leading-none tracking-tight md:text-6xl;
   }
 
   .button-default,
   .button-default-border {
-    @apply inline-flex min-h-11 items-center justify-center px-6 py-3 font-mono text-sm font-medium transition-colors duration-200;
+    @apply inline-flex min-h-12 items-center justify-center rounded-full px-7 text-base font-semibold transition-colors duration-200;
   }
 
   .button-default {
-    @apply bg-primary text-white hover:bg-light hover:text-dark;
+    @apply bg-primary text-dark hover:bg-primarySoft;
   }
 
   .button-default-border {
-    @apply border border-lineStrong text-light hover:border-light;
+    @apply border-2 border-light text-light hover:bg-light hover:text-dark;
   }
 
   .button-default:disabled,
@@ -39,38 +49,27 @@
     @apply cursor-not-allowed opacity-50;
   }
 
+  .chip {
+    @apply rounded-full bg-Content px-4 py-2 text-base text-light;
+  }
+
   .input-form {
-    @apply w-full border border-lineStrong bg-Content px-4 py-3 text-base text-light caret-primarySoft transition duration-200 focus:border-primarySoft focus:outline-none focus:ring-1 focus:ring-primarySoft;
+    @apply w-full rounded-2xl border-2 border-transparent bg-white px-4 py-3 text-base text-dark caret-primary transition duration-200 focus:border-primary focus:outline-none;
   }
 
-  /* El autocompletado del navegador pinta un fondo claro propio: se cubre con el color del campo. */
+  /* El autocompletado del navegador pinta un fondo propio: se cubre con el color del campo. */
   .input-form:-webkit-autofill {
-    -webkit-text-fill-color: rgb(var(--ns-light));
-    box-shadow: inset 0 0 0 1000px rgb(var(--ns-backgroundContent));
+    -webkit-text-fill-color: rgb(var(--ns-dark));
+    box-shadow: inset 0 0 0 1000px rgb(255, 255, 255);
     filter: none;
-  }
-
-  .input-form:-webkit-autofill:focus {
-    box-shadow:
-      inset 0 0 0 1000px rgb(var(--ns-backgroundContent)),
-      0 0 0 1px rgb(var(--ns-primary-soft));
-  }
-
-  .rule {
-    @apply h-px w-full origin-left bg-line;
-  }
-
-  .hover-rule {
-    @apply relative before:absolute before:-inset-x-px before:-top-px before:h-px before:origin-left before:scale-x-0 before:bg-primarySoft before:transition-transform before:duration-500 before:ease-out hover:before:scale-x-100;
   }
 }
 
-/* Movimiento: las líneas se trazan en el color de acento, los títulos suben a su sitio y los bloques aparecen.
+/* Movimiento: los bloques suben a su sitio al entrar en pantalla.
    Solo en pantalla y sin preferencia de menos movimiento: en cualquier otro caso el contenido queda a la vista. */
 :root {
   --ns-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ns-motion-duration: 700ms;
-  --ns-motion-duration-slow: 900ms;
   --ns-motion-stagger: 80ms;
 }
 
@@ -80,52 +79,16 @@
   }
 
   .enter-rise,
-  .enter-mask,
-  .enter-rule,
   [data-reveal-state='in'] {
     animation: rise-in var(--ns-motion-duration) var(--ns-motion-ease) backwards;
     animation-delay: calc(var(--ns-motion-stagger) * var(--motion-order, 0));
-  }
-
-  .enter-mask,
-  [data-reveal='mask'][data-reveal-state='in'] {
-    animation-name: mask-in;
-    animation-duration: var(--ns-motion-duration-slow);
-  }
-
-  .enter-rule,
-  [data-reveal='rule'][data-reveal-state='in'] {
-    animation-name: rule-draw;
-    animation-duration: var(--ns-motion-duration-slow);
   }
 }
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(0.75rem);
-  }
-}
-
-/* El recorte baja al mismo ritmo que sube el texto: el borde inferior queda fijo, como una máscara. */
-@keyframes mask-in {
-  from {
-    transform: translateY(calc(100% + 0.2em));
-    clip-path: inset(-0.2em -0.2em 100% -0.2em);
-  }
-  to {
-    transform: translateY(0);
-    clip-path: inset(-0.2em);
-  }
-}
-
-@keyframes rule-draw {
-  from {
-    transform: scaleX(0);
-    background-color: rgb(var(--ns-primary-soft));
-  }
-  60% {
-    background-color: rgb(var(--ns-primary-soft));
+    transform: translateY(1rem);
   }
 }
 
