@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import cvPdfUrl from '@assets/pdf/CV_ALONSO_NARO_2025.pdf';
-import profilePhoto from '@assets/img/foto_2.png';
+import profilePhoto from '@assets/img/foto_perfil_vuejs.webp';
 
 const isModalVisible = ref(false);
 </script>
@@ -24,15 +24,14 @@ const isModalVisible = ref(false);
         </div>
       </div>
       <div class="enter-rise order-first w-52 shrink-0 md:order-last md:w-80 [--motion-order:3]">
-        <div
-          class="flex aspect-[4/5] items-end justify-center overflow-hidden rounded-[180px_180px_32px_180px] bg-primarySoft"
-        >
+        <div class="relative aspect-[4/5]">
+          <div class="absolute inset-x-0 bottom-0 h-[84%] rounded-[180px_180px_32px_180px] bg-primarySoft"></div>
           <img
             :src="profilePhoto"
-            alt="Foto de Alonso Naro"
-            width="430"
-            height="580"
-            class="block h-auto w-[88%] contrast-110 grayscale"
+            alt="Alonso Naro con una polera de Vue.js, de brazos cruzados"
+            width="413"
+            height="605"
+            class="relative mx-auto block h-full w-auto object-contain object-bottom"
           />
         </div>
       </div>
