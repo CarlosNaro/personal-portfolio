@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import LayoutBase from '@components/globalComponents/layoutBase.vue';
-import ComponentTitle from '@components/globalComponents/ComponentTitle.vue';
 import ContactInfo from '@components/Contact/components/ContactInfo.vue';
 import ContactField from '@components/Contact/components/ContactField.vue';
 import Alert from '@components/globalComponents/Alert.vue';
@@ -88,52 +86,44 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <LayoutBase>
-    <ComponentTitle title="Contacto" />
-    <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12">
-      <div class="md:col-span-4" data-reveal>
-        <p class="text-lg text-muted">¿Tienes un proyecto en mente? Hablemos.</p>
+  <div class="content pb-28">
+    <div class="grid grid-cols-1 gap-10 rounded-[48px] bg-light p-7 text-dark md:grid-cols-12 md:p-14" data-reveal>
+      <div class="md:col-span-5">
+        <h2 class="section-title">¿Hablamos?</h2>
+        <p class="mt-4 text-lg">Escríbeme por correo, por WhatsApp o con este formulario.</p>
         <ContactInfo />
       </div>
-      <div class="md:col-span-8" data-reveal>
-        <form class="grid grid-cols-1 gap-6 sm:grid-cols-2" novalidate @submit.prevent="sendEmail">
-          <ContactField id="contact-name" v-model="formData.name" label="Nombre" type="text" :is-required="true" />
-          <ContactField
-            id="contact-email"
-            v-model="formData.email"
-            label="Email"
-            type="email"
-            :is-required="true"
-            :error="emailError"
-          />
-          <ContactField id="contact-phone" v-model="formData.phone" label="Número de celular" type="tel" />
-          <ContactField
-            id="contact-subject"
-            v-model="formData.subject"
-            label="Asunto"
-            type="text"
-            :is-required="true"
-          />
-          <ContactField
-            id="contact-message"
-            v-model="formData.message"
-            label="Mensaje"
-            :is-required="true"
-            :is-multiline="true"
-            class="sm:col-span-2"
-          />
-          <button
-            type="submit"
-            class="button-default sm:col-span-2 sm:justify-self-start"
-            :disabled="isLoading"
-            :aria-busy="isLoading"
-          >
-            {{ isLoading ? 'Enviando…' : 'Enviar mensaje' }}
-          </button>
-        </form>
-      </div>
+      <form class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:col-span-7" novalidate @submit.prevent="sendEmail">
+        <ContactField id="contact-name" v-model="formData.name" label="Nombre" type="text" :is-required="true" />
+        <ContactField
+          id="contact-email"
+          v-model="formData.email"
+          label="Email"
+          type="email"
+          :is-required="true"
+          :error="emailError"
+        />
+        <ContactField id="contact-phone" v-model="formData.phone" label="Número de celular" type="tel" />
+        <ContactField id="contact-subject" v-model="formData.subject" label="Asunto" type="text" :is-required="true" />
+        <ContactField
+          id="contact-message"
+          v-model="formData.message"
+          label="Mensaje"
+          :is-required="true"
+          :is-multiline="true"
+          class="sm:col-span-2"
+        />
+        <button
+          type="submit"
+          class="button-default bg-dark text-light hover:bg-primary hover:text-dark sm:col-span-2 sm:justify-self-start"
+          :disabled="isLoading"
+          :aria-busy="isLoading"
+        >
+          {{ isLoading ? 'Enviando…' : 'Enviar mensaje' }}
+        </button>
+      </form>
     </div>
-  </LayoutBase>
+  </div>
 
   <Alert v-if="isMessageSent" title="Mensaje enviado correctamente" :name-resend="formData.name">
     Gracias por tu mensaje, me pondré en contacto contigo lo más pronto posible.

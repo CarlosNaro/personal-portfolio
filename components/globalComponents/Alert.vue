@@ -17,8 +17,12 @@ const emit = defineEmits<{ close: [] }>();
 <template>
   <div class="modal-overlay p-5">
     <div :class="bgColor" class="modal-content w-full md:max-w-md" role="alert">
-      <div class="mb-5 flex items-center border-b border-line pb-1">
-        <h3 v-if="title" :class="nameResend ? 'text-center' : 'text-left'" class="flex-1 font-mono text-xl font-bold">
+      <div class="mb-5 flex items-center gap-4">
+        <h3
+          v-if="title"
+          :class="nameResend ? 'text-center' : 'text-left'"
+          class="flex-1 font-display text-2xl font-extrabold"
+        >
           {{ title }}
         </h3>
         <button
@@ -55,8 +59,8 @@ const emit = defineEmits<{ close: [] }>();
 }
 
 .modal-content {
-  padding: 20px;
-  border: 1px solid rgb(var(--ns-line));
+  padding: 24px;
+  border-radius: 28px;
   max-height: 90%;
   display: flex;
   position: relative;
